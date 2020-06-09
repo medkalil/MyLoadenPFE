@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">LoadenPFE</string>
+    <string name="labelhome">ارسل طلبك</string>
+    <string name="labelmesdemande">طلباتي</string>
+    <string name="labelnotification">التنبيهات</string>
+    <string name="labelmoncompte">حسابي</string>
+    <string name="labelinfo"> من نحن ؟</string>
+    <string name="labelcontact">اتصل بنا</string>
+    <string name="labelshare">شارك التطبيق</string>
+    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="labeltel">الهاتف :</string>
+    <string name="labellesdemande">الطلبات</string>
+    <string name="label_entrer_code">ادخل الكود</string>
+    <string name="label_entrer_tel">ادخل رقم الهاتف</string>
+    <string name="label_btn_sign">سجل</string>
+    <string name="labeladress">العنوان :</string>
+    <string name="labelface">الفيسبوك :</string>
+    <string name="labelinsta">انستقرام :</string>
+    <string name="para">باستخدام My Business App ، قم بإنشاء تطبيقك الخاص لهواتف Android والأجهزة اللوحية من موقع URL
+ الخاص بك أو ملف HTML المحلي ببضع نقرات فقط! لا حاجة للترمي
+ ز. من خلال صفحات مخصصة مثل سجل الإشعارات
+ ، عنا واتصل بنا. قم بتعيينه وتحويل تطبيقك الرائع</string>
+    <string name="labelmail">البريد الإلكتروني</string>
+    <string name="label_moaraf_talab">معرف الطلب</string>
+    <string name="label_date_demande">تاريخ الطلب</string>
+    <string name="label_type_demande">نوع الطلب</string>
+    <string name="label_distance">" المسافة"</string>
+    <string name="label_duree">" المدة"</string>
+    <string name="label_lieu">مكان التحميل</string>
+    <string name="label_arth_siir_mozawed">عرض سعر المزود</string>
+    <string name="label_num_demande">للطلب رقم</string>
+    <string name="label_date_offre">تاريخ ارسال العرض</string>
+    <string name="label_moaraf_offre">معرف العرض</string>
+    <string name="label_btn_listeoffre">قائمة العروض</string>
+    <string name="label_btn_soumtre_offre">ارسل عرضك</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="label_ism">الاسم</string>
+    <string name="label_taadil">تعديل</string>
+    <string name="label_lakab">اللقب</string>
+    <string name="label_tel">رقم الهاتف</string>
+    <string name="label_mail">البريد الإلكتروني</string>
+    <string name="label_mannahno">من نحن</string>
+    <string name="man_nahnou">" ديكوراتي والذي يحول أسلوب وطريقة التعامل ما بين مقدمي الخدمة في أعمال الديكور والمقاولات وبين عملائهم الى طريقة أكثر فاعلية، من خلال هذه المنصة الخاصة الذي يجمعهم مع عملائهم، وبالتالي يمكن لأي شخص أينما تواجد داخل المملكة أن يصل الى المصمم الأكثر قرباً من الرؤية التي يرغب بها تصميم بنائه، حيث يلاقي خبراتهم في أعمال وتنفيذ الديكورات والتصاميم الداخلية مع احتياجات العميل، لنضع نقطة الانطلاق نحو تنفيذ تلك الرغبات والاحتياجات، كما أننانزود عملائنا بدراسة مفصلة للتكاليف وتوليفة من الأسعار مصممه لتناسب جميع الميزانيات، وبناءً على اختياراتكم يتم ترشيح من يقوم بالعمل، ومن ثم تأتي عملية الدفع والبدء بالأعما"</string>
+</resources>

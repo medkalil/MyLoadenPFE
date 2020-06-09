@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/tel" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labeltel"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/ourphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:paddingRight="10dp"
+                android:text="464949"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/imagemail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_email_24" />
+
+
+            <TextView
+                android:id="@+id/maillabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="@string/labelmail"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/ourmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="464949"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/adress_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:id="@+id/txtadress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="@string/labeladress"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/ouradress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="464949"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/icon_fb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/fbjpg" />
+
+            <TextView
+                android:id="@+id/lbl_fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="@string/labelface"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/our_face"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="464949"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/icon_insta"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/instajpg" />
+
+            <TextView
+                android:id="@+id/lbl_insta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="@string/labelinsta"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/our_insta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="464949"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="484dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:paddingRight="10dp"
+            android:text="@string/para"
+            android:textAlignment="gravity"
+            android:textIsSelectable="false"
+            android:textSize="24sp" />
+    </LinearLayout>
+</RelativeLayout>

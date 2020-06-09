@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+     android:layout_width="match_parent"
+    android:id="@+id/sign_rela_id"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/label_entrer_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center|right"
+        android:text="@string/label_entrer_tel"
+        android:textColor="#373030"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/sign_in_number"
+        android:layout_width="338dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="131dp"
+        android:layout_marginStart="74dp"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/sign_in_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:background="@color/red"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/label_btn_sign" />
+</RelativeLayout>
+</layout>

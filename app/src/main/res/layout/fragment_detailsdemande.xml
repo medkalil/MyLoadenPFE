@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+        <TextView
+            android:id="@+id/id_dem_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="1985" />
+        <TextView
+            android:gravity="right"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_moaraf_talab"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:id="@+id/rl_cadre">
+
+
+        <TextView
+            android:id="@+id/statu_txt_detail"
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingRight="5dp"
+            android:text="fkgjkoglkdkdgk" />
+
+        <LinearLayout
+
+            android:id="@+id/linear_ident"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/statu_txt_detail"
+            >
+
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:paddingRight="5dp"
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    >
+                    <TextView
+                        android:id="@+id/type_dem_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="kkdd"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_type_demande"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:paddingRight="5dp"
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/date_dem_detail"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="12/58/1987"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_date_demande"/>
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:gravity="right|center_vertical"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/distance_dem"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="1985" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingLeft="10dp"
+            android:text="@string/label_distance" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:gravity="right|center_vertical"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/duree_dem"
+            android:gravity="right"
+            android:text="1478933" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingLeft="10dp"
+            android:text="@string/label_duree" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:gravity="right|center_vertical"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingLeft="10dp"
+            android:text="@string/label_lieu" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/list_offre_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:background="@color/red"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/label_btn_listeoffre" />
+
+
+</LinearLayout>
+    </RelativeLayout>
+</layout>
