@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        // SharedPrefManager.getInstance(this).saveUser(phone)
+        //SharedPrefManager.getInstance(this).saveUser(phone)
+        SharedPrefManager.getInstance(this).clear()
 
-        // setFragment(EnvoyerDemandeFragment())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -55,7 +55,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //check if the user is logged In
         if (!SharedPrefManager.getInstance(this).isLoggedIn) {
             setFragment(SignInFragment())
+            supportActionBar?.title = getString(R.string.label_sign_in)
         } else {
+
+            setFragment(EnvoyerDemandeFragment())
 
             when (item.itemId) {
                 R.id.item_contact -> {

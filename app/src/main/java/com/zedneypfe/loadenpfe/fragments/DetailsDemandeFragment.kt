@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.databinding.FragmentDetailsdemandeBinding
 
-class DetailsFragmentFragment:Fragment() {
+class DetailsDemandeFragment:Fragment() {
     lateinit var binding: FragmentDetailsdemandeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
