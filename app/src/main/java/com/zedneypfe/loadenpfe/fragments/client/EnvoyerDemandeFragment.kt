@@ -1,4 +1,4 @@
-package com.zedneypfe.loadenpfe.fragments
+package com.zedneypfe.loadenpfe.fragments.client
 
 import android.os.Bundle
 import android.view.LayoutInflater

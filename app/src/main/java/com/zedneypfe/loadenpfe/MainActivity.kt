@@ -11,9 +11,10 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.zedneypfe.loadenpfe.Model.PHONE
 import com.zedneypfe.loadenpfe.fragments.*
+import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
+import com.zedneypfe.loadenpfe.fragments.client.MesDemandesFragment
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.intellij.lang.annotations.Language
 import java.util.*
 
 
