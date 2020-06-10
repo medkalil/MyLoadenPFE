@@ -24,9 +24,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
 
 
+        //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
+
         setSupportActionBar(toolbar)
-       supportActionBar?.title = getString(R.string.labelhome)
+        supportActionBar?.title = getString(R.string.labelhome)
         nav_view.setNavigationItemSelectedListener(this)
         val actionToggle = ActionBarDrawerToggle(
             this,
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
+
+
         setFragment(EnvoyerDemandeFragment())
     }
 
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setFragment(ContactFragment())
                 supportActionBar?.title = getString(R.string.labelcontact)
             }
-            R.id.item_mesdemandes ->{
+            R.id.item_mesdemandes -> {
                 setFragment(MesDemandesFragment())
                 supportActionBar?.title = getString(R.string.labelmesdemande)
             }
@@ -55,11 +59,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setFragment(MyAccountFragment())
                 supportActionBar?.title = getString(R.string.labelmoncompte)
             }
-            R.id.item_info ->{
+            R.id.item_info -> {
                 setFragment(AppIdentFragment())
                 supportActionBar?.title = getString(R.string.labelinfo)
             }
-            R.id.item_home ->{
+            R.id.item_home -> {
                 setFragment(EnvoyerDemandeFragment())
                 supportActionBar?.title = getString(R.string.labelhome)
             }
@@ -87,6 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.commit()
 
     }
+
     override fun onResume() {
         super.onResume()
         fixUpLocale()
