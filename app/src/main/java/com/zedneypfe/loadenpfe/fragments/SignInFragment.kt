@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,8 +29,8 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_signin, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_signin, container, false)
+
     }
 
 
@@ -37,6 +38,11 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sign_in_btn.setOnClickListener {
+            //TODO :pass the phone to verifFragment with Bundle OR Intent
+         /*   val bnd: Bundle? = null
+            bnd!!.putString("phone", sign_in_number.text.toString())
+
+            VerifSignInFragment().arguments = bnd*/
             setFragment(VerifSignInFragment())
         }
     }
