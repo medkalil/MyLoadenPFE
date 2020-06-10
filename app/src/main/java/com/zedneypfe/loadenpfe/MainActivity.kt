@@ -3,6 +3,7 @@ package com.zedneypfe.loadenpfe
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
 
@@ -47,19 +47,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         actionToggle.syncState()
 
         //SharedPrefManager.getInstance(this).saveUser(phone)
-        SharedPrefManager.getInstance(this).clear()
+        //SharedPrefManager.getInstance(this).clear()
 
+
+        setFragment(EnvoyerDemandeFragment())
     }
 
+    //icccccccccccccciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        //check if the user is logged In
+        //check if the user not logged IN
         if (!SharedPrefManager.getInstance(this).isLoggedIn) {
-            setFragment(SignInFragment())
             supportActionBar?.title = getString(R.string.label_sign_in)
-        } else {
 
-            setFragment(EnvoyerDemandeFragment())
+            //navigate to the views doesn't require a login exp:contact us
+            when (item.itemId) {
+                R.id.item_contact -> {
+                    setFragment(ContactFragment())
+                    supportActionBar?.title = getString(R.string.labelcontact)
+                }
+                R.id.item_info -> {
+                    setFragment(AppIdentFragment())
+                    supportActionBar?.title = getString(R.string.labelinfo)
+                }
+                R.id.item_home -> {
+                    setFragment(EnvoyerDemandeFragment())
+                    supportActionBar?.title = getString(R.string.labelhome)
+                }
+                else ->{
+                    setFragment(SignInFragment())
+                }
+            }//when
+
+        } else {
+                // the user already connected
 
             when (item.itemId) {
                 R.id.item_contact -> {
@@ -84,7 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }//when
 
-        }
+        }//else
 
 
         closeDrawer()
@@ -107,7 +128,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container_fragm, fragment)
         transaction.commit()
-
     }
 
     override fun onResume() {
