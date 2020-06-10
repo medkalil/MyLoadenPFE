@@ -29,19 +29,24 @@ class SignInFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_signin, container, false)
-
-     /*   sign_in_btn.setOnClickListener {
-            setFragment(SignInFragment())
-        }*/
-
         return v
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sign_in_btn.setOnClickListener {
+            setFragment(VerifSignInFragment())
+        }
+    }
+
+
+    //requireFragmentManager -> for fragments
     private fun setFragment(fragment: Fragment) {
-        val transaction = requireFragmentManager().beginTransaction()
-        transaction.replace(R.id.container_fragm, fragment)
-        transaction.commit()
+        val ft = requireFragmentManager().beginTransaction()
+        ft.replace(R.id.container_fragm, fragment)
+        ft.commit()
     }
 
 }

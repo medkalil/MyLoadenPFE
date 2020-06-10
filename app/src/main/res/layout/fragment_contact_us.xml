@@ -208,7 +208,6 @@
             android:paddingRight="10dp"
             android:text="@string/para"
             android:textAlignment="gravity"
-            android:textIsSelectable="false"
-            android:textSize="24sp" />
+            android:textIsSelectable="false" />
     </LinearLayout>
 </RelativeLayout>
