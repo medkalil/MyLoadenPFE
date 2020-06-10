@@ -9,7 +9,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.zedneypfe.loadenpfe.Model.PHONE
 import com.zedneypfe.loadenpfe.fragments.*
+import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.intellij.lang.annotations.Language
 import java.util.*
@@ -18,6 +20,9 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    //test to save the user in sharedPrefrences then  launch the app
+    var phone = PHONE("1", "PHONE", "966555555555", "WORK")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,34 +45,43 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
+        // SharedPrefManager.getInstance(this).saveUser(phone)
 
-        setFragment(EnvoyerDemandeFragment())
+        // setFragment(EnvoyerDemandeFragment())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        when (item.itemId) {
-            R.id.item_contact -> {
-                setFragment(ContactFragment())
-                supportActionBar?.title = getString(R.string.labelcontact)
-            }
-            R.id.item_mesdemandes -> {
-                setFragment(MesDemandesFragment())
-                supportActionBar?.title = getString(R.string.labelmesdemande)
-            }
-            R.id.item_profile -> {
-                setFragment(MyAccountFragment())
-                supportActionBar?.title = getString(R.string.labelmoncompte)
-            }
-            R.id.item_info -> {
-                setFragment(AppIdentFragment())
-                supportActionBar?.title = getString(R.string.labelinfo)
-            }
-            R.id.item_home -> {
-                setFragment(EnvoyerDemandeFragment())
-                supportActionBar?.title = getString(R.string.labelhome)
-            }
+        //check if the user is logged In
+        if (!SharedPrefManager.getInstance(this).isLoggedIn) {
+            setFragment(SignInFragment())
+        } else {
+
+            when (item.itemId) {
+                R.id.item_contact -> {
+                    setFragment(ContactFragment())
+                    supportActionBar?.title = getString(R.string.labelcontact)
+                }
+                R.id.item_mesdemandes -> {
+                    setFragment(MesDemandesFragment())
+                    supportActionBar?.title = getString(R.string.labelmesdemande)
+                }
+                R.id.item_profile -> {
+                    setFragment(MyAccountFragment())
+                    supportActionBar?.title = getString(R.string.labelmoncompte)
+                }
+                R.id.item_info -> {
+                    setFragment(AppIdentFragment())
+                    supportActionBar?.title = getString(R.string.labelinfo)
+                }
+                R.id.item_home -> {
+                    setFragment(EnvoyerDemandeFragment())
+                    supportActionBar?.title = getString(R.string.labelhome)
+                }
+            }//when
+
         }
+
 
         closeDrawer()
         return true
@@ -107,4 +121,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         res.updateConfiguration(conf, res.displayMetrics)
 
     }
+
+
+    /* //check responce of the key after login
+   internal fun getresp() {
+
+       val service = retrofit.create(ApiService::class.java)
+       val call = service.getcode()
+
+       call.enqueue(object : retrofit2.Callback<authModel> {
+
+           override fun onFailure(call: Call<authModel>, t: Throwable) {
+               Toast.makeText(this@MainActivity, call.toString(), Toast.LENGTH_SHORT).show()
+           }
+
+           override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
+
+                   Toast.makeText(this@MainActivity, res.to, Toast.LENGTH_SHORT).show()
+           }
+       })//enqueue
+
+   }*/
+
 }
