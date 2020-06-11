@@ -12,6 +12,7 @@ import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.network.ApiService
 import com.zedneypfe.loadenpfe.network.KEY
 import com.zedneypfe.loadenpfe.network.retrofit
+import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.fragment_signin.*
 import retrofit2.Call
 import retrofit2.Response
@@ -49,6 +50,7 @@ class SignInFragment : Fragment() {
         sign_in_btn?.setOnClickListener {
             if (sign_in_number.text!!.isNotEmpty()){
                 viewModel.getresp(sign_in_number.text.toString())
+
                 setFragment(VerifSignInFragment())
             }else{
                 sign_in_number?.error="enter a valide phone number"
