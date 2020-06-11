@@ -43,10 +43,8 @@ class SignInFragment : Fragment() {
 
         //Declaring the viewmodel
         viewModel=ViewModelProvider(this).get(SignInViewModel::class.java)
-
-        /*   if (sign_in_number.text.isEmpty()) {
-               sign_in_number?.error = "entre le phone number"
-           }*/
+        
+        //will not take me to the verifFragment intel it not empty
         sign_in_btn?.setOnClickListener {
             if (sign_in_number.text!!.isNotEmpty()){
                 viewModel.getresp(sign_in_number.text.toString())
