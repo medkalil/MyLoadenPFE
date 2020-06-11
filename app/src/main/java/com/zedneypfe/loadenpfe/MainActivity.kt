@@ -3,17 +3,17 @@ package com.zedneypfe.loadenpfe
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.zedneypfe.loadenpfe.Model.PHONE
 import com.zedneypfe.loadenpfe.fragments.*
 import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.MesDemandesFragment
+import com.zedneypfe.loadenpfe.fragments.constFragment.AppIdentFragment
+import com.zedneypfe.loadenpfe.fragments.constFragment.ContactFragment
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     //test to save the user in sharedPrefrences then  launch the app
-    var phone = PHONE("1", "PHONE", "966555555555", "WORK")
-
+    //  var phone = PHONE("1", "PHONE", "966555555555", "WORK")
+    //val user=authModel("ok","1","1234")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        //SharedPrefManager.getInstance(this).saveUser(phone)
-        //SharedPrefManager.getInstance(this).clear()
+        //SharedPrefManager.getInstance(this).saveUser(user)
+         //SharedPrefManager.getInstance(this).clear()
 
 
         setFragment(EnvoyerDemandeFragment())
@@ -74,13 +74,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
                 }
-                else ->{
+                else -> {
                     setFragment(SignInFragment())
                 }
             }//when
 
         } else {
-                // the user already connected
+            // the user already connected
 
             when (item.itemId) {
                 R.id.item_contact -> {
