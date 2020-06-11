@@ -35,9 +35,6 @@ class VerifSignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*veri_btn.setOnClickListener {
-           // getresp()
-        }*/
 
     }//onViewCreated
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -18,9 +19,10 @@ import retrofit2.Response
 
 class SignInFragment : Fragment() {
 
+    private lateinit var viewModel: SignInViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -28,23 +30,31 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signin, container, false)
+        val v = inflater.inflate(R.layout.fragment_signin, container, false)
 
+
+        return v
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (sign_in_number.text.isEmpty()) {
-            sign_in_number?.error = "entre le phone number"
+        //Declaring the viewmodel
+        viewModel=ViewModelProvider(this).get(SignInViewModel::class.java)
 
-        }
+        /*   if (sign_in_number.text.isEmpty()) {
+               sign_in_number?.error = "entre le phone number"
+           }*/
         sign_in_btn?.setOnClickListener {
-            getresp()
-
-            setFragment(VerifSignInFragment())
+            if (sign_in_number.text!!.isNotEmpty()){
+                viewModel.getresp(sign_in_number.text.toString())
+                setFragment(VerifSignInFragment())
+            }else{
+                sign_in_number?.error="enter a valide phone number"
+            }
         }
+
 
     }
 
@@ -58,7 +68,7 @@ class SignInFragment : Fragment() {
 
 
     //check responce of the key after login
-    internal fun getresp() {
+    /*internal fun getresp() {
 
         //KEY is a cont from
         val service = retrofit.create(ApiService::class.java)
@@ -84,6 +94,6 @@ class SignInFragment : Fragment() {
             }
         })//enqueue
 
-    }
+    }*/
 
 }
