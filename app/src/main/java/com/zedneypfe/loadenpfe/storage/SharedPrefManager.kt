@@ -14,13 +14,21 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
     * */
 
 
-    val isLoggedIn: Boolean
+    var isLoggedIn: Boolean
         //linking the id from this var(isLoggedIn) with id from user(PHONE)
         //and initialize this var to false with : ...null != null (line 14)
         get() {
             val sharedPreferences =
                 mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getString("result", null) != null
+        }
+
+        set(value) {
+            val sharedPreferences =
+                mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("result", value.toString())
+            editor.apply()
         }
 
     val user: authModel
@@ -43,9 +51,9 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
             Context.MODE_PRIVATE
         )
         val editor = sharedPreferences.edit()
-        editor.putString("id", user.result)
-        editor.putString("type_id", user.verif_code)
-        editor.putString("value", user.user_type)
+        editor.putString("result", user.result)
+        editor.putString("verif_code", user.verif_code)
+        editor.putString("user_type", user.user_type)
         editor.apply()
     }
 

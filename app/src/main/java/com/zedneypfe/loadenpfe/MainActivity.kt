@@ -1,15 +1,19 @@
 package com.zedneypfe.loadenpfe
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.zedneypfe.loadenpfe.fragments.*
+import androidx.navigation.ui.AppBarConfiguration
+import com.google.android.material.navigation.NavigationView
+import com.zedneypfe.loadenpfe.Model.authModel
+import com.zedneypfe.loadenpfe.fragments.MyAccountFragment
+import com.zedneypfe.loadenpfe.fragments.SignInFragment
+import com.zedneypfe.loadenpfe.fragments.VerifSignInFragment
 import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.MesDemandesFragment
 import com.zedneypfe.loadenpfe.fragments.constFragment.AppIdentFragment
@@ -19,12 +23,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,Communicator {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    //test to save the user in sharedPrefrences then  launch the app
-    //  var phone = PHONE("1", "PHONE", "966555555555", "WORK")
     //val user=authModel("ok","1","1234")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,19 +48,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        //SharedPrefManager.getInstance(this).saveUser(user)
-         //SharedPrefManager.getInstance(this).clear()
+        //to CLEAR user to TEST
+
+        println(SharedPrefManager.getInstance(this).user)
+        println(SharedPrefManager.getInstance(this).isLoggedIn)
+
+
 
 
         setFragment(EnvoyerDemandeFragment())
     }
 
-    //icccccccccccccciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         //check if the user not logged IN
-        if (!SharedPrefManager.getInstance(this).isLoggedIn) {
+        if (SharedPrefManager.getInstance(this).isLoggedIn==false) {
             supportActionBar?.title = getString(R.string.label_sign_in)
+
 
             //navigate to the views doesn't require a login exp:contact us
             when (item.itemId) {
@@ -143,6 +149,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val conf = Configuration(config)
         conf.setLocale(newLocale)
         res.updateConfiguration(conf, res.displayMetrics)
+
+    }
+
+    override fun passDataCom(input: String) {
+        val bundle = Bundle()
+        bundle.putString("input_txt",input)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val VerifSignInFragment = VerifSignInFragment()
+        VerifSignInFragment.arguments = bundle
+
+        transaction.replace(R.id.container_fragm, VerifSignInFragment)
+        transaction.addToBackStack(null)
+        transaction.setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction.commit()
 
     }
 

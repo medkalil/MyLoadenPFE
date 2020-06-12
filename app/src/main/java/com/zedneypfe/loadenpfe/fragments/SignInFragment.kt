@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import com.zedneypfe.loadenpfe.Communicator
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -20,6 +21,8 @@ import retrofit2.Response
 
 
 class SignInFragment : Fragment() {
+
+    lateinit var comm: Communicator
 
     private lateinit var viewModel: SignInViewModel
 
@@ -35,10 +38,6 @@ class SignInFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_signin, container, false)
 
 
-      /*  val bundle = Bundle()
-        bundle.putString("phone",sign_in_number.text.toString())
-
-        VerifSignInFragment().arguments=bundle*/
 
         return v
     }
@@ -48,19 +47,25 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Declaring the viewmodel
-        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        viewModel=ViewModelProvider(this).get(SignInViewModel::class.java)
+
+        comm = activity as Communicator
 
         //will not take me to the verifFragment intel it not empty
         sign_in_btn?.setOnClickListener {
-            if (sign_in_number.text!!.isNotEmpty()) {
+            if (sign_in_number.text!!.isNotEmpty()){
+
+                //viewModel.getresp(sign_in_number.text.toString())
+
+                comm.passDataCom(sign_in_number.text.toString())
 
 
-                setFragment(VerifSignInFragment())
-            } else {
-                sign_in_number?.error = "enter a valide phone number"
+
+               // setFragment(VerifSignInFragment())
+            }else{
+                sign_in_number?.error="enter a valide phone number"
             }
         }
-
 
     }
 
@@ -73,33 +78,5 @@ class SignInFragment : Fragment() {
     }
 
 
-    //check responce of the key after login
-    /*internal fun getresp() {
-
-        //KEY is a cont from
-        val service = retrofit.create(ApiService::class.java)
-
-        //TODO  : pass sign_in_number.text
-        //  to this fragment(VerifSigninFragment)
-        val call = service.getcode(KEY, sign_in_number.text.toString())
-
-        call.enqueue(object : retrofit2.Callback<authModel> {
-
-            override fun onFailure(call: Call<authModel>, t: Throwable) {
-                Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
-                //SharedPrefManager.getInstance(context!!).saveUser(response.body()!!)
-                //SharedPrefManager.getInstance(context!!).clear()
-
-
-                println("ok")
-                println(response.body()!!)
-                //  Toast.makeText(getCp, "success", Toast.LENGTH_SHORT).show()
-            }
-        })//enqueue
-
-    }*/
 
 }
