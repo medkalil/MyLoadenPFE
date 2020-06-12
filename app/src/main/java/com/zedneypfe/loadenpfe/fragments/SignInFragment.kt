@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Model.authModel
@@ -34,6 +35,11 @@ class SignInFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_signin, container, false)
 
 
+      /*  val bundle = Bundle()
+        bundle.putString("phone",sign_in_number.text.toString())
+
+        VerifSignInFragment().arguments=bundle*/
+
         return v
     }
 
@@ -42,16 +48,16 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Declaring the viewmodel
-        viewModel=ViewModelProvider(this).get(SignInViewModel::class.java)
-        
+        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+
         //will not take me to the verifFragment intel it not empty
         sign_in_btn?.setOnClickListener {
-            if (sign_in_number.text!!.isNotEmpty()){
-                viewModel.getresp(sign_in_number.text.toString())
+            if (sign_in_number.text!!.isNotEmpty()) {
+
 
                 setFragment(VerifSignInFragment())
-            }else{
-                sign_in_number?.error="enter a valide phone number"
+            } else {
+                sign_in_number?.error = "enter a valide phone number"
             }
         }
 

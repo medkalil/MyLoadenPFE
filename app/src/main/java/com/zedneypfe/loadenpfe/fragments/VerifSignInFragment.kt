@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -19,6 +20,8 @@ import retrofit2.Response
 
 
 class VerifSignInFragment : Fragment() {
+
+    private lateinit var viewModel: VerifSignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,11 @@ class VerifSignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)
+
+
+     //  viewModel.getresp()
 
     }//onViewCreated
 
