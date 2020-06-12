@@ -1,16 +1,19 @@
 package com.zedneypfe.loadenpfe
 
-import android.app.FragmentTransaction
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.zedneypfe.loadenpfe.fragments.*
+import androidx.navigation.ui.AppBarConfiguration
+import com.google.android.material.navigation.NavigationView
+import com.zedneypfe.loadenpfe.Model.authModel
+import com.zedneypfe.loadenpfe.fragments.MyAccountFragment
+import com.zedneypfe.loadenpfe.fragments.SignInFragment
+import com.zedneypfe.loadenpfe.fragments.VerifSignInFragment
 import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.MesDemandesFragment
 import com.zedneypfe.loadenpfe.fragments.constFragment.AppIdentFragment
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val user=authModel("ok","1","1011")
         //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
 
@@ -47,9 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        //SharedPrefManager.getInstance(this).saveUser(user)
+        SharedPrefManager.getInstance(this).saveUser(user)
          //SharedPrefManager.getInstance(this).clear()
-
+        println(SharedPrefManager.getInstance(this).user)
+        println(SharedPrefManager.getInstance(this).isLoggedIn)
 
         setFragment(EnvoyerDemandeFragment())
     }

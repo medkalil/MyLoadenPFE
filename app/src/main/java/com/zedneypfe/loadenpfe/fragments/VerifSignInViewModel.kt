@@ -37,7 +37,6 @@ class VerifSignInViewModel(application: Application) : AndroidViewModel(applicat
             }
 
             override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
-                println("ok")
                 println(response.body()!!)
                 //only the code from the authModel
                 res.value = response.body()!!.verif_code

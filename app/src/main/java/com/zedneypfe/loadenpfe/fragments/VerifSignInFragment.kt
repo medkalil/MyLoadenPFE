@@ -54,17 +54,17 @@ class VerifSignInFragment : Fragment() {
 
 
                     //save the user
-                    viewModel.au.observe(viewLifecycleOwner, Observer {
-                        SharedPrefManager.getInstance(this.requireContext()).saveUser(it)
-                        SharedPrefManager.getInstance(this.requireContext()).isLoggedIn=true
-                    println(SharedPrefManager.getInstance(this.requireContext()).isLoggedIn)
+                   viewModel.au.observe(viewLifecycleOwner, Observer {
+                        SharedPrefManager.getInstance(requireActivity().applicationContext).saveUser(it)
+
+                        println(SharedPrefManager.getInstance(requireActivity().applicationContext).user)
+
+                        //  SharedPrefManager.getInstance(this.requireContext()).isLoggedIn=true
+                        // println(SharedPrefManager.getInstance(this.requireContext()).isLoggedIn)
                     })
 
 
-                    //set the value of the boolean isLoggedIn to true
-                   // SharedPrefManager.getInstance(requireContext()).isLoggedIn = true
-
-                    val intent = Intent (getActivity(), MainActivity::class.java)
+                    val intent = Intent(getActivity(), MainActivity::class.java)
                     requireActivity().startActivity(intent)
 
                     Toast.makeText(

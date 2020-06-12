@@ -23,13 +23,13 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
             return sharedPreferences.getString("result", null) != null
         }
 
-    set(value) {
-        val sharedPreferences =
-            mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-         editor.putString("", value.toString())
-        editor.apply()
-    }
+        set(value) {
+            val sharedPreferences =
+                mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("", value.toString())
+            editor.apply()
+        }
 
     val user: authModel
         //custom getter too getting user
