@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe
 
+import android.app.FragmentTransaction
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,Communicator {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -53,12 +54,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setFragment(EnvoyerDemandeFragment())
     }
 
-    //icccccccccccccciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         //check if the user not logged IN
-        if (!SharedPrefManager.getInstance(this).isLoggedIn) {
+        if (SharedPrefManager.getInstance(this).isLoggedIn==false) {
             supportActionBar?.title = getString(R.string.label_sign_in)
+
 
             //navigate to the views doesn't require a login exp:contact us
             when (item.itemId) {
@@ -143,6 +144,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val conf = Configuration(config)
         conf.setLocale(newLocale)
         res.updateConfiguration(conf, res.displayMetrics)
+
+    }
+
+    override fun passDataCom(input: String) {
+        val bundle = Bundle()
+        bundle.putString("input_txt",input)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val VerifSignInFragment = VerifSignInFragment()
+        VerifSignInFragment.arguments = bundle
+
+        transaction.replace(R.id.container_fragm, VerifSignInFragment)
+        transaction.addToBackStack(null)
+        transaction.setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction.commit()
 
     }
 
