@@ -27,14 +27,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    //test to save the user in sharedPrefrences then  launch the app
-    //  var phone = PHONE("1", "PHONE", "966555555555", "WORK")
     //val user=authModel("ok","1","1234")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val user=authModel("ok","1","1011")
         //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
 
@@ -51,10 +48,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        SharedPrefManager.getInstance(this).saveUser(user)
-         //SharedPrefManager.getInstance(this).clear()
-        println(SharedPrefManager.getInstance(this).user)
-        println(SharedPrefManager.getInstance(this).isLoggedIn)
 
         setFragment(EnvoyerDemandeFragment())
     }

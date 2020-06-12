@@ -36,7 +36,7 @@ class VerifSignInFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_verif_sign_in, container, false)
 
         phone_passed = arguments?.getString("input_txt")
-        //  println(phone_passed)
+
         return v
     }
 
@@ -54,8 +54,9 @@ class VerifSignInFragment : Fragment() {
 
 
                     //save the user
-                   viewModel.au.observe(viewLifecycleOwner, Observer {
-                        SharedPrefManager.getInstance(requireActivity().applicationContext).saveUser(it)
+                    viewModel.au.observe(viewLifecycleOwner, Observer {
+                        SharedPrefManager.getInstance(requireActivity().applicationContext)
+                            .saveUser(it)
 
                         println(SharedPrefManager.getInstance(requireActivity().applicationContext).user)
 
