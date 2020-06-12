@@ -48,6 +48,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
+        //to CLEAR user to TEST
+
+        println(SharedPrefManager.getInstance(this).user)
+        println(SharedPrefManager.getInstance(this).isLoggedIn)
+
+
+
 
         setFragment(EnvoyerDemandeFragment())
     }

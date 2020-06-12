@@ -43,11 +43,6 @@ class VerifSignInViewModel(application: Application) : AndroidViewModel(applicat
 
                 //all the responce ->authModel
                 au.value=response.body()
-              //  SharedPrefManager.getInstance(getApplication()).saveUser(response.body()!!)
-
-
-          //     println( SharedPrefManager.getInstance(getApplication()).isLoggedIn)
-
             }
         })//enqueue
 

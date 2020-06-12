@@ -1,6 +1,5 @@
 package com.zedneypfe.loadenpfe.fragments
 
-import android.R.attr.data
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
-import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.fragment_verif_sign_in.*
 
@@ -55,13 +53,8 @@ class VerifSignInFragment : Fragment() {
 
                     //save the user
                     viewModel.au.observe(viewLifecycleOwner, Observer {
-                        SharedPrefManager.getInstance(requireActivity().applicationContext)
-                            .saveUser(it)
-
-                        println(SharedPrefManager.getInstance(requireActivity().applicationContext).user)
-
-                        //  SharedPrefManager.getInstance(this.requireContext()).isLoggedIn=true
-                        // println(SharedPrefManager.getInstance(this.requireContext()).isLoggedIn)
+                         SharedPrefManager.getInstance(requireActivity().applicationContext)
+                             .saveUser(it)
                     })
 
 
@@ -75,8 +68,6 @@ class VerifSignInFragment : Fragment() {
 
                     println("yes")
                 } else {
-                    SharedPrefManager.getInstance(requireContext()).isLoggedIn = false
-
                     Toast.makeText(
                         context, "Wrong code",
                         Toast.LENGTH_LONG
