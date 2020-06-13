@@ -3,6 +3,8 @@ package com.zedneypfe.loadenpfe
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.navigation.NavigationView
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.fragments.MyAccountFragment
+import com.zedneypfe.loadenpfe.fragments.NotificationFragment
 import com.zedneypfe.loadenpfe.fragments.SignInFragment
 import com.zedneypfe.loadenpfe.fragments.VerifSignInFragment
 import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
@@ -23,10 +26,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,Communicator {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    Communicator {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    //to test user
     //val user=authModel("ok","1","1234")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,26 +53,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        //to CLEAR user to TEST
-
+        //to print the user
         println(SharedPrefManager.getInstance(this).user)
         println(SharedPrefManager.getInstance(this).isLoggedIn)
-
-
 
 
         setFragment(EnvoyerDemandeFragment())
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
         //check if the user not logged IN
-        if (SharedPrefManager.getInstance(this).isLoggedIn==false) {
+        if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
             supportActionBar?.title = getString(R.string.label_sign_in)
 
 
             //navigate to the views doesn't require a login exp:contact us
             when (item.itemId) {
+
                 R.id.item_contact -> {
                     setFragment(ContactFragment())
                     supportActionBar?.title = getString(R.string.labelcontact)
@@ -80,6 +83,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
                 }
+              /* R.id.item_notif ->{
+                    setFragment(NotificationFragment())
+                    supportActionBar?.title = getString(R.string.labelnotif)
+                }*/
                 else -> {
                     setFragment(SignInFragment())
                 }
@@ -108,6 +115,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.item_home -> {
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
+                }
+                R.id.item_notif ->{
+                    setFragment(NotificationFragment())
+                    supportActionBar?.title = getString(R.string.labelnotif)
                 }
             }//when
 
@@ -154,7 +165,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun passDataCom(input: String) {
         val bundle = Bundle()
-        bundle.putString("input_txt",input)
+        bundle.putString("input_txt", input)
 
         val transaction = this.supportFragmentManager.beginTransaction()
         val VerifSignInFragment = VerifSignInFragment()
