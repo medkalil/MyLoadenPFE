@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,11 +56,9 @@ class SignInFragment : Fragment() {
         sign_in_btn?.setOnClickListener {
             if (sign_in_number.text!!.isNotEmpty()){
 
-                //viewModel.getresp(sign_in_number.text.toString())
-
-                comm.passDataCom(sign_in_number.text.toString())
-
-
+                //format the phone to this format: (966) 555555555
+                //when sending it
+                comm.passDataCom("(966) "+sign_in_number.text.toString())
 
                // setFragment(VerifSignInFragment())
             }else{

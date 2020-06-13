@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
+import kotlinx.android.synthetic.main.fragment_signin.*
 import kotlinx.android.synthetic.main.fragment_verif_sign_in.*
 
 
@@ -34,6 +35,9 @@ class VerifSignInFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_verif_sign_in, container, false)
 
         phone_passed = arguments?.getString("input_txt")
+       //to check the format of the phone recived as argument
+        println(phone_passed)
+
 
         return v
     }
