@@ -30,6 +30,8 @@ class SignoutFragment : Fragment() {
 
         setFragment(EnvoyerDemandeFragment())
         println(SharedPrefManager.getInstance(requireActivity().applicationContext).user)
+        println(SharedPrefManager.getInstance(requireActivity().applicationContext).phone)
+
 
 
     }//onViewCreated

@@ -58,7 +58,11 @@ class SignInFragment : Fragment() {
 
                 //format the phone to this format: (966) 555555555
                 //when sending it
-                comm.passDataCom("(966) "+sign_in_number.text.toString())
+                val phone_formated:String="(966) "+sign_in_number.text.toString()
+                comm.passDataCom(phone_formated)
+                SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
+
+
 
                // setFragment(VerifSignInFragment())
             }else{
