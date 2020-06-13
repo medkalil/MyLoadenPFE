@@ -83,12 +83,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
                 }
-              /* R.id.item_notif ->{
+               R.id.item_notif ->{
                     setFragment(NotificationFragment())
                     supportActionBar?.title = getString(R.string.labelnotif)
-                }*/
+                }
                 else -> {
                     setFragment(SignInFragment())
+                    supportActionBar?.title = getString(R.string.label_sign_in)
+
                 }
             }//when
 
@@ -119,6 +121,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.item_notif ->{
                     setFragment(NotificationFragment())
                     supportActionBar?.title = getString(R.string.labelnotif)
+                }
+                R.id.item_signout ->{
+                    setFragment(SignoutFragment())
+                    supportActionBar?.title = getString(R.string.labelhome)
                 }
             }//when
 

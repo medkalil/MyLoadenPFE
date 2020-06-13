@@ -38,6 +38,11 @@
         android:icon="@drawable/share"
         android:title="@string/labelshare"
         />
+    <item
+        android:id="@+id/item_signout"
+        android:icon="@drawable/signout"
+        android:title="@string/labelsignout"
+        />
 
 
 </menu>
