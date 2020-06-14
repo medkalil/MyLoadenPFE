@@ -3,7 +3,7 @@ package com.zedneypfe.loadenpfe.fragments
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.zedneypfe.loadenpfe.Model.Result
+import com.zedneypfe.loadenpfe.Model.getContact.Contact
 import com.zedneypfe.loadenpfe.network.ApiService
 import com.zedneypfe.loadenpfe.network.KEY
 import com.zedneypfe.loadenpfe.network.retrofit
@@ -17,6 +17,13 @@ import retrofit2.Response
 class MyAccountViewModel(application: Application) : AndroidViewModel(application) {
 
     val name = MutableLiveData<String>()
+    val last_name = MutableLiveData<String>()
+    val phone_getted = MutableLiveData<String>()
+    val email_getted = MutableLiveData<String>()
+
+
+
+
 
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
@@ -29,14 +36,14 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
             val service = retrofit.create(ApiService::class.java)
             val call = service.getAccountInfo(KEY, phone)
 
-            call.enqueue(object : retrofit2.Callback<Result> {
+            call.enqueue(object : retrofit2.Callback<Contact> {
 
-                override fun onFailure(call: Call<Result>, t: Throwable) {
+                override fun onFailure(call: Call<Contact>, t: Throwable) {
                     println("failed to get the account info")
                 }
 
-                override fun onResponse(call: Call<Result>, response: Response<Result>) {
-                    println(response.body()!!)
+                override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
+                    println(response.body()!!.result)
 
                 }
             })//enqueue

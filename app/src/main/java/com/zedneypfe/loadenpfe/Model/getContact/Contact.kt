@@ -1,4 +1,4 @@
-package com.zedneypfe.loadenpfe.Model
+package com.zedneypfe.loadenpfe.Model.getContact
 
 data class Contact(
     val result: Result,

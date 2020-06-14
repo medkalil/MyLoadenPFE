@@ -1,4 +1,4 @@
-package com.zedneypfe.loadenpfe.Model
+package com.zedneypfe.loadenpfe.Model.getContact
 
 data class PHONE(
     val ID: String,
