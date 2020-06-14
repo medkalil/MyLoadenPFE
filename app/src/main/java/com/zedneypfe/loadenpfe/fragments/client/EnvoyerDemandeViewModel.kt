@@ -33,5 +33,9 @@ class EnvoyerDemandeViewModel(application: Application) : AndroidViewModel(appli
         }//coroutineScope.launch
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 
 }

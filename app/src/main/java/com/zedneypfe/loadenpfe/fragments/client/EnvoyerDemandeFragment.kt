@@ -43,17 +43,15 @@ class EnvoyerDemandeFragment : Fragment() {
         viewModel.getEnvouyerDemande(webview)
 
 
-
         //i deplace it in the ViewModel to respect the mvvm
-       /* val url = "https://form.jotform.com/201593494436562"
-        webview.settings.javaScriptEnabled = true
-        webview.settings.loadWithOverviewMode = true
-        webview.settings.useWideViewPort = true
-        webview.settings.builtInZoomControls = false
-        webview.settings.pluginState = WebSettings.PluginState.ON
-        webview.webViewClient = WebViewClient()
+        /* val url = "https://form.jotform.com/201593494436562"
+         webview.settings.javaScriptEnabled = true
+         webview.settings.loadWithOverviewMode = true
+         webview.settings.useWideViewPort = true
+         webview.settings.builtInZoomControls = false
+         webview.settings.pluginState = WebSettings.PluginState.ON
+         webview.webViewClient = WebViewClient()
 
-        webview.loadUrl(url)*/
-
+         webview.loadUrl(url)*/
     }
 }

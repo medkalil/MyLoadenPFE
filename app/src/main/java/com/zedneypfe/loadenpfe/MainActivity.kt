@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //to print the user
         println(SharedPrefManager.getInstance(this).user)
         println(SharedPrefManager.getInstance(this).isLoggedIn)
-        println(SharedPrefManager.getInstance(this).phone)
+       // println(SharedPrefManager.getInstance(this).phone)
 
 
 
