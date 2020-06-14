@@ -8,11 +8,20 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.R
+import com.zedneypfe.loadenpfe.fragments.VerifSignInViewModel
 import kotlinx.android.synthetic.main.fragment_envoyer_demande.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class EnvoyerDemandeFragment : Fragment() {
+
+
+    private lateinit var viewModel: EnvoyerDemandeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +37,15 @@ class EnvoyerDemandeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val url = "https://form.jotform.com/201593494436562"
+
+        viewModel = ViewModelProvider(this).get(EnvoyerDemandeViewModel::class.java)
+
+        viewModel.getEnvouyerDemande(webview)
+
+
+
+        //i deplace it in the ViewModel to respect the mvvm
+       /* val url = "https://form.jotform.com/201593494436562"
         webview.settings.javaScriptEnabled = true
         webview.settings.loadWithOverviewMode = true
         webview.settings.useWideViewPort = true
@@ -36,7 +53,7 @@ class EnvoyerDemandeFragment : Fragment() {
         webview.settings.pluginState = WebSettings.PluginState.ON
         webview.webViewClient = WebViewClient()
 
-        webview.loadUrl(url)
+        webview.loadUrl(url)*/
 
     }
 }
