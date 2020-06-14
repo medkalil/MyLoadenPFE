@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
 
+
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.labelhome)
         nav_view.setNavigationItemSelectedListener(this)
@@ -157,6 +158,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onResume() {
         super.onResume()
+        fixUpLocale()
+    }
+
+    //we need this because we blocked the oncreate on configuration changes
+    //
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
         fixUpLocale()
     }
 
