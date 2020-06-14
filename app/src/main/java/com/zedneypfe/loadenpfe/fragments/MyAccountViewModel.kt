@@ -23,8 +23,6 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
 
 
 
-
-
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
     private var viewModelJob = Job()
@@ -44,6 +42,12 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
 
                 override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
                     println(response.body()!!.result)
+
+                    name.value=response.body()!!.result.NAME
+                    last_name.value=response.body()!!.result.LAST_NAME
+                    //with out jsonobj and jsonarray
+                    phone_getted.value=response.body()!!.result.PHONE[0].VALUE
+                    email_getted.value=response.body()!!.result.EMAIL[0].VALUE
 
                 }
             })//enqueue
