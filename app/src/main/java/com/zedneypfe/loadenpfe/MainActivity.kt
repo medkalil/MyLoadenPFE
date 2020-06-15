@@ -1,7 +1,6 @@
 package com.zedneypfe.loadenpfe
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -56,8 +55,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         actionToggle.syncState()
 
         //to print the user
-       // println(SharedPrefManager.getInstance(this).user)
-        //println(SharedPrefManager.getInstance(this).isLoggedIn)
+      //  println(SharedPrefManager.getInstance(this).user)
+     //   println(SharedPrefManager.getInstance(this).isLoggedIn)
        // println(SharedPrefManager.getInstance(this).phone)
 
 
@@ -99,9 +98,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }//when
 
         } else {
-
-
             // the user already connected
+
             when (item.itemId) {
                 R.id.item_contact -> {
                     setFragment(ContactFragment())
@@ -181,7 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    override fun passDataCom(code: String,phone: String) {
+    override fun passDataCom(code: String,phone:String) {
         val bundle = Bundle()
         bundle.putString("code", code)
         bundle.putString("phone", phone)

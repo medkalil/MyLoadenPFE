@@ -23,14 +23,14 @@ import retrofit2.Response
 class SignInViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    var phone_exist=MutableLiveData<Boolean>()
+    val res = MutableLiveData<String>()
     val au = MutableLiveData<authModel>()
+    var phone_existed=MutableLiveData<Boolean>()
 
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
 
     fun getresp(phone: String) {
         coroutineScope.launch {
@@ -49,23 +49,24 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
                 override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
                     println(response.body()!!)
+
                     if (response.body()!!.result=="ok"){
-                        phone_exist.value=true
                         //only the code from the authModel
-                       // res.value = response.body()!!.verif_code
+                        res.value = response.body()!!.verif_code
+
+                        phone_existed.value=true
                         //all the responce ->authModel
                         au.value = response.body()
-
                     }else{
-                        phone_exist.value=false
-                    }
 
+                        phone_existed.value=false
+                    }
 
                 }
             })//enqueue
 
         }//coroutineScope.launch
-    }//getresp()
+    }
 
 
 
@@ -74,5 +75,6 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
         super.onCleared()
         viewModelJob.cancel()
     }
+
 
 }

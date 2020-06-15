@@ -22,7 +22,7 @@ class VerifSignInFragment : Fragment() {
 
 
     var code_passed: String? = ""
-    var phone_formated:String?=""
+    var phone_passed: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +35,11 @@ class VerifSignInFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_verif_sign_in, container, false)
 
-        //pass the phone with argument between 2 Fragment
+        phone_passed = arguments?.getString("phone")
+        code_passed = arguments?.getString("code")
+        //to check the format of the phone recived as argument
+        println(phone_passed)
 
-        /* phone_passed = arguments?.getString("input_txt")
-         //to check the format of the phone recived as argument
-          println(phone_passed)*/
 
         return v
     }
@@ -47,92 +47,58 @@ class VerifSignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       /* val code_from_shared:String=SharedPrefManager.getInstance(requireContext().applicationContext).user.verif_code
-        println(code_from_shared)*/
-
-        //code passed on argument
-        code_passed=arguments?.getString("code")
-        phone_formated=arguments?.getString("phone")
-
-        println(code_passed+" code passed")
         viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)
 
+        // viewModel.getresp(phone_passed.toString())
 
 
-        veri_btn?.setOnClickListener {
+        veri_btn.setOnClickListener {
+
+            if (code_verif.text.toString()==code_passed && code_verif.text.length==4 ) {
+
+                SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
 
 
-            if (code_verif?.text!!.isNotEmpty() && code_verif?.text!!.length == 4 && code_verif?.text.toString()==code_passed) {
-
-
-                //save the phone to make isLoggedIn=true
-                SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_formated.toString())
-
-               // println(SharedPrefManager.getInstance(requireContext().applicationContext).isLoggedIn)
-
-                println("test branch v2")
 
                 val intent = Intent(getActivity(), MainActivity::class.java)
                 requireActivity().startActivity(intent)
 
-                Toast.makeText(
-                    context, "You've Logged In",
-                    Toast.LENGTH_LONG
-                ).show()
 
-            } else {
-                code_verif?.error = getString(R.string.code_check)
+
+            }else{
+                code_verif?.error=getString(R.string.code_check)
             }
 
-        }//veri_btn?.setOnClickListener
+
+            /*   viewModel.res.observe(viewLifecycleOwner, Observer {
+                if (it == code_verif.text.toString()) {
 
 
+                    //save the user
+                   /* viewModel.au.observe(viewLifecycleOwner, Observer {
+                         SharedPrefManager.getInstance(requireActivity().applicationContext)
+                             .saveUser(it)
+                    })*/
 
+                    val intent = Intent(getActivity(), MainActivity::class.java)
+                    requireActivity().startActivity(intent)
 
+                    Toast.makeText(
+                        context, "Your Loged In",
+                        Toast.LENGTH_LONG
+                    ).show()
 
+                    println("yes")
+                } else {
+                    Toast.makeText(
+                        context, "Wrong code",
+                        Toast.LENGTH_LONG
+                    ).show()
 
-
-
-
-
-
-
-
-
-        //   viewModel.getresp(phone_passed.toString())
-
-
-        /*    veri_btn.setOnClickListener {
-                viewModel.res.observe(viewLifecycleOwner, Observer {
-                    if (it == code_verif.text.toString()) {
-
-
-                        //save the user
-                        viewModel.au.observe(viewLifecycleOwner, Observer {
-                             SharedPrefManager.getInstance(requireActivity().applicationContext)
-                                 .saveUser(it)
-                        })
-
-
-                        val intent = Intent(getActivity(), MainActivity::class.java)
-                        requireActivity().startActivity(intent)
-
-                        Toast.makeText(
-                            context, "Your Loged In",
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                        println("yes")
-                    } else {
-                        Toast.makeText(
-                            context, "Wrong code",
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                        println("NO")
-                    }
-                })
-            }*/
+                    println("NO")
+                }
+            })*/
+        }//veri_btn.setOnClickListener
 
 
     }//onViewCreated
