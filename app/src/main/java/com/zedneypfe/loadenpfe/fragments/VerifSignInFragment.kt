@@ -54,7 +54,7 @@ class VerifSignInFragment : Fragment() {
 
         veri_btn.setOnClickListener {
 
-            if (code_verif.text.toString()==code_passed && code_verif.text.length==4 ) {
+            if (code_verif.text.toString()==code_passed && code_verif.text.isNotEmpty() && code_verif.text.length==4 ) {
 
                 SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
 
