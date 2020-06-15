@@ -62,7 +62,7 @@ class VerifSignInFragment : Fragment() {
                     })
 
 
-                    println("deleted v2 branch")
+                    println("deleted v2 branch ff")
                     val intent = Intent(getActivity(), MainActivity::class.java)
                     requireActivity().startActivity(intent)
 
