@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Communicator
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -48,25 +51,47 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Declaring the viewmodel
-        viewModel=ViewModelProvider(this).get(SignInViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
 
         comm = activity as Communicator
 
         //will not take me to the verifFragment intel it not empty
         sign_in_btn?.setOnClickListener {
-            if (sign_in_number.text!!.isNotEmpty()){
+            if (sign_in_number.text!!.isNotEmpty() && sign_in_number.text.length == 10) {
 
                 //format the phone to this format: (966) 555555555
                 //when sending it
-                val phone_formated:String="(966) "+sign_in_number.text.toString()
-                comm.passDataCom(phone_formated)
-                SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
+                /*  val phone_formated:String="(966) "+sign_in_number.text.toString()
+                  comm.passDataCom(phone_formated)
+                  SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)*/
 
+                val phone_formated:String="(966) " + sign_in_number.text.toString()
 
+                viewModel.getresp(phone_formated)
 
-               // setFragment(VerifSignInFragment())
-            }else{
-                sign_in_number?.error="enter a valide phone number"
+                viewModel.phone_exist.observe(viewLifecycleOwner, Observer {
+                    if (it == true) {
+
+                        //save the user in the SharedPrefrences
+                        viewModel.au.observe(viewLifecycleOwner, Observer {
+                            //  SharedPrefManager.getInstance(requireContext().applicationContext).saveUser(it)
+                            comm.passDataCom(it.verif_code,phone_formated)
+
+                        })
+
+                        //setFragment(VerifSignInFragment())
+
+                    } else {
+                        //if no phone doesin't exist
+                        sign_in_number?.error = getString(R.string.phone_entered_check)
+                    }
+                })
+
+                // setFragment(VerifSignInFragment())
+
+            } else {
+                //if the format of the phone is wrong
+                sign_in_number?.error = getString(R.string.phone_entered_check)
             }
         }
 
@@ -79,7 +104,6 @@ class SignInFragment : Fragment() {
         ft.replace(R.id.container_fragm, fragment)
         ft.commit()
     }
-
 
 
 }

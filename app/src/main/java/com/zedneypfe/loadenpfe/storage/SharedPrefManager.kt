@@ -20,7 +20,8 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         get() {
             val sharedPreferences =
                 mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-            return sharedPreferences.getString("result", null) != null
+            return sharedPreferences.getString("phone", null) != null
+            //return sharedPreferences.getString("result", null) != null
         }
         set(value) {
             val sharedPreferences =
@@ -37,8 +38,8 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
                 mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return authModel(
                 sharedPreferences.getString("result", null).toString(),
-                sharedPreferences.getString("verif_code", null).toString(),
-                sharedPreferences.getString("user_type", null).toString()
+                sharedPreferences.getString("user_type", null).toString(),
+                sharedPreferences.getString("verif_code", null).toString()
             )
         }
     val phone: String
@@ -58,8 +59,8 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         )
         val editor = sharedPreferences.edit()
         editor.putString("result", user.result)
-        editor.putString("verif_code", user.verif_code)
         editor.putString("user_type", user.user_type)
+        editor.putString("verif_code", user.verif_code)
         editor.apply()
     }
 
