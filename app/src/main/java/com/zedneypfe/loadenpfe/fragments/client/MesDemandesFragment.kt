@@ -5,17 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
 import com.zedneypfe.loadenpfe.data.Demande
 import com.zedneypfe.loadenpfe.databinding.FragmentMesdemandesBinding
+import com.zedneypfe.loadenpfe.fragments.VerifSignInViewModel
+import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
 import java.lang.Exception
 import java.util.ArrayList
 
 
 class MesDemandesFragment : Fragment() {
+
+    private lateinit var viewModel: MesDemandesViewModel
+
+
     private lateinit var demandeadapter: AdapterDemandes
 
 
@@ -50,6 +58,20 @@ class MesDemandesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(MesDemandesViewModel::class.java)
+
+        //phone from sharedPref
+        val phone: String =
+            SharedPrefManager.getInstance(requireActivity().applicationContext).phone
+
+       viewModel.getDemandes(phone)
+
+        viewModel.list_getted.observe(viewLifecycleOwner, Observer {
+
+            it
+            println(it)
+        })
 
         initAdapter()
 

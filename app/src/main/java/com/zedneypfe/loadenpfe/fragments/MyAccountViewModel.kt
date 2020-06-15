@@ -1,6 +1,8 @@
 package com.zedneypfe.loadenpfe.fragments
 
 import android.app.Application
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.zedneypfe.loadenpfe.Model.getContact.Contact
@@ -38,6 +40,7 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
 
                 override fun onFailure(call: Call<Contact>, t: Throwable) {
                     println("failed to get the account info")
+
                 }
 
                 override fun onResponse(call: Call<Contact>, response: Response<Contact>) {

@@ -27,7 +27,7 @@
             android:id="@+id/linear_ident"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/statu_txt">
+            android:layout_toRightOf="@id/statu_dem">
 
 
 
@@ -108,7 +108,7 @@
 
             </LinearLayout>
             <TextView
-                android:id="@+id/statu_txt"
+                android:id="@+id/statu_dem"
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
