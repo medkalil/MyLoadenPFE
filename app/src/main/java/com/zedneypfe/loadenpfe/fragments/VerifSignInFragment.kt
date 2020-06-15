@@ -70,6 +70,8 @@ class VerifSignInFragment : Fragment() {
 
                // println(SharedPrefManager.getInstance(requireContext().applicationContext).isLoggedIn)
 
+                println("test branch v2")
+
                 val intent = Intent(getActivity(), MainActivity::class.java)
                 requireActivity().startActivity(intent)
 
