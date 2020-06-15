@@ -21,6 +21,7 @@ class VerifSignInFragment : Fragment() {
     private lateinit var viewModel: VerifSignInViewModel
 
 
+    var code_passed: String? = ""
     var phone_passed: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +35,9 @@ class VerifSignInFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_verif_sign_in, container, false)
 
-        phone_passed = arguments?.getString("input_txt")
-       //to check the format of the phone recived as argument
+        phone_passed = arguments?.getString("phone")
+        code_passed = arguments?.getString("code")
+        //to check the format of the phone recived as argument
         println(phone_passed)
 
 
@@ -47,22 +49,37 @@ class VerifSignInFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)
 
-        viewModel.getresp(phone_passed.toString())
+        // viewModel.getresp(phone_passed.toString())
 
 
         veri_btn.setOnClickListener {
-            viewModel.res.observe(viewLifecycleOwner, Observer {
+
+            if (code_verif.text.toString()==code_passed && code_verif.text.length==4 ) {
+
+                SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
+
+
+
+                val intent = Intent(getActivity(), MainActivity::class.java)
+                requireActivity().startActivity(intent)
+
+
+
+            }else{
+                code_verif?.error=getString(R.string.code_check)
+            }
+
+
+            /*   viewModel.res.observe(viewLifecycleOwner, Observer {
                 if (it == code_verif.text.toString()) {
 
 
                     //save the user
-                    viewModel.au.observe(viewLifecycleOwner, Observer {
+                   /* viewModel.au.observe(viewLifecycleOwner, Observer {
                          SharedPrefManager.getInstance(requireActivity().applicationContext)
                              .saveUser(it)
-                    })
+                    })*/
 
-
-                    println("deleted v2 branch ff")
                     val intent = Intent(getActivity(), MainActivity::class.java)
                     requireActivity().startActivity(intent)
 
@@ -80,8 +97,8 @@ class VerifSignInFragment : Fragment() {
 
                     println("NO")
                 }
-            })
-        }
+            })*/
+        }//veri_btn.setOnClickListener
 
 
     }//onViewCreated

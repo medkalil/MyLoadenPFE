@@ -30,7 +30,7 @@ class VerifSignInViewModel(application: Application) : AndroidViewModel(applicat
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun getresp(phone: String) {
+  /*  fun getresp(phone: String) {
         coroutineScope.launch {
             //KEY is a cont from
             val service = retrofit.create(ApiService::class.java)
@@ -56,7 +56,7 @@ class VerifSignInViewModel(application: Application) : AndroidViewModel(applicat
             })//enqueue
 
         }//coroutineScope.launch
-    }//getresp()
+    }//getresp()*/
 
     //clearing the job after clearing the ViewModel
     override fun onCleared() {

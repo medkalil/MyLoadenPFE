@@ -61,4 +61,6 @@
     <string name="code_submit">تسجيل الكود</string>
     <string name="labelnotif">التنبيهات </string>
     <string name="labelsignout">خروج من الحساب</string>
+    <string name="phone_check">تحقق من رقم الهاتف</string>
+    <string name="code_check">تحقق من الكود</string>
 </resources>

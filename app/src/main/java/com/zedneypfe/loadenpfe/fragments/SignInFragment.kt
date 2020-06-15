@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Communicator
 import com.zedneypfe.loadenpfe.Model.authModel
@@ -48,25 +49,39 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Declaring the viewmodel
-        viewModel=ViewModelProvider(this).get(SignInViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
 
         comm = activity as Communicator
 
         //will not take me to the verifFragment intel it not empty
         sign_in_btn?.setOnClickListener {
-            if (sign_in_number.text!!.isNotEmpty()){
+            if (sign_in_number.text!!.isNotEmpty() && sign_in_number.text.length == 10) {
 
                 //format the phone to this format: (966) 555555555
                 //when sending it
-                val phone_formated:String="(966) "+sign_in_number.text.toString()
-                comm.passDataCom(phone_formated)
-                SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
+                val phone_formated: String = "(966) " + sign_in_number.text.toString()
+
+                //  SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
+
+                viewModel.getresp(phone_formated)
+
+                viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
+
+                    if (it == true) {
+                        viewModel.res.observe(viewLifecycleOwner, Observer {
+
+                            println(it)
+                            comm.passDataCom(it, phone_formated)
+                        })
+                    } else {
+                        sign_in_number?.error = getString(R.string.phone_check)
+                    }
+                })
 
 
-
-               // setFragment(VerifSignInFragment())
-            }else{
-                sign_in_number?.error="enter a valide phone number"
+                // setFragment(VerifSignInFragment())
+            } else {
+                sign_in_number?.error = getString(R.string.phone_check)
             }
         }
 
@@ -79,7 +94,6 @@ class SignInFragment : Fragment() {
         ft.replace(R.id.container_fragm, fragment)
         ft.commit()
     }
-
 
 
 }

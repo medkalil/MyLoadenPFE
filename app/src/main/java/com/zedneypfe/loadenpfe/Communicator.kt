@@ -2,6 +2,6 @@ package com.zedneypfe.loadenpfe
 
 interface Communicator {
 
-    fun passDataCom(input: String)
+    fun passDataCom(code: String,phone:String)
 
 }
