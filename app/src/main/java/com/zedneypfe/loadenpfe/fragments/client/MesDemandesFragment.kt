@@ -69,6 +69,7 @@ class MesDemandesFragment : Fragment() {
 
         viewModel.list_getted.observe(viewLifecycleOwner, Observer {
 
+        //initialise the adapter her with the list_getted List+ notifysetDataChanges()
 
 
         })

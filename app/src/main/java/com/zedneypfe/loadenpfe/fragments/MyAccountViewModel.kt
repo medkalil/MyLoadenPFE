@@ -44,7 +44,7 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
                 }
 
                 override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
-                    println(response.body()!!.result)
+                  //  println(response.body()!!.result)
 
                     name.value=response.body()!!.result.NAME
                     last_name.value=response.body()!!.result.LAST_NAME
