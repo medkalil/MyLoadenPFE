@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.content.AsyncQueryHandler
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,9 @@ import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.fragment_signin.*
 import kotlinx.android.synthetic.main.fragment_verif_sign_in.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay as delay1
 
 
 class VerifSignInFragment : Fragment() {
@@ -23,6 +27,8 @@ class VerifSignInFragment : Fragment() {
 
     var code_passed: String? = ""
     var phone_passed: String? = ""
+
+    var phon:String?=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +44,7 @@ class VerifSignInFragment : Fragment() {
         phone_passed = arguments?.getString("phone")
         code_passed = arguments?.getString("code")
         //to check the format of the phone recived as argument
-        println(phone_passed)
-
-
+        //println(phone_passed)
         return v
     }
 
@@ -49,24 +53,37 @@ class VerifSignInFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)
 
+
         viewModel.getaccountinfo(phone_passed.toString())
+
+        viewModel.phone_getted_toSave.observe(viewLifecycleOwner, Observer {
+
+            phon=it
+            println(it)
+        })
+
 
         veri_btn?.setOnClickListener {
 
+
             if (code_verif.text.toString() == code_passed && code_verif.text.isNotEmpty() && code_verif.text.length == 4) {
+
+
+                SharedPrefManager.getInstance(requireContext().applicationContext)
+                    .save_phone(phon.toString())
+
 
                 //change the phone in the shared prefrences for the phone getted with getContactApi(Key,phone_passed)
                 //   SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
 
-                //viewModel.getaccountinfo(phone_passed.toString())
+                /*viewModel.getaccountinfo(phone_passed.toString())
 
-                viewModel.phone_getted_toSave.observe(viewLifecycleOwner, Observer {
-                    // println(it)
-                    //save this phone getted from the call getaccountInfo() in the sharedPref
-                    SharedPrefManager.getInstance(requireContext().applicationContext)
-                        .save_phone(it.toString())
+              viewModel.phone_getted_toSave.observe(viewLifecycleOwner, Observer {
+                  SharedPrefManager.getInstance(requireContext().applicationContext)
+                      .save_phone(it!!)
 
-                })
+                  println(it)
+              })*/
 
 
                 val intent = Intent(getActivity(), MainActivity::class.java)

@@ -23,7 +23,7 @@ import retrofit2.Response
 class VerifSignInViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    val phone_getted_toSave = MutableLiveData<String>()
+    val phone_getted_toSave = MutableLiveData<String?>()
 
 
     //Courotines job+scoope
@@ -49,8 +49,6 @@ class VerifSignInViewModel(application: Application) : AndroidViewModel(applicat
                    // println(response.body()!!.result)
                     //with out jsonobj and jsonarray
                     phone_getted_toSave.value=response.body()!!.result.PHONE[0].VALUE
-
-
 
                     println(phone_getted_toSave)
                 }

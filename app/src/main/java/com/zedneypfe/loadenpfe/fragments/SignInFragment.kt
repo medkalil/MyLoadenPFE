@@ -66,26 +66,25 @@ class SignInFragment : Fragment() {
                 viewModel.getresp(phone_formated)
 
                 viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
+                    println(it)
+                    if (it == true) {
 
-                    println(it == true)
-
-                    if (it) {
                         viewModel.res.observe(viewLifecycleOwner, Observer {
-
-                            println(it)
                             comm.passDataCom(it, phone_formated)
                         })
-                    } else {
+
+                    } else if( it ==false) {
                         sign_in_number?.error = getString(R.string.phone_not_existed)
                     }
-                })
+
+                })//viewModel.phone_existed.observe
 
 
                 // setFragment(VerifSignInFragment())
             } else {
                 sign_in_number?.error = getString(R.string.phone_check)
             }
-        }
+        }//sign_in_btn?.setOnClickListener
 
     }
 

@@ -49,6 +49,7 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
                     println(response.body()!!)
                     list_getted.value = response.body()!!.result
 
+                    println(list_getted)
 
                 }//onResponse
             })//call.enqueue

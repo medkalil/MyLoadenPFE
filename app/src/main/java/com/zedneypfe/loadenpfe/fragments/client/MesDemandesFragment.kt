@@ -69,8 +69,8 @@ class MesDemandesFragment : Fragment() {
 
         viewModel.list_getted.observe(viewLifecycleOwner, Observer {
 
-            it
-            println(it)
+
+
         })
 
         initAdapter()

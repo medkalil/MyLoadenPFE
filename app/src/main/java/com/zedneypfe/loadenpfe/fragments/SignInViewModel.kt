@@ -26,7 +26,7 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     val res = MutableLiveData<String>()
     val au = MutableLiveData<authModel>()
 
-    var phone_existed=MutableLiveData<Boolean>()
+    val phone_existed = MutableLiveData<Boolean?>()
 
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
@@ -51,16 +51,16 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
                 override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
                     println(response.body()!!)
 
-                    if (response.body()!!.result=="ok"){
+                    if (response.body()!!.result == "ok") {
+                        phone_existed.value = true
+
                         //only the code from the authModel
                         res.value = response.body()!!.verif_code
 
-                        phone_existed.value=true
-
                         //all the responce ->authModel
                         au.value = response.body()
-                    }else{
-                        phone_existed.value=false
+                    } else{
+                        phone_existed.value = false
                     }
 
                 }
@@ -68,7 +68,6 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
         }//coroutineScope.launch
     }
-
 
 
     //clearing the job after clearing the ViewModel
