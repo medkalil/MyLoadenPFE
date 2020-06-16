@@ -67,6 +67,7 @@ class SignInFragment : Fragment() {
 
                 viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
                     println(it)
+                   // println("phone doesn't exist")
                     if (it == true) {
 
                         viewModel.res.observe(viewLifecycleOwner, Observer {

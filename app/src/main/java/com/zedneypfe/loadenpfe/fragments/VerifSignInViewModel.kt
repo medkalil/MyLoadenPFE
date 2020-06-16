@@ -46,12 +46,13 @@ class VerifSignInViewModel(application: Application) : AndroidViewModel(applicat
                 }
 
                 override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
-                   // println(response.body()!!.result)
+                    // println(response.body()!!.result)
                     //with out jsonobj and jsonarray
-                    phone_getted_toSave.value=response.body()!!.result.PHONE[0].VALUE
+                    phone_getted_toSave.value = response.body()!!.result.PHONE[0].VALUE
+
 
                     println(phone_getted_toSave)
-                }
+                }//onResponse
             })//enqueue
 
 

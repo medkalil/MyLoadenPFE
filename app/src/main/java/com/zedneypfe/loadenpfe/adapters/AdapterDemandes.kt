@@ -15,6 +15,8 @@ class AdapterDemandes(var mylist: ArrayList<Demande>) :
     RecyclerView.Adapter<AdapterDemandes.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        //change the id of statu_demande in the item_demande :one_demande_inlist
         val statu_demande = itemView.statu_dem
         val id_demande = itemView.id_dem
         val date_demande = itemView.findViewById<TextView>(R.id.date_dem)
