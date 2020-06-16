@@ -71,6 +71,7 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         )
         val editor = sharedPreferences.edit()
         editor.putString("phone", phone)
+        println("PHONE Saved "+phone)
         editor.apply()
     }
 

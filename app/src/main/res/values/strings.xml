@@ -63,4 +63,5 @@
     <string name="labelsignout">خروج من الحساب</string>
     <string name="phone_check">تحقق من رقم الهاتف</string>
     <string name="code_check">تحقق من الكود</string>
+    <string name="phone_not_existed">رقم الهاتف غير مسجل</string>
 </resources>

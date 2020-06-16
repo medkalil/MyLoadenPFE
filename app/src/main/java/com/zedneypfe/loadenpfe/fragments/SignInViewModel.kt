@@ -25,6 +25,7 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     val res = MutableLiveData<String>()
     val au = MutableLiveData<authModel>()
+
     var phone_existed=MutableLiveData<Boolean>()
 
     //Courotines job+scoope
@@ -55,10 +56,10 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
                         res.value = response.body()!!.verif_code
 
                         phone_existed.value=true
+
                         //all the responce ->authModel
                         au.value = response.body()
                     }else{
-
                         phone_existed.value=false
                     }
 

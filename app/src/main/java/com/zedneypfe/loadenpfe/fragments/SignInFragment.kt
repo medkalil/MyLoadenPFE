@@ -67,14 +67,16 @@ class SignInFragment : Fragment() {
 
                 viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
 
-                    if (it == true) {
+                    println(it == true)
+
+                    if (it) {
                         viewModel.res.observe(viewLifecycleOwner, Observer {
 
                             println(it)
                             comm.passDataCom(it, phone_formated)
                         })
                     } else {
-                        sign_in_number?.error = getString(R.string.phone_check)
+                        sign_in_number?.error = getString(R.string.phone_not_existed)
                     }
                 })
 

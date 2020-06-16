@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Model.authModel
+import com.zedneypfe.loadenpfe.Model.getContact.Contact
 import com.zedneypfe.loadenpfe.network.ApiService
 import com.zedneypfe.loadenpfe.network.KEY
 import com.zedneypfe.loadenpfe.network.retrofit
@@ -22,41 +23,43 @@ import retrofit2.Response
 class VerifSignInViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    val res = MutableLiveData<String>()
-    val au = MutableLiveData<authModel>()
+    val phone_getted_toSave = MutableLiveData<String>()
+
 
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-  /*  fun getresp(phone: String) {
+
+    fun getaccountinfo(phone: String) {
         coroutineScope.launch {
             //KEY is a cont from
             val service = retrofit.create(ApiService::class.java)
+            val call = service.getAccountInfo(KEY, phone)
 
-            //TODO  : pass sign_in_number.text
-            //  to this fragment(VerifSigninFragment)
-            val call = service.getcode(KEY, phone)
+            call.enqueue(object : retrofit2.Callback<Contact> {
 
-            call.enqueue(object : retrofit2.Callback<authModel> {
+                override fun onFailure(call: Call<Contact>, t: Throwable) {
+                    println("failed to get the account info")
 
-                override fun onFailure(call: Call<authModel>, t: Throwable) {
-                    println("failed")
                 }
 
-                override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
-                    println(response.body()!!)
-                    //only the code from the authModel
-                    res.value = response.body()!!.verif_code
+                override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
+                   // println(response.body()!!.result)
+                    //with out jsonobj and jsonarray
+                    phone_getted_toSave.value=response.body()!!.result.PHONE[0].VALUE
 
-                    //all the responce ->authModel
-                    au.value = response.body()
+
+
+                    println(phone_getted_toSave)
                 }
             })//enqueue
 
+
         }//coroutineScope.launch
-    }//getresp()*/
+    }//getaccountinfo
+
 
     //clearing the job after clearing the ViewModel
     override fun onCleared() {

@@ -49,24 +49,32 @@ class VerifSignInFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)
 
-        // viewModel.getresp(phone_passed.toString())
+        viewModel.getaccountinfo(phone_passed.toString())
 
+        veri_btn?.setOnClickListener {
 
-        veri_btn.setOnClickListener {
+            if (code_verif.text.toString() == code_passed && code_verif.text.isNotEmpty() && code_verif.text.length == 4) {
 
-            if (code_verif.text.toString()==code_passed && code_verif.text.isNotEmpty() && code_verif.text.length==4 ) {
+                //change the phone in the shared prefrences for the phone getted with getContactApi(Key,phone_passed)
+                //   SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
 
-                SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
+                //viewModel.getaccountinfo(phone_passed.toString())
 
+                viewModel.phone_getted_toSave.observe(viewLifecycleOwner, Observer {
+                    // println(it)
+                    //save this phone getted from the call getaccountInfo() in the sharedPref
+                    SharedPrefManager.getInstance(requireContext().applicationContext)
+                        .save_phone(it.toString())
+
+                })
 
 
                 val intent = Intent(getActivity(), MainActivity::class.java)
                 requireActivity().startActivity(intent)
 
 
-
-            }else{
-                code_verif?.error=getString(R.string.code_check)
+            } else {
+                code_verif?.error = getString(R.string.code_check)
             }
 
 
