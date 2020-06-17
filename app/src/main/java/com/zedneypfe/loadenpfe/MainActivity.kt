@@ -55,15 +55,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         actionToggle.syncState()
 
 
+        //hide signOut when user not logged in
+        if (SharedPrefManager.getInstance(this).isLoggedIn == false){
+            hideItem()
+        }
 
         setFragment(EnvoyerDemandeFragment())
     }
 
 
+    /*private void hideItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_settings).setVisible(false);
+    }*/
+
+    //Function for hide Drawer Menu Item
+    //here is the sign out
+    fun hideItem(){
+        val navigationView:NavigationView=findViewById(R.id.nav_view)
+        val m:Menu=navigationView.menu
+        m.findItem(R.id.item_signout).setVisible(false)
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         //check if the user not logged IN
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
-
 
             supportActionBar?.title = getString(R.string.label_sign_in)
 
@@ -83,7 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
                 }
-               R.id.item_notif ->{
+                R.id.item_notif ->{
                     setFragment(NotificationFragment())
                     supportActionBar?.title = getString(R.string.labelnotif)
                 }
@@ -125,6 +143,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.item_signout ->{
                     setFragment(SignoutFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
+                    hideItem()
                 }
             }//when
 
@@ -197,22 +216,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     /* //check responce of the key after login
    internal fun getresp() {
-
        val service = retrofit.create(ApiService::class.java)
        val call = service.getcode()
-
        call.enqueue(object : retrofit2.Callback<authModel> {
-
            override fun onFailure(call: Call<authModel>, t: Throwable) {
                Toast.makeText(this@MainActivity, call.toString(), Toast.LENGTH_SHORT).show()
            }
-
            override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
-
                    Toast.makeText(this@MainActivity, res.to, Toast.LENGTH_SHORT).show()
            }
        })//enqueue
-
    }*/
 
 }

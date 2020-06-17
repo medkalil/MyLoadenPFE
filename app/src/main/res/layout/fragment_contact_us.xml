@@ -206,8 +206,9 @@
             android:paddingLeft="10dp"
             android:paddingTop="30dp"
             android:paddingRight="10dp"
-            android:text="@string/para"
+            android:text="@string/plus_dinfo"
             android:textAlignment="gravity"
+            android:textSize="24sp"
             android:textIsSelectable="false" />
     </LinearLayout>
 </RelativeLayout>
