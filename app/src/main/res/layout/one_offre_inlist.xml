@@ -70,7 +70,7 @@
             android:id="@+id/linear_ident"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/statu_dem"
+            android:layout_toRightOf="@id/statut_dem"
             >
 
 

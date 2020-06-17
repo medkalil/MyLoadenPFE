@@ -10,13 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
-import com.zedneypfe.loadenpfe.data.Demande
-import com.zedneypfe.loadenpfe.databinding.FragmentMesdemandesBinding
-import com.zedneypfe.loadenpfe.fragments.VerifSignInViewModel
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
-import java.lang.Exception
-import java.util.ArrayList
 
 
 class MesDemandesFragment : Fragment() {
@@ -32,7 +27,7 @@ class MesDemandesFragment : Fragment() {
 
     }
 
-    private fun initAdapter() {
+   /* private fun initAdapter() {
         val demandeArray = ArrayList<Demande>()
         demandeArray.add(Demande(1584, "12/05/2020", "نقل عفش", "تم ارسال الطلب لامزودين"))
         demandeArray.add(Demande(1584, "12/05/2020", "نقل عفش", "تم ارسال الطلب لامزودين"))
@@ -46,7 +41,7 @@ class MesDemandesFragment : Fragment() {
         list_demandes.layoutManager = llm
         demandeadapter = AdapterDemandes(demandeArray)
         list_demandes.adapter = demandeadapter
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,10 +66,15 @@ class MesDemandesFragment : Fragment() {
 
         //initialise the adapter her with the list_getted List+ notifysetDataChanges()
 
+            val llm = LinearLayoutManager(requireContext())
+            llm.orientation = LinearLayoutManager.VERTICAL
+            list_demandes.layoutManager = llm
+            demandeadapter = AdapterDemandes(it)
+            list_demandes.adapter = demandeadapter
+
 
         })
 
-        initAdapter()
 
     }
 

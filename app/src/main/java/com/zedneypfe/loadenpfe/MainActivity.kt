@@ -179,6 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+    //test for pass data from fragment to fragment with interface
     override fun passDataCom(code: String,phone:String) {
         val bundle = Bundle()
         bundle.putString("code", code)

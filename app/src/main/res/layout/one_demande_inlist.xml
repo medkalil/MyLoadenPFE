@@ -8,7 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
         <ImageView
             android:id="@+id/couleur_status"
             android:layout_width="10dp"
@@ -27,7 +28,7 @@
             android:id="@+id/linear_ident"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/statu_dem">
+            android:layout_toRightOf="@id/statut_dem">
 
 
 
@@ -108,7 +109,7 @@
 
             </LinearLayout>
             <TextView
-                android:id="@+id/statu_dem"
+                android:id="@+id/statut_dem"
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
