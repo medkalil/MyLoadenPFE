@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
        // println(SharedPrefManager.getInstance(this).phone)
 
 
-
         setFragment(EnvoyerDemandeFragment())
     }
 
@@ -68,6 +67,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         //check if the user not logged IN
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
+
+
             supportActionBar?.title = getString(R.string.label_sign_in)
 
 

@@ -12,13 +12,15 @@ import kotlinx.android.synthetic.main.one_demande_inlist.view.*
 class AdapterDemandes(var mylist: List<Result>) :
     RecyclerView.Adapter<AdapterDemandes.ViewHolder>() {
 
+    var date_formated:String=""
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         //change the id of statu_demande in the item_demande :one_demande_inlist
         val statu_demande = itemView.statut_dem
         val id_demande = itemView.id_dem
-        val date_demande = itemView.findViewById<TextView>(R.id.date_dem)
-        val type_demande = itemView.findViewById<TextView>(R.id.type_dem)
+        val date_demande = itemView.date_dem
+        val type_demande = itemView.type_dem
 
     }
 
