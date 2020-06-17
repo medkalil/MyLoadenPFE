@@ -42,6 +42,7 @@ class VerifSignInFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_verif_sign_in, container, false)
 
+        //
         phone_passed = arguments?.getString("phone").toString()
         code_passed = arguments?.getString("code")
         //to check the format of the phone recived as argument
