@@ -72,9 +72,10 @@ class SignInFragment : Fragment() {
                     // println("phone doesn't exist")
                     if (it == true) {
 
-                        viewModel.res.observe(viewLifecycleOwner, Observer {
-                            comm.passDataCom(it, phone_formated)
+                        viewModel.code.observe(viewLifecycleOwner, Observer {
+                          //  comm.passDataCom(it, phone_formated)
 
+                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,phone_formated))
                             println(phone_formated)
 
                         })

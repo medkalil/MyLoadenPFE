@@ -23,7 +23,7 @@ import retrofit2.Response
 class SignInViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    val res = MutableLiveData<String>()
+    val code = MutableLiveData<String>()
     val au = MutableLiveData<authModel>()
 
     var phone_existed = MutableLiveData<Boolean>()
@@ -56,7 +56,7 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
 
                         //only the code from the authModel
-                        res.value = response.body()!!.verif_code
+                        code.value = response.body()!!.verif_code
 
                         //all the responce ->authModel
                         au.value = response.body()

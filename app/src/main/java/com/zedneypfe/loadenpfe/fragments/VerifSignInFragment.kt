@@ -25,9 +25,20 @@ class VerifSignInFragment : Fragment() {
 
     private lateinit var viewModel: VerifSignInViewModel
 
+    companion object {
+        fun VerifSignInFragmentInstance(code: String, phone: String): VerifSignInFragment {
+            val instance = VerifSignInFragment()
+            val bd = Bundle()
+            bd.putString("code", code)
+            bd.putString("phone", phone)
+            instance.arguments = bd
+            return instance
+        }
+    }
+
 
     var code_passed: String? = ""
-    var phone_passed: String = ""
+    var phone_passed: String? = ""
 
     var phon: String? = ""
 
@@ -51,13 +62,21 @@ class VerifSignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        phone_passed = arguments?.getString("phone").toString()
+        //methode with the interface in the mainactivity
+        /*  phone_passed = arguments?.getString("phone").toString()
+          code_passed = arguments?.getString("code")*/
+
+
+        //getting the code with the phone from the argument
         code_passed = arguments?.getString("code")
+        phone_passed = arguments?.getString("phone")
+
+
 
         viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)
 
 
-        viewModel.getaccountinfo(phone_passed)
+        viewModel.getaccountinfo(phone_passed.toString())
 
         viewModel.phone_getted_toSave.observe(viewLifecycleOwner, Observer {
 
