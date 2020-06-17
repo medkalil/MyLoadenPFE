@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.one_demande_inlist.view.*
 class AdapterDemandes(var mylist: List<Result>) :
     RecyclerView.Adapter<AdapterDemandes.ViewHolder>() {
 
-    var date_formated:String=""
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
