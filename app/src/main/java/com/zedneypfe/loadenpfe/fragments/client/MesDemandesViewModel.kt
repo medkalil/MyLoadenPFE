@@ -19,6 +19,7 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
 
     val list_getted = MutableLiveData<List<Result>>()
 
+
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
     private var viewModelJob = Job()

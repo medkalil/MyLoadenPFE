@@ -38,5 +38,6 @@ class AdapterDemandes(var mylist: List<Result>) :
         holder.id_demande.text = demande.ID
         holder.date_demande.text = demande.BEGINDATE
         holder.type_demande.text = demande.TYPE_NAME
+
     }
 }
