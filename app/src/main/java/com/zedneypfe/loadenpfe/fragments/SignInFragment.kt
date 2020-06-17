@@ -61,20 +61,25 @@ class SignInFragment : Fragment() {
                 //when sending it
                 val phone_formated: String = "(966) " + sign_in_number.text.toString()
 
+                println(phone_formated)
                 //  SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
+
 
                 viewModel.getresp(phone_formated)
 
                 viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
                     println(it)
-                   // println("phone doesn't exist")
+                    // println("phone doesn't exist")
                     if (it == true) {
 
                         viewModel.res.observe(viewLifecycleOwner, Observer {
                             comm.passDataCom(it, phone_formated)
+
+                            println(phone_formated)
+
                         })
 
-                    } else if( it ==false) {
+                    } else {
                         sign_in_number?.error = getString(R.string.phone_not_existed)
                     }
 
