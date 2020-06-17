@@ -54,11 +54,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        //to print the user
-      //  println(SharedPrefManager.getInstance(this).user)
-     //   println(SharedPrefManager.getInstance(this).isLoggedIn)
-       // println(SharedPrefManager.getInstance(this).phone)
-
 
 
         setFragment(EnvoyerDemandeFragment())
@@ -68,6 +63,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         //check if the user not logged IN
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
+
+
             supportActionBar?.title = getString(R.string.label_sign_in)
 
 
@@ -179,6 +176,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+    //test for pass data from fragment to fragment with interface
     override fun passDataCom(code: String,phone:String) {
         val bundle = Bundle()
         bundle.putString("code", code)

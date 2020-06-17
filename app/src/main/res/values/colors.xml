@@ -8,4 +8,10 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="colorloaden">#d30413</color>
+    <color name="gris">#f2f2f2</color>
+
+    <color name="talab_jadid">#1E90FF</color>
+
+
+
 </resources>
