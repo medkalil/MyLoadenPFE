@@ -54,10 +54,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        //to print the user
-      //  println(SharedPrefManager.getInstance(this).user)
-     //   println(SharedPrefManager.getInstance(this).isLoggedIn)
-       // println(SharedPrefManager.getInstance(this).phone)
 
 
         setFragment(EnvoyerDemandeFragment())

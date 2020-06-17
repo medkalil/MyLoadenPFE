@@ -82,6 +82,7 @@ class MesDemandesFragment : Fragment() {
             list_demandes.layoutManager = llm
             demandeadapter = AdapterDemandes(it)
             list_demandes.adapter = demandeadapter
+            demandeadapter.notifyDataSetChanged()
 
         })
 
