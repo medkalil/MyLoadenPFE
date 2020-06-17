@@ -1,12 +1,15 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.fragment_my_account.*
@@ -56,7 +59,6 @@ class MyAccountFragment : Fragment() {
         viewModel.email_getted.observe(viewLifecycleOwner, Observer {
             accouount_email.setText(it)
         })
-
 
     }//onViewCreated
 
