@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
@@ -67,10 +69,13 @@ class MesDemandesFragment : Fragment() {
             SharedPrefManager.getInstance(requireActivity().applicationContext).phone
 
 
-        //Alert Dialog
+        fun partItemClicked(res : Result) {
+            Toast.makeText(requireContext().applicationContext, "Clicked: ${res}", Toast.LENGTH_SHORT).show()
+        }
 
 
         viewModel.getDemandes(phone)
+
 
 
         viewModel.list_getted.observe(viewLifecycleOwner, Observer {
@@ -80,11 +85,13 @@ class MesDemandesFragment : Fragment() {
             val llm = LinearLayoutManager(requireContext())
             llm.orientation = LinearLayoutManager.VERTICAL
             list_demandes.layoutManager = llm
-            demandeadapter = AdapterDemandes(it)
+            demandeadapter = AdapterDemandes(it,{ res : Result -> partItemClicked(res) })
             list_demandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
 
         })
+
+
 
 
     }
