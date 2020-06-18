@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     private lateinit var drawerLayout: DrawerLayout
+    var user_type:String?=""
 
     //to test user
     //val user=authModel("ok","1","1234")
@@ -58,6 +59,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
+        user_type=intent.getStringExtra("user_type")
+
+        println(user_type+" in Mainactivity")
 
         //hide signOut when user not logged in
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {

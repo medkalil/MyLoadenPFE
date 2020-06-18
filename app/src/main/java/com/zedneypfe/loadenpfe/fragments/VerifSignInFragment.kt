@@ -116,6 +116,7 @@ class VerifSignInFragment : Fragment() {
 
 
                 val intent = Intent(getActivity(), MainActivity::class.java)
+                intent.putExtra("user_type",user_type_passed)
                 requireActivity().startActivity(intent)
 
 
