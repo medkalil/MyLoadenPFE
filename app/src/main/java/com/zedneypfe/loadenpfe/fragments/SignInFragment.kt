@@ -111,7 +111,55 @@ class SignInFragment : Fragment() {
                 //TODO HERE :else if (sign_in_number.text.length == 9 for provider){même traitement}
                 //we have 1 only provider with the phone 966555555554 (9 number)
                 //soo in the test of 9 :we reformate the code before sending it in argument
-            } else {
+            }else if(sign_in_number.text!!.isNotEmpty() && sign_in_number.text.length == 9){
+
+                //format the phone to this format: (966) 555555555
+                //when sending it
+                val phone_formated: String = "966" + sign_in_number.text.toString()
+
+                println(phone_formated)
+                //  SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
+
+
+                viewModel.getresp(phone_formated)
+
+                viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
+                    println(it)
+                    // println("phone doesn't exist")
+                    if (it == true) {
+                        //user type
+                        /*  viewModel.user_type.observe(viewLifecycleOwner, Observer {
+                              it
+                              user_type = it.toString()
+                              println(user_type)
+
+                          })*/
+
+                        //code + send
+                        viewModel.code.observe(viewLifecycleOwner, Observer {
+                            //  comm.passDataCom(it, phone_formated)
+                            viewModel.user_type.observe(viewLifecycleOwner, Observer {
+                                user_type = it.toString()
+                                println(user_type)
+
+                            })
+
+
+                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,phone_formated,
+                                user_type.toString()
+                            ))
+                            println(phone_formated)
+
+                        })
+
+                    } else {
+                        sign_in_number?.error = getString(R.string.phone_not_existed)
+                    }
+
+                })//viewModel.phone_existed.observe
+
+
+            }else {
                 sign_in_number?.error = getString(R.string.phone_check)
             }
         }//sign_in_btn?.setOnClickListener
