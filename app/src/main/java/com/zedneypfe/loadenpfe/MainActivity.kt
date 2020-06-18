@@ -69,8 +69,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //showNotLogeedInMenu()
             changeMenuNotloggedIn()
 
-        } else {
+            //client
+        } else if(user_type==1.toString()) {
             changeMenuloggedIn()
+        }else{
+          changeMenuProvider()
         }
 
         setFragment(EnvoyerDemandeFragment())
@@ -96,6 +99,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.menu.clear()
         navigationView.inflateMenu(R.menu.activity_main_drawer)
+    }
+    fun changeMenuProvider() {
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.menu.clear()
+        navigationView.inflateMenu(R.menu.drawer_menu_provider)
     }
 
 
