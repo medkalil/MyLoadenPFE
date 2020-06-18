@@ -56,11 +56,12 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
                     if (response.body()!!.result == "ok") {
                         phone_existed.value = true
 
+                        user_type.value=response.body()!!.user_type
 
                         //only the code from the authModel
                         code.value = response.body()!!.verif_code
 
-                        user_type.value = response.body()!!.user_type
+
 
                         //all the responce ->authModel
                         au.value = response.body()!!

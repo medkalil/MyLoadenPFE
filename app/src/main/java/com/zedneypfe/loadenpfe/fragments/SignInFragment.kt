@@ -28,7 +28,9 @@ class SignInFragment : Fragment() {
 
     private lateinit var viewModel: SignInViewModel
 
-    private var user_type: String? = ""
+    var user_type: String? = ""
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,7 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         //Declaring the viewmodel
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
@@ -74,21 +77,26 @@ class SignInFragment : Fragment() {
                     // println("phone doesn't exist")
                     if (it == true) {
                         //user type
-                        viewModel.user_type.observe(viewLifecycleOwner, Observer {
+                      /*  viewModel.user_type.observe(viewLifecycleOwner, Observer {
+                            it
                             user_type = it.toString()
-                        })
+                            println(user_type)
 
-                        println(user_type)
+                        })*/
+
                         //code + send
                         viewModel.code.observe(viewLifecycleOwner, Observer {
                             //  comm.passDataCom(it, phone_formated)
+                            viewModel.user_type.observe(viewLifecycleOwner, Observer {
+                                user_type = it.toString()
+                                println(user_type)
 
-                            setFragment(
-                                VerifSignInFragment.VerifSignInFragmentInstance(
-                                    it, phone_formated,
-                                    user_type.toString()
-                                )
-                            )
+                            })
+
+
+                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,phone_formated,
+                                user_type.toString()
+                            ))
                             println(phone_formated)
 
                         })

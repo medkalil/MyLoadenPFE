@@ -198,10 +198,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     //test for pass data from fragment to fragment with interface
-    override fun passDataCom(code: String,phone:String) {
+    override fun passDataCom(code: String,phone:String,user_type:String) {
         val bundle = Bundle()
         bundle.putString("code", code)
         bundle.putString("phone", phone)
+        bundle.putString("user_type",user_type)
 
 
         val transaction = this.supportFragmentManager.beginTransaction()
