@@ -37,5 +37,11 @@
         android:layout_height="wrap_content"
         android:background="@color/red"
         android:text="@string/code_submit" />
+
+    <TextView
+        android:id="@+id/affiche"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:text="TextView" />
 </LinearLayout>
 </layout>

@@ -88,6 +88,8 @@ class VerifSignInFragment : Fragment() {
             println(it)
         })
 
+        affiche.text=code_passed.toString()
+
 
         veri_btn?.setOnClickListener {
 
