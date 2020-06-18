@@ -87,7 +87,8 @@ class SignInFragment : Fragment() {
                 })//viewModel.phone_existed.observe
 
 
-                // setFragment(VerifSignInFragment())
+
+                //TODO HERE :else if (sign_in_number.text.length == 9 for provider){même traitement}
             } else {
                 sign_in_number?.error = getString(R.string.phone_check)
             }
