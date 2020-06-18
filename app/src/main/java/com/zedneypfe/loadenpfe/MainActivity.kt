@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.navigation.NavigationView
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    private lateinit var drawerLayout: DrawerLayout
+
     //to test user
     //val user=authModel("ok","1","1234")
 
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
 
+        drawerLayout=findViewById(R.id.drawer_layout)
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.labelhome)
@@ -58,6 +62,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //hide signOut when user not logged in
         if (SharedPrefManager.getInstance(this).isLoggedIn == false){
             hideItem()
+            //showNotLogeedInMenu()
+
         }
 
         setFragment(EnvoyerDemandeFragment())
@@ -74,10 +80,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         m.findItem(R.id.item_signout).setVisible(false)
     }
 
-    fun showProperMenu(){
+
+
+    fun showNotLogeedInMenu(){
         val navigationView:NavigationView=findViewById(R.id.nav_view)
-        val m:Menu=navigationView.menu
-    //    m.addSubMenu(resources)
+        navigationView.inflateMenu(R.menu.drawer_menu_notloggedin)
+    }
+
+    fun showLogeedInMenu(){
+        val navigationView:NavigationView=findViewById(R.id.nav_view)
+        navigationView.inflateMenu(R.menu.activity_main_drawer)
+
     }
 
 
@@ -116,6 +129,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         } else {
             // the user already connected
+            //showLogeedInMenu()
 
             when (item.itemId) {
                 R.id.item_contact -> {
@@ -145,6 +159,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.item_signout ->{
                     setFragment(SignoutFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
+                  //showNotLogeedInMenu()
                     hideItem()
                 }
             }//when
