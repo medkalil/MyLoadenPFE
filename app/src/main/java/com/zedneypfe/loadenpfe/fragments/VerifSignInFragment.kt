@@ -26,11 +26,12 @@ class VerifSignInFragment : Fragment() {
     private lateinit var viewModel: VerifSignInViewModel
 
     companion object {
-        fun VerifSignInFragmentInstance(code: String, phone: String): VerifSignInFragment {
+        fun VerifSignInFragmentInstance(code: String, phone: String,user_type:String): VerifSignInFragment {
             val instance = VerifSignInFragment()
             val bd = Bundle()
             bd.putString("code", code)
             bd.putString("phone", phone)
+            bd.putString("user_type", user_type)
             instance.arguments = bd
             return instance
         }
@@ -39,6 +40,7 @@ class VerifSignInFragment : Fragment() {
 
     var code_passed: String? = ""
     var phone_passed: String? = ""
+    var user_type_passed:String?=""
 
     var phon: String? = ""
 
@@ -70,7 +72,9 @@ class VerifSignInFragment : Fragment() {
         //getting the code with the phone from the argument
         code_passed = arguments?.getString("code")
         phone_passed = arguments?.getString("phone")
+        user_type_passed=arguments?.getString("user_type")
 
+        println(user_type_passed)
 
 
         viewModel = ViewModelProvider(this).get(VerifSignInViewModel::class.java)

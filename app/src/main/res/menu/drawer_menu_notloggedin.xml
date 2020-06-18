@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/item_home"
+        android:icon="@drawable/home"
+        android:title="@string/labelhome"
+        />
+    <item
+        android:id="@+id/item_mesdemandes"
+        android:icon="@drawable/demande"
+
+        android:title="@string/labelmesdemande"
+        />
+    <item
+        android:id="@+id/item_notif"
+        android:icon="@drawable/ic_baseline_notifications_none_24"
+        android:title="@string/labelnotification"
+        />
+    <item
+        android:id="@+id/item_profile"
+        android:icon="@drawable/ic_baseline_perm_identity_24"
+        android:title="@string/labelmoncompte"
+        />
+    <item
+        android:id="@+id/item_info"
+        android:icon="@drawable/info"
+        android:title="@string/labelinfo"
+        />
+    <item
+        android:id="@+id/item_contact"
+        android:icon="@drawable/phone"
+        android:title="@string/labelcontact"
+        />
+    <item
+        android:id="@+id/item_share"
+        android:icon="@drawable/share"
+        android:title="@string/labelshare"
+        />
+
+
+
+</menu>

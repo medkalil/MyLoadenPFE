@@ -24,6 +24,8 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
 
     val code = MutableLiveData<String>()
+    val user_type = MutableLiveData<String>()
+
     val au = MutableLiveData<authModel>()
 
     var phone_existed = MutableLiveData<Boolean>()
@@ -58,9 +60,11 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
                         //only the code from the authModel
                         code.value = response.body()!!.verif_code
 
+                        user_type.value = response.body()!!.user_type
+
                         //all the responce ->authModel
-                        au.value = response.body()
-                    } else{
+                        au.value = response.body()!!
+                    } else {
                         phone_existed.value = false
                     }
 

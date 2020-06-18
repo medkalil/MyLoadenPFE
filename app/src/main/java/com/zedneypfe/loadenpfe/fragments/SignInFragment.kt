@@ -28,6 +28,8 @@ class SignInFragment : Fragment() {
 
     private lateinit var viewModel: SignInViewModel
 
+    private var user_type: String? = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -71,11 +73,22 @@ class SignInFragment : Fragment() {
                     println(it)
                     // println("phone doesn't exist")
                     if (it == true) {
+                        //user type
+                        viewModel.user_type.observe(viewLifecycleOwner, Observer {
+                            user_type = it.toString()
+                        })
 
+                        println(user_type)
+                        //code + send
                         viewModel.code.observe(viewLifecycleOwner, Observer {
-                          //  comm.passDataCom(it, phone_formated)
+                            //  comm.passDataCom(it, phone_formated)
 
-                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,phone_formated))
+                            setFragment(
+                                VerifSignInFragment.VerifSignInFragmentInstance(
+                                    it, phone_formated,
+                                    user_type.toString()
+                                )
+                            )
                             println(phone_formated)
 
                         })
@@ -87,8 +100,9 @@ class SignInFragment : Fragment() {
                 })//viewModel.phone_existed.observe
 
 
-
                 //TODO HERE :else if (sign_in_number.text.length == 9 for provider){même traitement}
+                //we have 1 only provider with the phone 966555555554 (9 number)
+                //soo in the test of 9 :we reformate the code before sending it in argument
             } else {
                 sign_in_number?.error = getString(R.string.phone_check)
             }

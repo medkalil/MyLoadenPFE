@@ -64,12 +64,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    /*private void hideItem()
-    {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Menu nav_Menu = navigationView.getMenu();
-        nav_Menu.findItem(R.id.nav_settings).setVisible(false);
-    }*/
 
     //Function for hide Drawer Menu Item
     //here is the sign out
@@ -79,6 +73,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val m:Menu=navigationView.menu
         m.findItem(R.id.item_signout).setVisible(false)
     }
+
+    fun showProperMenu(){
+        val navigationView:NavigationView=findViewById(R.id.nav_view)
+        val m:Menu=navigationView.menu
+    //    m.addSubMenu(resources)
+    }
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         //check if the user not logged IN
