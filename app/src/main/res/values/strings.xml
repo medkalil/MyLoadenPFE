@@ -65,4 +65,5 @@
     <string name="code_check">تحقق من الكود</string>
     <string name="phone_not_existed">رقم الهاتف غير مسجل</string>
     <string name="plus_dinfo">تواصل معنا للاستفسار أو مزيد من المعلومات</string>
+    <string name="labellesdemandes">الطلبات</string>
 </resources>

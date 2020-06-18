@@ -76,11 +76,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //Function for hide Drawer Menu Item
     //here is the sign out
     //and can manipule the title,color... of an item just m.findItem(R.id.item_signout).set...
-    fun hideItem() {
+  /*  fun hideItem() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         val m: Menu = navigationView.menu
         m.findItem(R.id.item_signout).setVisible(false)
-    }
+    }*/
 
     fun changeMenuNotloggedIn() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
@@ -93,17 +93,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.menu.clear()
         navigationView.inflateMenu(R.menu.activity_main_drawer)
     }
-
-    /*fun showNotLogeedInMenu(){
-        val navigationView:NavigationView=findViewById(R.id.nav_view)
-        navigationView.inflateMenu(R.menu.drawer_menu_notloggedin)
-    }
-
-    fun showLogeedInMenu(){
-        val navigationView:NavigationView=findViewById(R.id.nav_view)
-        navigationView.inflateMenu(R.menu.activity_main_drawer)
-
-    }*/
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
