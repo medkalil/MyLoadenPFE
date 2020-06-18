@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //this is where we show the first fragment : activity_main
         setContentView(R.layout.activity_main)
 
-        drawerLayout=findViewById(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.labelhome)
@@ -60,29 +60,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //hide signOut when user not logged in
-        if (SharedPrefManager.getInstance(this).isLoggedIn == false){
-            hideItem()
+        if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
+            // hideItem()
             //showNotLogeedInMenu()
+            changeMenuNotloggedIn()
 
+        } else {
+            changeMenuloggedIn()
         }
 
         setFragment(EnvoyerDemandeFragment())
     }
 
 
-
     //Function for hide Drawer Menu Item
     //here is the sign out
     //and can manipule the title,color... of an item just m.findItem(R.id.item_signout).set...
-    fun hideItem(){
-        val navigationView:NavigationView=findViewById(R.id.nav_view)
-        val m:Menu=navigationView.menu
+    fun hideItem() {
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val m: Menu = navigationView.menu
         m.findItem(R.id.item_signout).setVisible(false)
     }
 
+    fun changeMenuNotloggedIn() {
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.menu.clear()
+        navigationView.inflateMenu(R.menu.drawer_menu_notloggedin)
+    }
 
+    fun changeMenuloggedIn() {
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.menu.clear()
+        navigationView.inflateMenu(R.menu.activity_main_drawer)
+    }
 
-    fun showNotLogeedInMenu(){
+    /*fun showNotLogeedInMenu(){
         val navigationView:NavigationView=findViewById(R.id.nav_view)
         navigationView.inflateMenu(R.menu.drawer_menu_notloggedin)
     }
@@ -91,7 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView:NavigationView=findViewById(R.id.nav_view)
         navigationView.inflateMenu(R.menu.activity_main_drawer)
 
-    }
+    }*/
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -116,7 +128,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
                 }
-                R.id.item_notif ->{
+                R.id.item_notif -> {
                     setFragment(NotificationFragment())
                     supportActionBar?.title = getString(R.string.labelnotif)
                 }
@@ -152,15 +164,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setFragment(EnvoyerDemandeFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
                 }
-                R.id.item_notif ->{
+                R.id.item_notif -> {
                     setFragment(NotificationFragment())
                     supportActionBar?.title = getString(R.string.labelnotif)
                 }
-                R.id.item_signout ->{
+                R.id.item_signout -> {
                     setFragment(SignoutFragment())
                     supportActionBar?.title = getString(R.string.labelhome)
-                  //showNotLogeedInMenu()
-                    hideItem()
+                    //showNotLogeedInMenu()
+                    //hideItem()
+                    changeMenuNotloggedIn()
                 }
             }//when
 
@@ -213,11 +226,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     //test for pass data from fragment to fragment with interface
-    override fun passDataCom(code: String,phone:String,user_type:String) {
+    override fun passDataCom(code: String, phone: String, user_type: String) {
         val bundle = Bundle()
         bundle.putString("code", code)
         bundle.putString("phone", phone)
-        bundle.putString("user_type",user_type)
+        bundle.putString("user_type", user_type)
 
 
         val transaction = this.supportFragmentManager.beginTransaction()
