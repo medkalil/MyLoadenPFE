@@ -39,9 +39,16 @@ class AdapterDemandes(var mylist: List<Result> , val clickListener: (Result) -> 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val demande = mylist.get(position)
+
+        //Formating the date
+        val dem=demande.BEGINDATE.subSequence(0,10)
+
         holder.statu_demande.text = demande.STAGE_NAME
         holder.id_demande.text = demande.ID
-        holder.date_demande.text = demande.BEGINDATE
+
+        //holder.date_demande.text = demande.BEGINDATE
+        holder.date_demande.text = dem
+
         holder.type_demande.text = demande.TYPE_NAME
 
         holder.bind(demande, clickListener)
