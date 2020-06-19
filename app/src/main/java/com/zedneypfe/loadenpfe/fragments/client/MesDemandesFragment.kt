@@ -16,6 +16,7 @@ import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import dmax.dialog.SpotsDialog
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
 import kotlinx.android.synthetic.main.one_demande_inlist.*
 
@@ -71,6 +72,10 @@ class MesDemandesFragment : Fragment() {
 
 
         fun partItemClicked(res: Result) {
+
+            //passing to the  detailFragment
+            setFragment(DetailsDemandeFragment())
+
             Toast.makeText(
                 requireContext().applicationContext,
                 "Clicked: ${res}",
@@ -105,8 +110,11 @@ class MesDemandesFragment : Fragment() {
 
     }
 
-    /*fun getColorStatus(status:String):color{
-
-    }*/
+    //requireFragmentManager -> for fragments
+    private fun setFragment(fragment: Fragment) {
+        val ft = requireFragmentManager().beginTransaction()
+        ft.replace(R.id.container_fragm, fragment)
+        ft.commit()
+    }
 
 }
