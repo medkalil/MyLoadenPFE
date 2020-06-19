@@ -9,20 +9,21 @@ import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import kotlinx.android.synthetic.main.one_demande_inlist.view.*
 
-class AdapterDemandes(var mylist: List<Result> , val clickListener: (Result) -> Unit) :
+class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> Unit) :
     RecyclerView.Adapter<AdapterDemandes.ViewHolder>() {
 
+    var stat: String? = ""
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-            //change the id of statu_demande in the item_demande :one_demande_inlist
-            val statu_demande = itemView.statut_dem
-            val id_demande = itemView.id_dem
-            val date_demande = itemView.date_dem
-            val type_demande = itemView.type_dem
+        //change the id of statu_demande in the item_demande :one_demande_inlist
+        val statu_demande = itemView.statut_dem
+        val id_demande = itemView.id_dem
+        val date_demande = itemView.date_dem
+        val type_demande = itemView.type_dem
         fun bind(res: Result, clickListener: (Result) -> Unit) {
-            itemView.setOnClickListener { clickListener(res)}
+            itemView.setOnClickListener { clickListener(res) }
         }
 
     }
@@ -39,9 +40,12 @@ class AdapterDemandes(var mylist: List<Result> , val clickListener: (Result) -> 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val demande = mylist.get(position)
-
         //Formating the date
-        val dem=demande.BEGINDATE.subSequence(0,10)
+        val dem = demande.BEGINDATE.subSequence(0, 10)
+
+        //test Color
+        stat = demande.STAGE_NAME
+        println(stat)
 
         holder.statu_demande.text = demande.STAGE_NAME
         holder.id_demande.text = demande.ID

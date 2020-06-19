@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,14 +70,16 @@ class MesDemandesFragment : Fragment() {
             SharedPrefManager.getInstance(requireActivity().applicationContext).phone
 
 
-        fun partItemClicked(res : Result) {
-            Toast.makeText(requireContext().applicationContext, "Clicked: ${res}", Toast.LENGTH_SHORT).show()
+        fun partItemClicked(res: Result) {
+            Toast.makeText(
+                requireContext().applicationContext,
+                "Clicked: ${res}",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
 
         viewModel.getDemandes(phone)
-
-
 
         viewModel.list_getted.observe(viewLifecycleOwner, Observer {
 
@@ -85,13 +88,19 @@ class MesDemandesFragment : Fragment() {
             val llm = LinearLayoutManager(requireContext())
             llm.orientation = LinearLayoutManager.VERTICAL
             list_demandes.layoutManager = llm
-            demandeadapter = AdapterDemandes(it,{ res : Result -> partItemClicked(res) })
+            demandeadapter = AdapterDemandes(it, { res: Result -> partItemClicked(res) })
             list_demandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
 
+            /* when (demandeadapter.stat) {
+                 "طلب جديد" -> {
+                     statut_dem?.setTextColor(ContextCompat.getColor(requireContext().applicationContext,R.color.talab_jadid))
+                     couleur_status?.setBackgroundColor(ContextCompat.getColor(requireContext().applicationContext,R.color.talab_jadid))
+                     }
+             }*/
+
+
         })
-
-
 
 
     }
