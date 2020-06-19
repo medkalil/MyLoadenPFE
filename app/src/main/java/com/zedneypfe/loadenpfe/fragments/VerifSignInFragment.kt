@@ -74,6 +74,7 @@ class VerifSignInFragment : Fragment() {
         phone_passed = arguments?.getString("phone")
         user_type_passed = arguments?.getString("user_type")
 
+
         println(user_type_passed.toString()+" type passed ")
 
 
@@ -100,6 +101,12 @@ class VerifSignInFragment : Fragment() {
                 SharedPrefManager.getInstance(requireContext().applicationContext)
                     .save_phone(phon.toString())
 
+                SharedPrefManager.getInstance(requireContext().applicationContext)
+                    .save_user_type(user_type_passed.toString())
+
+               /* SharedPrefManager.getInstance(requireContext().applicationContext)
+                    .save_user_type(user_type_passed.toString())*/
+
 
                 //change the phone in the shared prefrences for the phone getted with getContactApi(Key,phone_passed)
                 //   SharedPrefManager.getInstance(requireContext().applicationContext).save_phone(phone_passed.toString())
@@ -116,7 +123,7 @@ class VerifSignInFragment : Fragment() {
 
 
                 val intent = Intent(getActivity(), MainActivity::class.java)
-                intent.putExtra("user_type",user_type_passed)
+               // intent.putExtra("user_type",user_type_passed)
                 requireActivity().startActivity(intent)
 
 

@@ -49,6 +49,12 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
 
         }
 
+    val user_type: String
+        get() {
+            val sharedPreferences =
+                mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            return sharedPreferences.getString("user_type", null).toString()
+        }
 
     fun saveUser(user: authModel) {
 
@@ -72,6 +78,18 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         val editor = sharedPreferences.edit()
         editor.putString("phone", phone)
         println("PHONE Saved "+phone)
+        editor.apply()
+    }
+
+    fun save_user_type(user_type: String) {
+
+        val sharedPreferences = mCtx.getSharedPreferences(
+            Companion.SHARED_PREF_NAME,
+            Context.MODE_PRIVATE
+        )
+        val editor = sharedPreferences.edit()
+        editor.putString("user_type", user_type)
+        println("user_type Saved "+user_type)
         editor.apply()
     }
 

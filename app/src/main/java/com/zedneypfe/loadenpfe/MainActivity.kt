@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     private lateinit var drawerLayout: DrawerLayout
-    var user_type:String?=""
+    var user_type: String? = ""
+    //   var user_type_saved:String?=""
+
 
     //to test user
     //val user=authModel("ok","1","1234")
@@ -59,35 +61,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-        user_type=intent.getStringExtra("user_type")
+        // user_type=intent.getStringExtra("user_type")
+        user_type = SharedPrefManager.getInstance(this).user_type
 
-        println(user_type+" in Mainactivity")
+        //SharedPrefManager.getInstance(this).save_user_type(user_type.toString())
+
+        //  user_type_saved = SharedPrefManager.getInstance(this).user_type
+
+
+        println(user_type + " in Mainactivity")
 
         //hide signOut when user not logged in
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
             // hideItem()
             //showNotLogeedInMenu()
             changeMenuNotloggedIn()
-
+            setFragment(EnvoyerDemandeFragment())
             //client
-        } else if(user_type==1.toString()) {
+        } else if (user_type == 1.toString()) {
             changeMenuloggedIn()
-        }else{
-          changeMenuProvider()
+            setFragment(EnvoyerDemandeFragment())
+        } else if(user_type == 2.toString()){
+            changeMenuProvider()
+           setFragment(MesDemandesFragment())
+            supportActionBar?.title = getString(R.string.labellesdemandes)
         }
 
-        setFragment(EnvoyerDemandeFragment())
+        //setFragment(EnvoyerDemandeFragment())
     }
 
 
     //Function for hide Drawer Menu Item
     //here is the sign out
     //and can manipule the title,color... of an item just m.findItem(R.id.item_signout).set...
-  /*  fun hideItem() {
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        val m: Menu = navigationView.menu
-        m.findItem(R.id.item_signout).setVisible(false)
-    }*/
+    /*  fun hideItem() {
+          val navigationView: NavigationView = findViewById(R.id.nav_view)
+          val m: Menu = navigationView.menu
+          m.findItem(R.id.item_signout).setVisible(false)
+      }*/
 
     fun changeMenuNotloggedIn() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
@@ -100,6 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.menu.clear()
         navigationView.inflateMenu(R.menu.activity_main_drawer)
     }
+
     fun changeMenuProvider() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.menu.clear()
@@ -112,7 +124,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
 
             supportActionBar?.title = getString(R.string.label_sign_in)
-
 
             //navigate to the views doesn't require a login exp:contact us
             when (item.itemId) {
@@ -142,7 +153,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
             //loggedIn Provider
-        }else if (user_type==2.toString()){
+        } else if (user_type == 2.toString()) {
+
+            println(user_type + " in navigation  provider")
+
 
             when (item.itemId) {
                 R.id.item_contact -> {
@@ -151,7 +165,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 R.id.item_lesdemandes -> {
                     setFragment(MesDemandesFragment())
-                    supportActionBar?.title = getString(R.string.labelmesdemande)
+                    supportActionBar?.title = getString(R.string.labellesdemandes)
                 }
                 R.id.item_profile -> {
                     setFragment(MyAccountFragment())
@@ -179,6 +193,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         else {
             // the user already connected
             //showLogeedInMenu()
+            println(user_type + " in navigation  client")
+
 
             when (item.itemId) {
                 R.id.item_contact -> {
