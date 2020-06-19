@@ -10,7 +10,6 @@
     <item
         android:id="@+id/item_mesdemandes"
         android:icon="@drawable/demande"
-
         android:title="@string/labelmesdemande"
         />
     <item

@@ -252,7 +252,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container_fragm, fragment)
-        transaction.commit()
+        transaction.addToBackStack(null).commit()
     }
 
     override fun onResume() {
