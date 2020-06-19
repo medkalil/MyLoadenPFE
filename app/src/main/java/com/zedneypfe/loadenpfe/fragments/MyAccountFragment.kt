@@ -18,6 +18,7 @@ class MyAccountFragment : Fragment() {
 
     private lateinit var viewModel: MyAccountViewModel
 
+    var phone_formated:String?=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +54,9 @@ class MyAccountFragment : Fragment() {
         })
         //phone
         viewModel.phone_getted.observe(viewLifecycleOwner, Observer {
-            accouount_phone.setText(it)
+
+            phone_formated=it.removePrefix("(966) ")
+            accouount_phone.setText(phone_formated)
         })
         //email
         viewModel.email_getted.observe(viewLifecycleOwner, Observer {

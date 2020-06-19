@@ -81,9 +81,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else if (user_type == 1.toString()) {
             changeMenuloggedIn()
             setFragment(EnvoyerDemandeFragment())
-        } else if(user_type == 2.toString()){
+        } else if (user_type == 2.toString()) {
             changeMenuProvider()
-           setFragment(MesDemandesFragment())
+            setFragment(MesDemandesFragment())
             supportActionBar?.title = getString(R.string.labellesdemandes)
         }
 
@@ -298,18 +298,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    /* //check responce of the key after login
-   internal fun getresp() {
-       val service = retrofit.create(ApiService::class.java)
-       val call = service.getcode()
-       call.enqueue(object : retrofit2.Callback<authModel> {
-           override fun onFailure(call: Call<authModel>, t: Throwable) {
-               Toast.makeText(this@MainActivity, call.toString(), Toast.LENGTH_SHORT).show()
-           }
-           override fun onResponse(call: Call<authModel>, response: Response<authModel>) {
-                   Toast.makeText(this@MainActivity, res.to, Toast.LENGTH_SHORT).show()
-           }
-       })//enqueue
-   }*/
 
 }
