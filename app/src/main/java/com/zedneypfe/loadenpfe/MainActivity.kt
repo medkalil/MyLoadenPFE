@@ -140,7 +140,43 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }//when
 
-        } else {
+
+            //loggedIn Provider
+        }else if (user_type==2.toString()){
+
+            when (item.itemId) {
+                R.id.item_contact -> {
+                    setFragment(ContactFragment())
+                    supportActionBar?.title = getString(R.string.labelcontact)
+                }
+                R.id.item_lesdemandes -> {
+                    setFragment(MesDemandesFragment())
+                    supportActionBar?.title = getString(R.string.labelmesdemande)
+                }
+                R.id.item_profile -> {
+                    setFragment(MyAccountFragment())
+                    supportActionBar?.title = getString(R.string.labelmoncompte)
+                }
+                R.id.item_info -> {
+                    setFragment(AppIdentFragment())
+                    supportActionBar?.title = getString(R.string.labelinfo)
+                }
+                R.id.item_notif -> {
+                    setFragment(NotificationFragment())
+                    supportActionBar?.title = getString(R.string.labelnotif)
+                }
+                R.id.item_signout -> {
+                    setFragment(SignoutFragment())
+                    supportActionBar?.title = getString(R.string.labelhome)
+                    //showNotLogeedInMenu()
+                    //hideItem()
+                    changeMenuNotloggedIn()
+                }
+            }//when
+
+
+        }//LoggedIn client
+        else {
             // the user already connected
             //showLogeedInMenu()
 
