@@ -22,6 +22,7 @@ import com.zedneypfe.loadenpfe.fragments.client.EnvoyerDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.MesDemandesFragment
 import com.zedneypfe.loadenpfe.fragments.constFragment.AppIdentFragment
 import com.zedneypfe.loadenpfe.fragments.constFragment.ContactFragment
+import com.zedneypfe.loadenpfe.fragments.provider.LesDemandesFragment
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -71,10 +72,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         println(user_type + " in Mainactivity")
 
-        //hide signOut when user not logged in
+
         if (SharedPrefManager.getInstance(this).isLoggedIn == false) {
-            // hideItem()
-            //showNotLogeedInMenu()
+
             changeMenuNotloggedIn()
             setFragment(EnvoyerDemandeFragment())
             //client
@@ -83,7 +83,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setFragment(EnvoyerDemandeFragment())
         } else if (user_type == 2.toString()) {
             changeMenuProvider()
-            setFragment(MesDemandesFragment())
+            //lesdemandesFragment
+            setFragment(LesDemandesFragment())
             supportActionBar?.title = getString(R.string.labellesdemandes)
         }
 
@@ -164,7 +165,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     supportActionBar?.title = getString(R.string.labelcontact)
                 }
                 R.id.item_lesdemandes -> {
-                    setFragment(MesDemandesFragment())
+                    //lesdemandesFragment
+                    setFragment(LesDemandesFragment())
                     supportActionBar?.title = getString(R.string.labellesdemandes)
                 }
                 R.id.item_profile -> {

@@ -1,4 +1,4 @@
-package com.zedneypfe.loadenpfe.fragments.client
+package com.zedneypfe.loadenpfe.fragments.provider
 
 import android.app.AlertDialog
 import android.graphics.Color
@@ -16,15 +16,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
+import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeFragment
+import com.zedneypfe.loadenpfe.fragments.client.MesDemandesViewModel
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
 import kotlinx.android.synthetic.main.one_demande_inlist.*
 
-
-class MesDemandesFragment : Fragment() {
-
+class LesDemandesFragment :Fragment() {
     private lateinit var viewModel: MesDemandesViewModel
 
 
@@ -76,11 +76,11 @@ class MesDemandesFragment : Fragment() {
         fun partItemClicked(res: Result) {
 
             //passing to the  detailFragment
-            setFragment(DetailsDemandeFragment())
+            setFragment(DetailsDemandeProviderFragment())
 
             Toast.makeText(
                 requireContext().applicationContext,
-                "Clicked: ${res}",
+                "Clicked:Provider",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -101,12 +101,12 @@ class MesDemandesFragment : Fragment() {
 
             //println(demandeadapter.stat)
 
-           /*  when (demandeadapter.stat) {
-                 "طلب جديد" -> {
-                     statut_dem?.setTextColor(Color.parseColor("#FFFF00"))
-                     couleur_status?.setBackgroundColor(ContextCompat.getColor(requireContext().applicationContext,R.color.talab_jadid))
-                     }
-             }*/
+            /*  when (demandeadapter.stat) {
+                  "طلب جديد" -> {
+                      statut_dem?.setTextColor(Color.parseColor("#FFFF00"))
+                      couleur_status?.setBackgroundColor(ContextCompat.getColor(requireContext().applicationContext,R.color.talab_jadid))
+                      }
+              }*/
 
 
         })
@@ -120,7 +120,6 @@ class MesDemandesFragment : Fragment() {
         ft.replace(R.id.container_fragm, fragment).addToBackStack(null)
         ft.commit()
     }
-
 
 
 }
