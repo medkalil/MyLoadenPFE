@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //   var user_type_saved:String?=""
 
 
-    //to test user
-    //val user=authModel("ok","1","1234")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -73,10 +73,12 @@ class LesDemandesFragment :Fragment() {
             SharedPrefManager.getInstance(requireActivity().applicationContext).phone
 
 
+
         fun partItemClicked(res: Result) {
 
             //passing to the  detailFragment
             setFragment(DetailsDemandeProviderFragment())
+
 
             Toast.makeText(
                 requireContext().applicationContext,
