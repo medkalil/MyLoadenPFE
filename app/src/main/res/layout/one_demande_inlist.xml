@@ -8,19 +8,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/couleur_status"
             android:layout_width="10dp"
             android:layout_height="100dp"
-            android:paddingRight="5dp"
-            android:paddingLeft="30dp"
-            android:layout_marginRight="5dp"
             android:layout_toRightOf="@id/linear_ident"
-            android:background="@color/red" />
-
-
+            android:background="@color/red"
+            android:paddingLeft="30dp"
+            android:paddingRight="5dp" />
 
 
         <LinearLayout
@@ -29,7 +26,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/statut_dem">
-
 
 
             <LinearLayout
@@ -52,6 +48,7 @@
                         android:gravity="right"
                         android:paddingLeft="10dp"
                         android:text="@string/label_moaraf_talab" />
+
                     <TextView
                         android:id="@+id/id_dem"
                         android:layout_width="wrap_content"
@@ -73,6 +70,7 @@
                         android:gravity="right"
                         android:paddingLeft="10dp"
                         android:text="@string/label_date_demande" />
+
                     <TextView
                         android:id="@+id/date_dem"
                         android:layout_width="wrap_content"
@@ -90,13 +88,13 @@
                     android:paddingRight="5dp">
 
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:paddingLeft="10dp"
                         android:text="@string/label_type_demande" />
+
                     <TextView
                         android:id="@+id/type_dem"
                         android:layout_width="wrap_content"
@@ -115,8 +113,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:paddingRight="5dp"
-                android:text="fkgjkoglkdkdgk"
-                />
+                android:text="fkgjkoglkdkdgk" />
 
 
         </LinearLayout>

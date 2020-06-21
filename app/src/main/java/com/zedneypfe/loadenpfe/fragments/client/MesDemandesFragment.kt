@@ -99,10 +99,11 @@ class MesDemandesFragment : Fragment() {
             list_demandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
 
+           // statut_dem.setTextColor(resources.getColor())
             //println(demandeadapter.stat)
 
            /*  when (demandeadapter.stat) {
-                 "طلب جديد" -> {
+                 "تم الإتصال والتأكد من الطلب" -> {
                      statut_dem?.setTextColor(Color.parseColor("#FFFF00"))
                      couleur_status?.setBackgroundColor(ContextCompat.getColor(requireContext().applicationContext,R.color.talab_jadid))
                      }

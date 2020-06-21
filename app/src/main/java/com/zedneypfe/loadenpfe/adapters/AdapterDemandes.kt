@@ -1,9 +1,14 @@
 package com.zedneypfe.loadenpfe.adapters
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
@@ -22,6 +27,9 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
         val id_demande = itemView.id_dem
         val date_demande = itemView.date_dem
         val type_demande = itemView.type_dem
+
+        val couleur_status=itemView.couleur_status
+
         fun bind(res: Result, clickListener: (Result) -> Unit) {
             itemView.setOnClickListener { clickListener(res) }
         }
@@ -47,6 +55,8 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
         stat = demande.STAGE_NAME
         println(stat)
 
+
+
         holder.statu_demande.text = demande.STAGE_NAME
         holder.id_demande.text = demande.ID
 
@@ -57,5 +67,50 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
 
         holder.bind(demande, clickListener)
 
+        //set statut TextColor
+        when (stat) {
+            "طلب جديد" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#3bc8f5"))
+                 holder.couleur_status.setBackgroundColor(Color.parseColor("#3bc8f5"))
+            }
+            "تم الإتصال والتأكد من الطلب" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#ffed9a"))
+                holder.couleur_status.setBackgroundColor(Color.parseColor("#ffed9a"))
+            }
+            "التأكد من قبول العرض" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#daa187"))
+                holder.couleur_status.setBackgroundColor(Color.parseColor("#daa187"))
+            }
+            "تم الإتفاق" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#47e4c2"))
+                holder.couleur_status.setBackgroundColor(Color.parseColor("#47e4c2"))
+            }
+            "تم النقل" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#ff00ff"))
+                holder.couleur_status.setBackgroundColor(Color.parseColor("#ff00ff"))
+            }
+            "متابعة إستلام العمولة من المزود" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#ffa900"))
+                holder.couleur_status.setBackgroundColor(Color.parseColor("#ffa900"))
+            }
+            "تم إستلام العمولة من المزود" -> {
+                holder.statu_demande.setTextColor(Color.parseColor("#7bd500"))
+                holder.couleur_status.setBackgroundColor(Color.parseColor("#7bd500"))
+            }
+
+
+        }
     }
+
+    /*fun stat_color(txt1:TextView,img:ImageView){
+        when (stat) {
+            "تم الإتصال والتأكد من الطلب" -> {
+                txt1.setTextColor(Color.parseColor("#FFFF00"))
+                img.setBackgroundColor(cont.getColor(ContextCompat(req),R.color.talab_jadid))
+            }
+        }
+    }*/
+
+
+
 }

@@ -19,6 +19,8 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
 
     val list_getted = MutableLiveData<List<Result>>()
 
+    val stat=MutableLiveData<String?>()
+
 
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
@@ -49,6 +51,9 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
                     println("List des demandes")
                     println(response.body()!!)
                     list_getted.value = response.body()!!.result
+
+                    stat.value=response.body()!!.result[0].STAGE_NAME
+
 
                     println(list_getted)
 
