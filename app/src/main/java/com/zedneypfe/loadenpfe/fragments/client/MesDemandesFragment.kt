@@ -13,6 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zedneypfe.loadenpfe.Model.mesDemandes.MesDemande
 import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
@@ -84,7 +85,6 @@ class MesDemandesFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-
 
         viewModel.getDemandes(phone)
 

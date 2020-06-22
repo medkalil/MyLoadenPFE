@@ -2,6 +2,7 @@ package com.zedneypfe.loadenpfe.network
 
 import com.zedneypfe.loadenpfe.Model.getContact.Contact
 import com.zedneypfe.loadenpfe.Model.authModel
+import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
 import com.zedneypfe.loadenpfe.Model.mesDemandes.MesDemande
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -32,6 +33,14 @@ interface ApiService {
     @POST("getDealsByContactPhoneNumber.php")
     fun getDemandes(@Query("key") key: String, @Query("phone") phone: String)
             : Call <MesDemande>
+
+    //Detail demande
+    @Headers("Content-Type: application/json")
+    @POST("getDealById.php")
+    fun getDetailsDemande(@Query("key") key: String, @Query("id") id: String)
+            : Call <DetailDemande>
+
+
 
 
 }//interface ApiService

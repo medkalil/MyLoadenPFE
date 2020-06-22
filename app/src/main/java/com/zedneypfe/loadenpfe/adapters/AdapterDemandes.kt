@@ -56,7 +56,6 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
         println(stat)
 
 
-
         holder.statu_demande.text = demande.STAGE_NAME
         holder.id_demande.text = demande.ID
 
