@@ -48,6 +48,8 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val demande = mylist.get(position)
+
+
         //Formating the date
         val dem = demande.BEGINDATE.subSequence(0, 10)
 

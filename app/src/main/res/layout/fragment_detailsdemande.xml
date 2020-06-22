@@ -146,13 +146,6 @@
                 android:paddingRight="5dp">
 
                 <TextView
-                    android:id="@+id/distance_dem_forprovider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="1985" />
-
-                <TextView
                     android:id="@+id/label_dist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,6 +154,12 @@
                     android:paddingLeft="10dp"
                     android:text="@string/label_distance"
                     android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/distance_dem_forprovider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="1985" />
             </LinearLayout>
 
             <LinearLayout
@@ -172,19 +171,20 @@
                 android:paddingRight="5dp">
 
                 <TextView
-                    android:id="@+id/duree_dem_forprvider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="1478933" />
-
-                <TextView
                     android:id="@+id/label_duree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:paddingLeft="10dp"
                     android:text="@string/label_duree" />
+
+                <TextView
+                    android:id="@+id/duree_dem_forprvider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="1478933" />
+
             </LinearLayout>
 
             <LinearLayout

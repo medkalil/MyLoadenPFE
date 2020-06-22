@@ -77,7 +77,7 @@ class MesDemandesFragment : Fragment() {
         fun partItemClicked(res: Result) {
 
             //passing to the  detailFragment
-            setFragment(DetailsDemandeFragment())
+            setFragment(DetailsDemandeFragment.DetailsDemandeFragmentInstance(res.ID))
 
             Toast.makeText(
                 requireContext().applicationContext,
@@ -111,6 +111,7 @@ class MesDemandesFragment : Fragment() {
 
 
         })
+
 
 
     }

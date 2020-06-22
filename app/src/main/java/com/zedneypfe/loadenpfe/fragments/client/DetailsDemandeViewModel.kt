@@ -3,6 +3,7 @@ package com.zedneypfe.loadenpfe.fragments.client
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
 import com.zedneypfe.loadenpfe.Model.mesDemandes.MesDemande
 import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -17,6 +18,8 @@ import retrofit2.Response
 
 class DetailsDemandeViewModel (application: Application) : AndroidViewModel(application) {
 
+    val list_getted = MutableLiveData<DetailDemande>()
+
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -27,20 +30,22 @@ class DetailsDemandeViewModel (application: Application) : AndroidViewModel(appl
 
             val service = retrofit.create(ApiService::class.java)
 
-            val call = service.getDemandes(KEY, id)
+            val call = service.getDetailsDemande(KEY, id)
 
-            call.enqueue(object : retrofit2.Callback<MesDemande> {
+            call.enqueue(object : retrofit2.Callback<DetailDemande> {
 
-                override fun onFailure(call: Call<MesDemande>, t: Throwable) {
+                override fun onFailure(call: Call<DetailDemande>, t: Throwable) {
 
+                    println("no detail demande : in DetaildemandeViewModel ")
 
 
                 }//onFailure
 
                 override fun onResponse(
-                    call: Call<MesDemande>,
-                    response: Response<MesDemande>
+                    call: Call<DetailDemande>,
+                    response: Response<DetailDemande>
                 ) {
+
 
 
                 }//onResponse
