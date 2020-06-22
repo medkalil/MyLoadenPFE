@@ -77,14 +77,8 @@ class LesDemandesFragment :Fragment() {
         fun partItemClicked(res: Result) {
 
             //passing to the  detailFragment
-            setFragment(DetailsDemandeProviderFragment())
+            setFragment(DetailsDemandeProviderFragment.DetailsDemandeProviderFragmentInstance(res.ID))
 
-
-            Toast.makeText(
-                requireContext().applicationContext,
-                "Clicked:Provider",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
 

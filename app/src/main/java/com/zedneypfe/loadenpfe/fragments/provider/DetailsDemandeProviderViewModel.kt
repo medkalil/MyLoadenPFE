@@ -1,11 +1,10 @@
-package com.zedneypfe.loadenpfe.fragments.client
+package com.zedneypfe.loadenpfe.fragments.provider
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
-import com.zedneypfe.loadenpfe.Model.mesDemandes.MesDemande
-import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
+import com.zedneypfe.loadenpfe.Model.detailDemande.Result
 import com.zedneypfe.loadenpfe.network.ApiService
 import com.zedneypfe.loadenpfe.network.KEY
 import com.zedneypfe.loadenpfe.network.retrofit
@@ -16,9 +15,9 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
-class DetailsDemandeViewModel (application: Application) : AndroidViewModel(application) {
+class DetailsDemandeProviderViewModel(application: Application) : AndroidViewModel(application) {
 
-    val detail_getted = MutableLiveData<com.zedneypfe.loadenpfe.Model.detailDemande.Result>()
+    val detail_getted = MutableLiveData<Result>()
 
 
     private var viewModelJob = Job()

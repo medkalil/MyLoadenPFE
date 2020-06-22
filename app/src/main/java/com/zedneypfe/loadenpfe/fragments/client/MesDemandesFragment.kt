@@ -78,12 +78,6 @@ class MesDemandesFragment : Fragment() {
 
             //passing to the  detailFragment
             setFragment(DetailsDemandeFragment.DetailsDemandeFragmentInstance(res.ID))
-
-            Toast.makeText(
-                requireContext().applicationContext,
-                "Clicked: ${res}",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         viewModel.getDemandes(phone)
