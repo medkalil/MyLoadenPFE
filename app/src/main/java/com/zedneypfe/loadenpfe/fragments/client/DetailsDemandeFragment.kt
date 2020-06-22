@@ -69,7 +69,7 @@ class DetailsDemandeFragment : Fragment() {
             statut_dem_forcleint.text=it.STAGE_NAME
 
 
-           /* when(it.STAGE_NAME){
+            when(it.STAGE_NAME){
                 "طلب جديد"-> {
                     statut_dem_forcleint.setTextColor(Color.parseColor("#3bc8f5"))
                     linea_2_forclient.setBackgroundColor(Color.parseColor("#3bc8f5"))
@@ -100,7 +100,7 @@ class DetailsDemandeFragment : Fragment() {
                 }
 
 
-            }*/
+            }
 
 
 

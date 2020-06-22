@@ -14,13 +14,13 @@ import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeViewModel
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
 import kotlinx.android.synthetic.main.fragment_detailsdemande.*
 
-class DetailsDemandeProviderFragment : Fragment()  {
+class DetailsDemandeProviderFragment : Fragment() {
 
 
     private lateinit var viewModel: DetailsDemandeProviderViewModel
 
-    var id_passed:String?=""
-    var beg:String?=""
+    var id_passed: String? = ""
+    var beg: String? = ""
 
 
     companion object {
@@ -38,6 +38,7 @@ class DetailsDemandeProviderFragment : Fragment()  {
         super.onCreate(savedInstanceState)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,57 +60,57 @@ class DetailsDemandeProviderFragment : Fragment()  {
         viewModel.detail_getted.observe(viewLifecycleOwner, Observer {
 
 
-            beg= it.BEGINDATE.subSequence(0, 10).toString()
+            beg = it.BEGINDATE.subSequence(0, 10).toString()
 
-            id_dem_forprovider.text=it.ID
+            id_dem_forprovider.text = it.ID
 
             type_dem_forprovider.text = it.TYPE_NAME
 
-            date_dem_forprovider.text=beg
+            date_dem_forprovider.text = beg
 
-            distance_dem_forprovider.text=it.UF_CRM_1589924369
-            duree_dem_forprvider.text=it.UF_CRM_1589924392
-            statut_dem_forprovider.text=it.STAGE_NAME
+            distance_dem_forprovider.text = it.UF_CRM_1589924369
+            duree_dem_forprvider.text = it.UF_CRM_1589924392
+            statut_dem_forprovider.text = it.STAGE_NAME
 
 
-           /* when(it.STAGE_NAME){
-                "طلب جديد"-> {
+            //........................................IF there is a BUG it from HERE .....................
+            when (it.STAGE_NAME) {
+                "طلب جديد" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#3bc8f5"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#3bc8f5"))
                 }
-                "تم الإتصال والتأكد من الطلب"-> {
+                "تم الإتصال والتأكد من الطلب" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#ffed9a"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#ffed9a"))
                 }
-                "التأكد من قبول العرض"-> {
+                "التأكد من قبول العرض" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#daa187"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#daa187"))
                 }
-                "تم الإتفاق"-> {
+                "تم الإتفاق" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#47e4c2"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#47e4c2"))
                 }
-                "تم النقل"-> {
+                "تم النقل" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#ff00ff"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#ff00ff"))
                 }
-                "متابعة إستلام العمولة من المزود"-> {
+                "متابعة إستلام العمولة من المزود" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#ffa900"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#ffa900"))
                 }
-                "تم إستلام العمولة من المزود"-> {
+                "تم إستلام العمولة من المزود" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#7bd500"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#7bd500"))
                 }
 
+                else -> { //dont set the text and backgroun color
+                }
 
-            }*/
-
+            }
 
 
         })
-
-
 
 
     }
