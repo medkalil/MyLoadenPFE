@@ -44,7 +44,6 @@ class LesDemandesFragment :Fragment() {
          demandeArray.add(Demande(1584, "12/05/2020", "نقل عفش", "تم ارسال الطلب لامزودين"))
          demandeArray.add(Demande(1584, "12/05/2020", "نقل عفش", "تم ارسال الطلب لامزودين"))
          demandeArray.add(Demande(1584, "12/05/2020", "نقل عفش", "تم ارسال الطلب لامزودين"))
-
          val llm = LinearLayoutManager(requireContext())
          llm.orientation = LinearLayoutManager.VERTICAL
          list_demandes.layoutManager = llm

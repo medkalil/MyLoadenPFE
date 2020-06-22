@@ -14,7 +14,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/linea_2"
+                android:id="@+id/linea_2_forclient"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
@@ -28,6 +28,7 @@
                     android:id="@+id/label_moaraf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/blanch"
                     android:gravity="right"
                     android:paddingLeft="10dp"
                     android:text="@string/label_moaraf_talab" />
@@ -36,6 +37,7 @@
                     android:id="@+id/id_dem_forcleint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/blanch"
                     android:gravity="right"
                     android:text="" />
             </LinearLayout>

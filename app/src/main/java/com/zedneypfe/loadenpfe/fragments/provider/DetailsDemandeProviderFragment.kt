@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments.provider
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,39 @@ class DetailsDemandeProviderFragment : Fragment()  {
             duree_dem_forprvider.text=it.UF_CRM_1589924392
             statut_dem_forprovider.text=it.STAGE_NAME
 
+
+            when(it.STAGE_NAME){
+                "طلب جديد"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#3bc8f5"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#3bc8f5"))
+                }
+                "تم الإتصال والتأكد من الطلب"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#ffed9a"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#ffed9a"))
+                }
+                "التأكد من قبول العرض"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#daa187"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#daa187"))
+                }
+                "تم الإتفاق"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#47e4c2"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#47e4c2"))
+                }
+                "تم النقل"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#ff00ff"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#ff00ff"))
+                }
+                "متابعة إستلام العمولة من المزود"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#ffa900"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#ffa900"))
+                }
+                "تم إستلام العمولة من المزود"-> {
+                    statut_dem_forprovider.setTextColor(Color.parseColor("#7bd500"))
+                    linea_2_forprovider.setBackgroundColor(Color.parseColor("#7bd500"))
+                }
+
+
+            }
 
 
 
