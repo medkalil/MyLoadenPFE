@@ -171,6 +171,7 @@ class DetailsDemandeProviderFragment : Fragment() {
         dialogBuilder.setView(dialogView)
 
         alertDialog = dialogBuilder.create()
+        alertDialog.setCancelable(true)
         alertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
     }
