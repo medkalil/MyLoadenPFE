@@ -72,7 +72,7 @@ class DetailsDemandeProviderFragment : Fragment()  {
             statut_dem_forprovider.text=it.STAGE_NAME
 
 
-            when(it.STAGE_NAME){
+           /* when(it.STAGE_NAME){
                 "طلب جديد"-> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#3bc8f5"))
                     linea_2_forprovider.setBackgroundColor(Color.parseColor("#3bc8f5"))
@@ -103,7 +103,7 @@ class DetailsDemandeProviderFragment : Fragment()  {
                 }
 
 
-            }
+            }*/
 
 
 
