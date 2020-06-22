@@ -72,8 +72,11 @@ class DetailsDemandeProviderFragment : Fragment() {
             duree_dem_forprvider.text = it.UF_CRM_1589924392
             statut_dem_forprovider.text = it.STAGE_NAME
 
+            place_lieu_ta7mil_forprovider.text=it.UF_CRM_1589924259
+            place_lieu_tanzil_forprovider.text=it.UF_CRM_1589924283
 
-            //........................................IF there is a BUG it from HERE .....................
+
+            //........................................IF there is a BUG it from HERE OR in the same in DetailDemandeFragment .....................
             when (it.STAGE_NAME) {
                 "طلب جديد" -> {
                     statut_dem_forprovider.setTextColor(Color.parseColor("#3bc8f5"))

@@ -21,6 +21,9 @@ class DetailsDemandeFragment : Fragment() {
     var id_passed: String? = ""
     var beg:String?=""
 
+    var tahmil:String?=""
+    var taslim:String?=""
+
     companion object {
         fun DetailsDemandeFragmentInstance(id: String): DetailsDemandeFragment {
             val instance = DetailsDemandeFragment()
@@ -67,6 +70,11 @@ class DetailsDemandeFragment : Fragment() {
             distance_dem_forcleint.text=it.UF_CRM_1589924369
             duree_dem_forcleint.text=it.UF_CRM_1589924392
             statut_dem_forcleint.text=it.STAGE_NAME
+
+
+
+            place_lieu_ta7mil_forclient.text=it.UF_CRM_1589924259
+            place_lieu_tanzil_forclient.text=it.UF_CRM_1589924283
 
 
             when(it.STAGE_NAME){
