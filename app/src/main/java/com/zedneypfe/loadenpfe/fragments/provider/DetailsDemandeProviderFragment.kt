@@ -1,13 +1,17 @@
 package com.zedneypfe.loadenpfe.fragments.provider
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeViewModel
@@ -16,14 +20,16 @@ import kotlinx.android.synthetic.main.fragment_detailsdemande.*
 
 class DetailsDemandeProviderFragment : Fragment() {
 
+    private lateinit var alertDialog: AlertDialog
+
 
     private lateinit var viewModel: DetailsDemandeProviderViewModel
 
     var id_passed: String? = ""
     var beg: String? = ""
 
-    var tahmil:String?=""
-    var taslim:String?=""
+    var tahmil: String? = ""
+    var taslim: String? = ""
 
 
     companion object {
@@ -76,11 +82,11 @@ class DetailsDemandeProviderFragment : Fragment() {
             statut_dem_forprovider.text = it.STAGE_NAME
 
 
-            tahmil=it.UF_CRM_1589924259.split("|").get(0)
-            taslim=it.UF_CRM_1589924283.split("|").get(0)
+            tahmil = it.UF_CRM_1589924259.split("|").get(0)
+            taslim = it.UF_CRM_1589924283.split("|").get(0)
 
-            place_lieu_ta7mil_forprovider.text=tahmil
-            place_lieu_tanzil_forprovider.text=taslim
+            place_lieu_ta7mil_forprovider.text = tahmil
+            place_lieu_tanzil_forprovider.text = taslim
 
 
             //........................................IF there is a BUG it from HERE OR in the same in DetailDemandeFragment .....................
@@ -117,11 +123,67 @@ class DetailsDemandeProviderFragment : Fragment() {
                 else -> { //dont set the text and backgroun color
                 }
 
-            }
+            }//when
 
 
         })
 
 
+        send_offre_btn.setOnClickListener {
+            //showDialog()
+            showCustomDialog()
+
+
+
+
+
+        }//send_offre_btn.setOnClickListener
+
+    }//OnViewCreated
+
+
+  /*  fun showDialog() {
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setMessage("The message here")
+        dialogBuilder.setPositiveButton("Done",
+            DialogInterface.OnClickListener { dialog, whichButton -> })
+        val b = dialogBuilder.create()
+        b.show()
+    }*/
+
+    fun showCustomDialog() {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.dialog_send_offre, null)
+
+
+        val custom_button: Button = dialogView.findViewById(R.id.send_dialog_btn)
+        custom_button.setOnClickListener {
+            //perform custom action
+            alertDialog.dismiss()
+        }
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener(object : DialogInterface.OnDismissListener {
+            override fun onDismiss(arg0: DialogInterface) {
+
+
+            }
+        })
+        dialogBuilder.setView(dialogView)
+
+        alertDialog = dialogBuilder.create()
+        alertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        alertDialog.show()
     }
+
+
+
+    /*   val view =
+       View.inflate(requireContext().applicationContext, R.layout.dialog_send_offre, null)
+   val builder=AlertDialog.Builder(requireContext().applicationContext)
+   builder.setView(view)
+
+   val dialog=builder.create()
+   dialog.show()
+  dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)*/
+
 }
