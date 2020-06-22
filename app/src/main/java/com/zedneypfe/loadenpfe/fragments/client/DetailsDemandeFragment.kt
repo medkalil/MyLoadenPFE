@@ -21,6 +21,7 @@ class DetailsDemandeFragment : Fragment() {
     var id_passed: String? = ""
     var beg:String?=""
 
+
     var tahmil:String?=""
     var taslim:String?=""
 
@@ -73,8 +74,14 @@ class DetailsDemandeFragment : Fragment() {
 
 
 
-            place_lieu_ta7mil_forclient.text=it.UF_CRM_1589924259
-            place_lieu_tanzil_forclient.text=it.UF_CRM_1589924283
+           // tahmil=it.UF_CRM_1589924259.subSequence(0,64).toString()
+            tahmil=it.UF_CRM_1589924259.split("|").get(0)
+            taslim=it.UF_CRM_1589924283.split("|").get(0)
+
+            println(tahmil)
+
+            place_lieu_ta7mil_forclient.text=tahmil
+            place_lieu_tanzil_forclient.text=taslim
 
 
             when(it.STAGE_NAME){

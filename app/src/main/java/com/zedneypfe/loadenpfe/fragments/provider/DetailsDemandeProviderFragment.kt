@@ -22,6 +22,9 @@ class DetailsDemandeProviderFragment : Fragment() {
     var id_passed: String? = ""
     var beg: String? = ""
 
+    var tahmil:String?=""
+    var taslim:String?=""
+
 
     companion object {
         fun DetailsDemandeProviderFragmentInstance(id: String): DetailsDemandeProviderFragment {
@@ -72,8 +75,12 @@ class DetailsDemandeProviderFragment : Fragment() {
             duree_dem_forprvider.text = it.UF_CRM_1589924392
             statut_dem_forprovider.text = it.STAGE_NAME
 
-            place_lieu_ta7mil_forprovider.text=it.UF_CRM_1589924259
-            place_lieu_tanzil_forprovider.text=it.UF_CRM_1589924283
+
+            tahmil=it.UF_CRM_1589924259.split("|").get(0)
+            taslim=it.UF_CRM_1589924283.split("|").get(0)
+
+            place_lieu_ta7mil_forprovider.text=tahmil
+            place_lieu_tanzil_forprovider.text=taslim
 
 
             //........................................IF there is a BUG it from HERE OR in the same in DetailDemandeFragment .....................
