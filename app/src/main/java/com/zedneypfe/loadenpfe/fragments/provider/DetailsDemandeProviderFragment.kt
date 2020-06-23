@@ -8,31 +8,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
-import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeFragment
-import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeViewModel
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
 import kotlinx.android.synthetic.main.dialog_send_offre.*
 import kotlinx.android.synthetic.main.dialog_send_offre.view.*
-import kotlinx.android.synthetic.main.fragment_detailsdemande.*
 
-class DetailsDemandeProviderFragment : Fragment() {
+
+class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
 
     private lateinit var alertDialog: AlertDialog
 
-    private lateinit var mMap: GoogleMap
+    private lateinit var mMapView: MapView
 
 
     var phone: String = ""
@@ -71,12 +66,46 @@ class DetailsDemandeProviderFragment : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.details_demande_forprovider, container, false)
 
+
         return v
+    }
+
+    private fun initGoogleMap(savedInstanceState: Bundle?) {
+        // *** IMPORTANT ***
+        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
+        // objects or sub-Bundles.
+
+        // *** IMPORTANT ***
+        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
+        // objects or sub-Bundles.
+        var mapViewBundle: Bundle? = null
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(getString(R.string.map_key))
+        }
+
+        mMapView.onCreate(mapViewBundle)
+
+        mMapView.getMapAsync(this)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        var mapViewBundle = outState.getBundle(getString(R.string.map_key))
+        if (mapViewBundle == null) {
+            mapViewBundle = Bundle()
+            outState.putBundle(getString(R.string.map_key), mapViewBundle)
+        }
+        mMapView.onSaveInstanceState(mapViewBundle)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        mMapView = mapView_tahmil_forprovider
+        initGoogleMap(savedInstanceState)
+
 
         id_passed = arguments?.getString("id")
 
@@ -153,7 +182,6 @@ class DetailsDemandeProviderFragment : Fragment() {
 
 
         send_offre_btn.setOnClickListener {
-            //showDialog()
             showCustomDialog()
 
 
@@ -162,14 +190,6 @@ class DetailsDemandeProviderFragment : Fragment() {
     }//OnViewCreated
 
 
-    /*  fun showDialog() {
-          val dialogBuilder = AlertDialog.Builder(context)
-          dialogBuilder.setMessage("The message here")
-          dialogBuilder.setPositiveButton("Done",
-              DialogInterface.OnClickListener { dialog, whichButton -> })
-          val b = dialogBuilder.create()
-          b.show()
-      }*/
 
 
     fun showCustomDialog() {
@@ -180,7 +200,6 @@ class DetailsDemandeProviderFragment : Fragment() {
         val custom_button: Button = dialogView.findViewById(R.id.send_dialog_btn)
         custom_button.setOnClickListener {
             //perform custom action
-            //    if (price?.text.toString().toIntOrNull()!! > 0
             println(dialogView.price?.text)
 
             if (dialogView.price?.text.toString() == "") {
@@ -222,14 +241,14 @@ class DetailsDemandeProviderFragment : Fragment() {
         alertDialog.show()
     }
 
-  /*  override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+   override fun onMapReady(googleMap: GoogleMap) {
+       googleMap.addMarker(MarkerOptions().position(LatLng(0.0, 0.0))).title="Marker"
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+      /*  val sydney = LatLng(-34.0, 151.0)
+       mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+       mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
 
-    }*/
+    }
 
 
 }
