@@ -12,6 +12,12 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeFragment
@@ -25,6 +31,9 @@ import kotlinx.android.synthetic.main.fragment_detailsdemande.*
 class DetailsDemandeProviderFragment : Fragment() {
 
     private lateinit var alertDialog: AlertDialog
+
+    private lateinit var mMap: GoogleMap
+
 
     var phone: String = ""
 
@@ -68,7 +77,6 @@ class DetailsDemandeProviderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         id_passed = arguments?.getString("id")
 
@@ -213,6 +221,15 @@ class DetailsDemandeProviderFragment : Fragment() {
         alertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
     }
+
+  /*  override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+    }*/
 
 
 }

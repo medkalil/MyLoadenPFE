@@ -67,4 +67,6 @@
     <string name="plus_dinfo">تواصل معنا للاستفسار أو مزيد من المعلومات</string>
     <string name="labellesdemandes">الطلبات</string>
     <string name="lieu_taslim">مكان التسليم</string>
+
+    <string name="map_key" translatable="false">AIzaSyAf4IKU8plOoGGDntMVTrmr6I_mGp4iFJU</string>
 </resources>
