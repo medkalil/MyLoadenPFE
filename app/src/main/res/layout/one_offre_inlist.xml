@@ -16,36 +16,12 @@
             android:paddingRight="10dp"
             android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:paddingRight="5dp"
-                android:id="@+id/offre_num_demande"
-                android:layout_height="wrap_content"
-                android:text="558338"
-                android:textSize="16sp"
-                android:gravity="center_horizontal"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:paddingRight="5dp"
-                android:layout_height="wrap_content"
-                android:text="@string/label_num_demande"
-                android:textSize="16sp"
-                android:gravity="center_horizontal"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="صالح"
-                android:id="@+id/fournisseur_name"
-                android:textSize="16sp"
-                android:gravity="center_horizontal"/>
+            android:layout_marginBottom="5dp" >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="@string/label_arth_siir_mozawed"
+                android:text="عرض سعر المزود خالد العتيبي للطلب رقم118"
                 android:textSize="16sp"/>
 
         </LinearLayout>
@@ -56,13 +32,7 @@
         android:layout_width="match_parent" android:layout_height="wrap_content">
 
 
-        <TextView
-            android:id="@+id/cout_offre"
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingRight="5dp"
-            android:text="fkgjkoglkdkdgk" />
+
 
 
         <LinearLayout
@@ -89,18 +59,19 @@
                     android:paddingRight="5dp">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingLeft="10dp"
+                        android:text="@string/label_moaraf_offre" />
+
+                    <TextView
                         android:id="@+id/id_offre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="1985" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="10dp"
-                        android:text="@string/label_moaraf_offre" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -110,6 +81,12 @@
                     android:gravity="right"
                     android:paddingRight="5dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingLeft="10dp"
+                        android:text="@string/label_date_offre" />
 
                     <TextView
                         android:id="@+id/date_offre"
@@ -118,18 +95,18 @@
                         android:gravity="right"
                         android:text="12/58/1987" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="10dp"
-                        android:text="@string/label_date_offre" />
                 </LinearLayout>
-
-
-
-
             </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/cout_offre"
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingRight="5dp"
+                android:text="fkgjkoglkdkdgk" />
+
 
 
         </LinearLayout>
