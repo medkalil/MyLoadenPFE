@@ -28,6 +28,8 @@ class SignInFragment : Fragment() {
 
     private lateinit var viewModel: SignInViewModel
 
+    var phone_formated:String?=""
+
     var user_type: String? = ""
 
 
@@ -64,13 +66,13 @@ class SignInFragment : Fragment() {
 
                 //format the phone to this format: (966) 555555555
                 //when sending it
-                val phone_formated: String = "(966) " + sign_in_number.text.toString()
+                 phone_formated = "(966) " + sign_in_number.text.toString()
 
                 println(phone_formated)
                 //  SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
 
 
-                viewModel.getresp(phone_formated)
+                viewModel.getresp(phone_formated!!)
 
                 viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
                     println(it)
@@ -94,7 +96,8 @@ class SignInFragment : Fragment() {
                             })
 
 
-                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,phone_formated,
+                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,
+                                phone_formated!!,
                                 user_type.toString()
                             ))
                             println(phone_formated)
@@ -115,13 +118,13 @@ class SignInFragment : Fragment() {
 
                 //format the phone to this format: (966) 555555555
                 //when sending it
-                val phone_formated: String = "966" + sign_in_number.text.toString()
+                phone_formated = "966" + sign_in_number.text.toString()
 
                 println(phone_formated)
                 //  SharedPrefManager.getInstance(requireActivity().applicationContext).save_phone(phone_formated)
 
 
-                viewModel.getresp(phone_formated)
+                viewModel.getresp(phone_formated!!)
 
                 viewModel.phone_existed.observe(viewLifecycleOwner, Observer {
                     println(it)
@@ -145,7 +148,8 @@ class SignInFragment : Fragment() {
                             })
 
 
-                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,phone_formated,
+                            setFragment(VerifSignInFragment.VerifSignInFragmentInstance(it,
+                                phone_formated!!,
                                 user_type.toString()
                             ))
                             println(phone_formated)
@@ -164,7 +168,9 @@ class SignInFragment : Fragment() {
             }
         }//sign_in_btn?.setOnClickListener
 
-    }
+
+
+    }//onViewCreated
 
 
     //requireFragmentManager -> for fragments

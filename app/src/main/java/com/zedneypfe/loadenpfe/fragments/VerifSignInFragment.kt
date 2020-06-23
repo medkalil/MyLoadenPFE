@@ -69,6 +69,7 @@ class VerifSignInFragment : Fragment() {
           code_passed = arguments?.getString("code")*/
 
 
+
         //getting the code with the phone from the argument
         code_passed = arguments?.getString("code")
         phone_passed = arguments?.getString("phone")
