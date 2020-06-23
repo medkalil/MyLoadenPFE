@@ -1,8 +1,10 @@
 package com.zedneypfe.loadenpfe.fragments.provider
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.zedneypfe.loadenpfe.Model.addQuote.Quote
 import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
 import com.zedneypfe.loadenpfe.Model.detailDemande.Result
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -53,6 +55,46 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
 
         }//coroutineScope.launch
     }//fun getDemandes
+
+    //ADD Quote
+    fun addQuote(dealId: String,provPhone:String,totalPrice:Int) {
+        coroutineScope.launch {
+
+            val service = retrofit.create(ApiService::class.java)
+
+            val call = service.addQuote(KEY, dealId,provPhone,totalPrice)
+
+            call.enqueue(object : retrofit2.Callback<Quote> {
+
+                override fun onFailure(call: Call<Quote>, t: Throwable) {
+
+                    println("no detail demande : in DetaildemandeViewModel ")
+
+
+                }//onFailure
+
+                override fun onResponse(
+                    call: Call<Quote>,
+                    response: Response<Quote>
+                ) {
+                    if (response.body()!!.result != 0){
+
+                        Toast.makeText(getApplication(),"Quote Added Succesfully",Toast.LENGTH_LONG).show()
+
+                    }else{
+
+                        Toast.makeText(getApplication(),"you've added a quote to this deals already",Toast.LENGTH_LONG).show()
+
+                    }
+
+
+                }//onResponse
+            })//call.enqueue
+
+        }//coroutineScope.launch
+    }//fun ADD Quote
+
+
 
 
     override fun onCleared() {

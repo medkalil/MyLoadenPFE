@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,12 +16,19 @@ import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeViewModel
+import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
+import kotlinx.android.synthetic.main.dialog_send_offre.*
+import kotlinx.android.synthetic.main.dialog_send_offre.view.*
 import kotlinx.android.synthetic.main.fragment_detailsdemande.*
 
 class DetailsDemandeProviderFragment : Fragment() {
 
     private lateinit var alertDialog: AlertDialog
+
+    var phone: String = ""
+
+    // lateinit var price_formated:String
 
 
     private lateinit var viewModel: DetailsDemandeProviderViewModel
@@ -52,7 +60,9 @@ class DetailsDemandeProviderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.details_demande_forprovider, container, false)
+        val v = inflater.inflate(R.layout.details_demande_forprovider, container, false)
+
+        return v
     }
 
 
@@ -128,13 +138,15 @@ class DetailsDemandeProviderFragment : Fragment() {
 
         })
 
+        phone = SharedPrefManager.getInstance(requireContext().applicationContext).phone
+
+
+        // price_formated=price?.text.toString()
+
 
         send_offre_btn.setOnClickListener {
             //showDialog()
             showCustomDialog()
-
-
-
 
 
         }//send_offre_btn.setOnClickListener
@@ -142,14 +154,15 @@ class DetailsDemandeProviderFragment : Fragment() {
     }//OnViewCreated
 
 
-  /*  fun showDialog() {
-        val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setMessage("The message here")
-        dialogBuilder.setPositiveButton("Done",
-            DialogInterface.OnClickListener { dialog, whichButton -> })
-        val b = dialogBuilder.create()
-        b.show()
-    }*/
+    /*  fun showDialog() {
+          val dialogBuilder = AlertDialog.Builder(context)
+          dialogBuilder.setMessage("The message here")
+          dialogBuilder.setPositiveButton("Done",
+              DialogInterface.OnClickListener { dialog, whichButton -> })
+          val b = dialogBuilder.create()
+          b.show()
+      }*/
+
 
     fun showCustomDialog() {
         val inflater: LayoutInflater = this.getLayoutInflater()
@@ -159,7 +172,29 @@ class DetailsDemandeProviderFragment : Fragment() {
         val custom_button: Button = dialogView.findViewById(R.id.send_dialog_btn)
         custom_button.setOnClickListener {
             //perform custom action
-            alertDialog.dismiss()
+            //    if (price?.text.toString().toIntOrNull()!! > 0
+            println(dialogView.price?.text)
+
+            if (dialogView.price?.text.toString() == "") {
+
+                price?.error = "Ivalide Value Entred"
+
+            } else if (dialogView.price?.text.toString().toInt() <= 0) {
+                price?.error = "Ivalide Value Entred"
+
+            } else if (dialogView.price?.text.toString().toInt() >= 0) {
+                viewModel.addQuote(
+                    id_dem_forprovider.text.toString(),
+                    phone,
+                    dialogView.price?.text.toString().toInt()
+                )
+
+                alertDialog.dismiss()
+            } else {
+                price?.error = "Ivalide Value Entred"
+            }
+
+
         }
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         dialogBuilder.setOnDismissListener(object : DialogInterface.OnDismissListener {
@@ -171,20 +206,13 @@ class DetailsDemandeProviderFragment : Fragment() {
         dialogBuilder.setView(dialogView)
 
         alertDialog = dialogBuilder.create()
+
+
+
         alertDialog.setCancelable(true)
         alertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
     }
 
-
-
-    /*   val view =
-       View.inflate(requireContext().applicationContext, R.layout.dialog_send_offre, null)
-   val builder=AlertDialog.Builder(requireContext().applicationContext)
-   builder.setView(view)
-
-   val dialog=builder.create()
-   dialog.show()
-  dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)*/
 
 }

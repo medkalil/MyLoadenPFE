@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.network
 
+import com.zedneypfe.loadenpfe.Model.addQuote.Quote
 import com.zedneypfe.loadenpfe.Model.getContact.Contact
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
@@ -40,6 +41,13 @@ interface ApiService {
     fun getDetailsDemande(@Query("key") key: String, @Query("id") id: String)
             : Call <DetailDemande>
 
+    //Add Quote
+    @Headers("Content-Type: application/json")
+    @POST("addQuoteToDeal.php")
+    fun addQuote(@Query("key") key: String, @Query("dealId") dealId: String, @Query("provPhone") provPhone:String,
+    @Query("totalPrice") totalPrice:Int)
+            : Call <Quote>
+    
 
 
 
