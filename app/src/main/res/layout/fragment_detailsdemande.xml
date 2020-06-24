@@ -220,8 +220,8 @@
 
                     <com.google.android.gms.maps.MapView
                         android:id="@+id/mapView_tahmil_forclient"
-                        android:layout_width="250dp"
-                        android:layout_height="150dp"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
 
@@ -258,8 +258,8 @@
 
                     <com.google.android.gms.maps.MapView
                         android:id="@+id/mapView_tanzil_forclient"
-                        android:layout_width="250dp"
-                        android:layout_height="150dp"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
 

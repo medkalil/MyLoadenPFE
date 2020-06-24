@@ -23,11 +23,9 @@ import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
 import kotlinx.android.synthetic.main.dialog_send_offre.*
 import kotlinx.android.synthetic.main.dialog_send_offre.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
-class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
+class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var alertDialog: AlertDialog
 
@@ -45,6 +43,9 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
     var beg: String? = ""
 
     var tahmil: String? = ""
+    var tahmil_lat: String? = ""
+    var tahmil_lang: String? = ""
+
     var taslim: String? = ""
 
 
@@ -110,7 +111,7 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
         mMapView = mapView_tahmil_forprovider
 
 
-            initGoogleMap(savedInstanceState)
+        initGoogleMap(savedInstanceState)
 
 
 
@@ -138,6 +139,12 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
 
 
             tahmil = it.UF_CRM_1589924259.split("|").get(0)
+
+            tahmil_lat = it.UF_CRM_1589924259.split("|").get(1).split(";").get(0)
+            println(tahmil_lat)
+            tahmil_lang = it.UF_CRM_1589924259.split("|").get(1).split(";").get(1)
+
+
             taslim = it.UF_CRM_1589924283.split("|").get(0)
 
             place_lieu_ta7mil_forprovider.text = tahmil
@@ -198,8 +205,6 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
     }//OnViewCreated
 
 
-
-
     fun showCustomDialog() {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.dialog_send_offre, null)
@@ -213,11 +218,19 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
             if (dialogView.price?.text.toString() == "") {
 
                 price?.error = "Ivalide Value Entred"
-                Toast.makeText(requireContext().applicationContext,"رقم غير صحيح",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext().applicationContext,
+                    "رقم غير صحيح",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             } else if (dialogView.price?.text.toString().toInt() <= 0) {
                 price?.error = "Ivalide Value Entred"
-                Toast.makeText(requireContext().applicationContext,"رقم غير صحيح",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext().applicationContext,
+                    "رقم غير صحيح",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             } else if (dialogView.price?.text.toString().toInt() >= 0) {
                 viewModel.addQuote(
@@ -229,7 +242,11 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
                 alertDialog.dismiss()
             } else {
                 price?.error = "Ivalide Value Entred"
-                Toast.makeText(requireContext().applicationContext,"رقم غير صحيح",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext().applicationContext,
+                    "رقم غير صحيح",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
 
@@ -251,18 +268,40 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
         alertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
     }
+    //36.84817,10.17466
 
-   override fun onMapReady(googleMap: GoogleMap) {
-       val  tunis = LatLng(36.87200, 10.35360)
-       googleMap.addMarker(MarkerOptions().position(tunis)).title="من"
-       googleMap.moveCamera(CameraUpdateFactory.newLatLng(tunis))
-       googleMap.maxZoomLevel
+    override fun onMapReady(googleMap: GoogleMap) {
+        val tunis = LatLng(36.84817, 10.17466)
+        googleMap.addMarker(MarkerOptions().position(tunis)).title = "من"
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(tunis))
         // Add a marker in Sydney and move the camera
-      /*  val sydney = LatLng(-34.0, 151.0)
-       mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-       mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
+        /*  val sydney = LatLng(-34.0, 151.0)
+         mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+         mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
 
     }
 
 
+    override fun onResume() {
+        mMapView.onResume()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mMapView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mMapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mMapView.onLowMemory()
+    }
+
+
 }
+
