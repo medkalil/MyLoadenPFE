@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="5dp"
-    android:layout_height="wrap_content"
+    android:layout_height="85dp"
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
-    android:background="@drawable/radios">
+    android:layout_margin="4dp"
+    android:background="@drawable/radios"
+    app:cardCornerRadius="5dp">
+
     <LinearLayout
     android:orientation="vertical"
         android:layout_width="match_parent"
@@ -83,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
+                    android:layout_marginTop="5dp"
                     android:paddingRight="5dp">
 
                     <TextView

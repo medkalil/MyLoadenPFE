@@ -13,6 +13,8 @@ import java.util.ArrayList
 class AdapterOffre(var listeOffre: List<QUOTES>) :
     RecyclerView.Adapter<AdapterOffre.Viewholder>() {
 
+    var dem_offre:String?=""
+
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title_offre = itemView.findViewById<TextView>(R.id.title_offre)
         val cout_offre = itemView.findViewById<TextView>(R.id.cout_offre)
@@ -34,10 +36,17 @@ class AdapterOffre(var listeOffre: List<QUOTES>) :
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         val offre = listeOffre[position]
 
+        val dem_offre = offre.BEGINDATE.subSequence(0, 10)
+
         //change to title ligne  : holder.title_offre?.text = offre.donneur.name
         holder.title_offre?.text = offre.TITLE
-        holder.cout_offre?.text = offre.OPPORTUNITY
+        if(offre.OPPORTUNITY != null){
+            holder.cout_offre?.text = offre.OPPORTUNITY+" ريال"
+        }else{
+            holder.cout_offre?.text = "0"+" ريال"
+        }
+
         holder.id_offre?.text = offre.ID
-        holder.date_offre?.text = offre.BEGINDATE
+        holder.date_offre?.text = dem_offre
     }
 }
