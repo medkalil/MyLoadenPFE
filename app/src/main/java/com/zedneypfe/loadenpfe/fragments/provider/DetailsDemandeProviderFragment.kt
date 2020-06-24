@@ -33,6 +33,7 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
 
 
     var phone: String = ""
+     lateinit var cordoner:LatLng
 
     // lateinit var price_formated:String
 
@@ -43,8 +44,8 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
     var beg: String? = ""
 
     var tahmil: String? = ""
-    var tahmil_lat: String? = ""
-    var tahmil_lang: String? = ""
+    var tahmil_lat: Double? =0.0
+    var tahmil_lang: Double? = 0.0
 
     var taslim: String? = ""
 
@@ -140,10 +141,11 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
 
             tahmil = it.UF_CRM_1589924259.split("|").get(0)
 
-            tahmil_lat = it.UF_CRM_1589924259.split("|").get(1).split(";").get(0)
-            println(tahmil_lat)
-            tahmil_lang = it.UF_CRM_1589924259.split("|").get(1).split(";").get(1)
+         /*   tahmil_lat = it.UF_CRM_1589924259.split("|").get(1).split(";").get(0).toDouble()
 
+            tahmil_lang = it.UF_CRM_1589924259.split("|").get(1).split(";").get(1).toDouble()
+
+            cordoner= LatLng(tahmil_lat!!.toDouble(),tahmil_lang!!.toDouble())*/
 
             taslim = it.UF_CRM_1589924283.split("|").get(0)
 
@@ -271,7 +273,12 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
     //36.84817,10.17466
 
     override fun onMapReady(googleMap: GoogleMap) {
-        val tunis = LatLng(36.84817, 10.17466)
+
+        viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
+
+        viewModel.cordoner_tahmil.observe(viewLifecycleOwner, Observer {
+
+        val tunis= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
         googleMap.addMarker(MarkerOptions().position(tunis)).title = "من"
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(tunis))
         // Add a marker in Sydney and move the camera
@@ -279,7 +286,9 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
          mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
          mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
 
-    }
+        })
+        }
+
 
 
     override fun onResume() {

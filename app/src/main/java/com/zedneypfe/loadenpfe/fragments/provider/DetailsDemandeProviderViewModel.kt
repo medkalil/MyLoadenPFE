@@ -21,6 +21,7 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
 
     val detail_getted = MutableLiveData<Result>()
 
+    val cordoner_tahmil=MutableLiveData<String>()
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -49,6 +50,9 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
 
 
                     detail_getted.value=response.body()!!.result
+
+                    cordoner_tahmil.value=response.body()!!.result.UF_CRM_1589924259.split("|").get(1)
+
 
                 }//onResponse
             })//call.enqueue
