@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
@@ -25,7 +24,7 @@ import kotlinx.android.synthetic.main.dialog_send_offre.*
 import kotlinx.android.synthetic.main.dialog_send_offre.view.*
 
 
-class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
+class DetailsDemandeProviderFragment : Fragment() {
 
     private lateinit var alertDialog: AlertDialog
 
@@ -91,7 +90,7 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
 
         mMapView.onCreate(mapViewBundle)
 
-        mMapView.getMapAsync(this)
+        mMapView.getMapAsync(onMapReadyCallback1())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -272,22 +271,45 @@ class DetailsDemandeProviderFragment : Fragment(), OnMapReadyCallback {
     }
     //36.84817,10.17466
 
-    override fun onMapReady(googleMap: GoogleMap) {
+
+    //MAP1 : tahmil
+    fun onMapReadyCallback1(): OnMapReadyCallback? {
+        return OnMapReadyCallback { googleMap ->
+
+            viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
+
+            viewModel.cordoner_tahmil.observe(viewLifecycleOwner, Observer {
+
+                //formating "36.84910;10.19690" and getting the 2 double
+                val location= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
+                googleMap.addMarker(MarkerOptions().position(location)).title = "من"
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+                // Add a marker in Sydney and move the camera
+                /*  val sydney = LatLng(-34.0, 151.0)
+                 mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+                 mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
+
+            })
+        }
+    }
+
+   /* override fun onMapReady(googleMap: GoogleMap) {
 
         viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
 
         viewModel.cordoner_tahmil.observe(viewLifecycleOwner, Observer {
 
-        val tunis= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
-        googleMap.addMarker(MarkerOptions().position(tunis)).title = "من"
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(tunis))
+            //formating "36.84910;10.19690" and getting the 2 double
+        val location= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
+        googleMap.addMarker(MarkerOptions().position(location)).title = "من"
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
         // Add a marker in Sydney and move the camera
         /*  val sydney = LatLng(-34.0, 151.0)
          mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
          mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
 
         })
-        }
+    }*/
 
 
 
