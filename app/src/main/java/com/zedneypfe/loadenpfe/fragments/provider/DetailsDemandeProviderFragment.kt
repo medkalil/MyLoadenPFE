@@ -28,7 +28,9 @@ class DetailsDemandeProviderFragment : Fragment() {
 
     private lateinit var alertDialog: AlertDialog
 
-    private lateinit var mMapView: MapView
+    private lateinit var mMapView_tahmil: MapView
+
+    private lateinit var mMapView_tanzil: MapView
 
 
     var phone: String = ""
@@ -88,9 +90,11 @@ class DetailsDemandeProviderFragment : Fragment() {
             mapViewBundle = savedInstanceState.getBundle(getString(R.string.map_key))
         }
 
-        mMapView.onCreate(mapViewBundle)
+        mMapView_tahmil.onCreate(mapViewBundle)
+        mMapView_tahmil.getMapAsync(onMapReadyCallback1())
 
-        mMapView.getMapAsync(onMapReadyCallback1())
+        mMapView_tanzil.onCreate(mapViewBundle)
+        mMapView_tanzil.getMapAsync(onMapReadyCallback2())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -100,7 +104,8 @@ class DetailsDemandeProviderFragment : Fragment() {
             mapViewBundle = Bundle()
             outState.putBundle(getString(R.string.map_key), mapViewBundle)
         }
-        mMapView.onSaveInstanceState(mapViewBundle)
+        mMapView_tahmil.onSaveInstanceState(mapViewBundle)
+        mMapView_tanzil.onSaveInstanceState(mapViewBundle)
     }
 
 
@@ -108,7 +113,10 @@ class DetailsDemandeProviderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        mMapView = mapView_tahmil_forprovider
+        mMapView_tahmil = mapView_tahmil_forprovider
+
+        mMapView_tanzil = mapView_tanzil_forprovider
+
 
 
         initGoogleMap(savedInstanceState)
@@ -293,6 +301,26 @@ class DetailsDemandeProviderFragment : Fragment() {
         }
     }
 
+    fun onMapReadyCallback2(): OnMapReadyCallback? {
+        return OnMapReadyCallback { googleMap ->
+
+            viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
+
+            viewModel.cordoner_tanzil.observe(viewLifecycleOwner, Observer {
+
+                //formating "36.84910;10.19690" and getting the 2 double
+                val location= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
+                googleMap.addMarker(MarkerOptions().position(location)).title = "الى"
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+                // Add a marker in Sydney and move the camera
+                /*  val sydney = LatLng(-34.0, 151.0)
+                 mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+                 mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
+
+            })
+        }
+    }
+
    /* override fun onMapReady(googleMap: GoogleMap) {
 
         viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
@@ -314,23 +342,27 @@ class DetailsDemandeProviderFragment : Fragment() {
 
 
     override fun onResume() {
-        mMapView.onResume()
+        mMapView_tahmil.onResume()
+        mMapView_tanzil.onResume()
         super.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mMapView.onPause()
+        mMapView_tahmil.onPause()
+        mMapView_tanzil.onPause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mMapView.onDestroy()
+        mMapView_tahmil.onDestroy()
+        mMapView_tanzil.onDestroy()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mMapView.onLowMemory()
+        mMapView_tahmil.onLowMemory()
+        mMapView_tanzil.onLowMemory()
     }
 
 
