@@ -4,6 +4,7 @@ import com.zedneypfe.loadenpfe.Model.addQuote.Quote
 import com.zedneypfe.loadenpfe.Model.getContact.Contact
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
+import com.zedneypfe.loadenpfe.Model.getoffres.GetOffres
 import com.zedneypfe.loadenpfe.Model.mesDemandes.MesDemande
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -47,7 +48,12 @@ interface ApiService {
     fun addQuote(@Query("key") key: String, @Query("dealId") dealId: String, @Query("provPhone") provPhone:String,
     @Query("totalPrice") totalPrice:Int)
             : Call <Quote>
-    
+
+    //get offres (list of Quotes) to diplay it on a recycle view
+    @Headers("Content-Type: application/json")
+    @POST("getDealById.php")
+    fun getOffres(@Query("key") key: String, @Query("id") id: String)
+            : Call <GetOffres>
 
 
 

@@ -18,6 +18,8 @@ class DetailsDemandeFragment : Fragment() {
     private lateinit var viewModel: DetailsDemandeViewModel
 
 
+
+
     var id_passed: String? = ""
     var beg:String?=""
 
@@ -122,5 +124,18 @@ class DetailsDemandeFragment : Fragment() {
         })
 
 
+
+        show_offres.setOnClickListener {
+            //setFragment(DetailsDemandeFragment.DetailsDemandeFragmentInstance(res.ID))
+
+            setFragment(MesOffresFragment.MesOffresFragmentInstance(id_passed.toString()))
+        }
+
     }
+
+    private fun setFragment(fragment: Fragment) {
+        val ft = requireFragmentManager().beginTransaction()
+        ft.replace(R.id.container_fragm, fragment).addToBackStack(null)
+        ft.commit()
+    }//setFragment
 }

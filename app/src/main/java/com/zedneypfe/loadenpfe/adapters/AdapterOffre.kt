@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.zedneypfe.loadenpfe.Model.getoffres.QUOTES
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.data.Offre
 import java.util.ArrayList
 
-class AdapterOffre(var listeOffre: ArrayList<Offre>) :
+class AdapterOffre(var listeOffre: List<QUOTES>) :
     RecyclerView.Adapter<AdapterOffre.Viewholder>() {
 
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nom_fornisseur = itemView.findViewById<TextView>(R.id.fournisseur_name)
-        val numero_demande = itemView.findViewById<TextView>(R.id.offre_num_demande)
+        val title_offre = itemView.findViewById<TextView>(R.id.title_offre)
         val cout_offre = itemView.findViewById<TextView>(R.id.cout_offre)
         val id_offre = itemView.findViewById<TextView>(R.id.id_offre)
         val date_offre = itemView.findViewById<TextView>(R.id.date_offre)
@@ -33,10 +33,11 @@ class AdapterOffre(var listeOffre: ArrayList<Offre>) :
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         val offre = listeOffre[position]
-        holder.nom_fornisseur?.text = offre.donneur.name
-        holder.numero_demande?.text = offre.demande.id.toString()
-        holder.cout_offre?.text = offre.cout.toString()
-        holder.id_offre?.text = offre.id.toString()
-        holder.date_offre?.text = offre.date.toString()
+
+        //change to title ligne  : holder.title_offre?.text = offre.donneur.name
+        holder.title_offre?.text = offre.TITLE
+        holder.cout_offre?.text = offre.OPPORTUNITY
+        holder.id_offre?.text = offre.ID
+        holder.date_offre?.text = offre.BEGINDATE
     }
 }
