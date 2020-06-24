@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -21,6 +23,8 @@ import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
 import kotlinx.android.synthetic.main.dialog_send_offre.*
 import kotlinx.android.synthetic.main.dialog_send_offre.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
@@ -104,7 +108,11 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
 
 
         mMapView = mapView_tahmil_forprovider
-        initGoogleMap(savedInstanceState)
+
+
+            initGoogleMap(savedInstanceState)
+
+
 
 
         id_passed = arguments?.getString("id")
@@ -205,9 +213,11 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
             if (dialogView.price?.text.toString() == "") {
 
                 price?.error = "Ivalide Value Entred"
+                Toast.makeText(requireContext().applicationContext,"رقم غير صحيح",Toast.LENGTH_SHORT).show()
 
             } else if (dialogView.price?.text.toString().toInt() <= 0) {
                 price?.error = "Ivalide Value Entred"
+                Toast.makeText(requireContext().applicationContext,"رقم غير صحيح",Toast.LENGTH_SHORT).show()
 
             } else if (dialogView.price?.text.toString().toInt() >= 0) {
                 viewModel.addQuote(
@@ -219,6 +229,7 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
                 alertDialog.dismiss()
             } else {
                 price?.error = "Ivalide Value Entred"
+                Toast.makeText(requireContext().applicationContext,"رقم غير صحيح",Toast.LENGTH_SHORT).show()
             }
 
 
@@ -242,7 +253,10 @@ class DetailsDemandeProviderFragment : Fragment(),OnMapReadyCallback  {
     }
 
    override fun onMapReady(googleMap: GoogleMap) {
-       googleMap.addMarker(MarkerOptions().position(LatLng(0.0, 0.0))).title="Marker"
+       val  tunis = LatLng(36.87200, 10.35360)
+       googleMap.addMarker(MarkerOptions().position(tunis)).title="من"
+       googleMap.moveCamera(CameraUpdateFactory.newLatLng(tunis))
+       googleMap.maxZoomLevel
         // Add a marker in Sydney and move the camera
       /*  val sydney = LatLng(-34.0, 151.0)
        mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
