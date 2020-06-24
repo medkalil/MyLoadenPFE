@@ -45,9 +45,6 @@ class DetailsDemandeProviderFragment : Fragment() {
     var beg: String? = ""
 
     var tahmil: String? = ""
-    var tahmil_lat: Double? =0.0
-    var tahmil_lang: Double? = 0.0
-
     var taslim: String? = ""
 
 
