@@ -20,6 +20,10 @@ class DetailsDemandeViewModel (application: Application) : AndroidViewModel(appl
 
     val detail_getted = MutableLiveData<com.zedneypfe.loadenpfe.Model.detailDemande.Result>()
 
+    val cordoner_tahmil_client=MutableLiveData<String>()
+
+    val cordoner_tanzil_client=MutableLiveData<String>()
+
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -48,6 +52,10 @@ class DetailsDemandeViewModel (application: Application) : AndroidViewModel(appl
 
 
                     detail_getted.value=response.body()!!.result
+
+                    cordoner_tahmil_client.value=response.body()!!.result.UF_CRM_1589924259.split("|").get(1)
+
+                    cordoner_tanzil_client.value=response.body()!!.result.UF_CRM_1589924283.split("|").get(1)
 
                 }//onResponse
             })//call.enqueue
