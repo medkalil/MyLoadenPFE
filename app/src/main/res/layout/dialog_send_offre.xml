@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_gravity="center"
-            android:text="100"/>
+            android:text=""/>
 
         <Button
             android:id="@+id/send_dialog_btn"
