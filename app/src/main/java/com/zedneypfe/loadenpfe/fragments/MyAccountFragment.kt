@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.fragment_my_account.*
 class MyAccountFragment() : Fragment() {
 
 
-
    // val progressbar=Dialog(requireContext().applicationContext,android.R.style.Theme_Translucent_NoTitleBar)
 
     private lateinit var viewModel: MyAccountViewModel
@@ -47,6 +46,9 @@ class MyAccountFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+
         viewModel = ViewModelProvider(this).get(MyAccountViewModel::class.java)
 
         val phone: String =
@@ -57,7 +59,6 @@ class MyAccountFragment() : Fragment() {
         progressbar.setContentView(view)
         progressbar.setCancelable(false)
         progressbar.show()*/
-
 
         viewModel.getaccountinfo(phone)
         println(phone)
