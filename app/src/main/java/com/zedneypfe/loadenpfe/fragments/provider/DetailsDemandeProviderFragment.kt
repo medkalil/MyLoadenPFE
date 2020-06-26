@@ -274,7 +274,6 @@ class DetailsDemandeProviderFragment : Fragment() {
         alertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
     }
-    //36.84817,10.17466
 
 
     //MAP1 : tahmil

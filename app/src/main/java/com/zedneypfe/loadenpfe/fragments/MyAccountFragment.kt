@@ -1,20 +1,29 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.app.Application
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_my_account.*
 
-class MyAccountFragment : Fragment() {
+class MyAccountFragment() : Fragment() {
+
+
+
+   // val progressbar=Dialog(requireContext().applicationContext,android.R.style.Theme_Translucent_NoTitleBar)
 
     private lateinit var viewModel: MyAccountViewModel
 
@@ -22,6 +31,7 @@ class MyAccountFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -29,7 +39,9 @@ class MyAccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_account, container, false)
+        val v=inflater.inflate(R.layout.fragment_my_account, container, false)
+
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +50,13 @@ class MyAccountFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MyAccountViewModel::class.java)
 
         val phone: String =
-            SharedPrefManager.getInstance(requireActivity().applicationContext).phone
+            SharedPrefManager.getInstance(requireContext().applicationContext).phone
+
+
+    /*   val view=layoutInflater.inflate(R.layout.progressbar_loading,null)
+        progressbar.setContentView(view)
+        progressbar.setCancelable(false)
+        progressbar.show()*/
 
 
         viewModel.getaccountinfo(phone)
@@ -62,6 +80,8 @@ class MyAccountFragment : Fragment() {
         viewModel.email_getted.observe(viewLifecycleOwner, Observer {
             accouount_email.setText(it)
         })
+
+       //progressbar.dismiss()
 
     }//onViewCreated
 
