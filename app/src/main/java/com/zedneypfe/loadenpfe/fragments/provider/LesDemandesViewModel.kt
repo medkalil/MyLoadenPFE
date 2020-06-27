@@ -1,4 +1,4 @@
-package com.zedneypfe.loadenpfe.fragments.client
+package com.zedneypfe.loadenpfe.fragments.provider
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -15,13 +15,13 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
-class MesDemandesViewModel(application: Application) : AndroidViewModel(application) {
+class LesDemandesViewModel (application: Application) : AndroidViewModel(application) {
 
     val list_getted = MutableLiveData<List<Result>>()
 
-   val stat=MutableLiveData<String?>()
+    val stat= MutableLiveData<String?>()
 
-    val process_mesdemandes=MutableLiveData<Boolean>()
+    val process_mesdemandes= MutableLiveData<Boolean>()
 
 
 
@@ -72,4 +72,7 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
         super.onCleared()
         viewModelJob.cancel()
     }
-}//MesDemandesViewModel
+
+}
+
+

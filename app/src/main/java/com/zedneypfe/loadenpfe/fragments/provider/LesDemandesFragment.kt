@@ -16,19 +16,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
+import com.zedneypfe.loadenpfe.adapters.AdapterLesDemandes
 import com.zedneypfe.loadenpfe.fragments.client.DetailsDemandeFragment
 import com.zedneypfe.loadenpfe.fragments.client.MesDemandesViewModel
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_lesdemandes.*
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
 import kotlinx.android.synthetic.main.one_demande_inlist.*
+import java.lang.Exception
 
 class LesDemandesFragment :Fragment() {
-    private lateinit var viewModel: MesDemandesViewModel
+    private lateinit var viewModel: LesDemandesViewModel
 
 
-    private lateinit var demandeadapter: AdapterDemandes
+    private lateinit var demandeadapter: AdapterLesDemandes
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +59,7 @@ class LesDemandesFragment :Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_mesdemandes, container, false)
+        val v = inflater.inflate(R.layout.fragment_lesdemandes, container, false)
 
         return v
     }
@@ -64,7 +67,7 @@ class LesDemandesFragment :Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(MesDemandesViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(LesDemandesViewModel::class.java)
 
 
         //phone from sharedPref
@@ -80,9 +83,11 @@ class LesDemandesFragment :Fragment() {
 
         }
 
-        progress_bar_demandes.visibility=View.VISIBLE
-
+        progress_bar_lesdemandes.visibility=View.VISIBLE
+        
         viewModel.getDemandes(phone)
+
+
 
         viewModel.list_getted.observe(viewLifecycleOwner, Observer {
 
@@ -90,32 +95,23 @@ class LesDemandesFragment :Fragment() {
 
             val llm = LinearLayoutManager(requireContext())
             llm.orientation = LinearLayoutManager.VERTICAL
-            list_demandes.layoutManager = llm
-            demandeadapter = AdapterDemandes(it, { res: Result -> partItemClicked(res) })
-            list_demandes.adapter = demandeadapter
+            list_lesdemandes.layoutManager = llm
+            demandeadapter = AdapterLesDemandes(it, { res: Result -> partItemClicked(res) })
+            list_lesdemandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
 
 
             viewModel.process_mesdemandes.observe(viewLifecycleOwner, Observer {
                 if (it==true){
-                    progress_bar_demandes.visibility=View.GONE
+                    progress_bar_lesdemandes.visibility=View.GONE
                 }
             })
-
-            //println(demandeadapter.stat)
-
-            /*  when (demandeadapter.stat) {
-                  "طلب جديد" -> {
-                      statut_dem?.setTextColor(Color.parseColor("#FFFF00"))
-                      couleur_status?.setBackgroundColor(ContextCompat.getColor(requireContext().applicationContext,R.color.talab_jadid))
-                      }
-              }*/
 
 
         })
 
 
-    }
+    }//onviewcreated
 
     //requireFragmentManager -> for fragments
     private fun setFragment(fragment: Fragment) {
