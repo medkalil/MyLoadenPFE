@@ -67,6 +67,8 @@ class MyAccountFragment() : Fragment() {
        // dialog.show()
 
         progress_bar_myaccount.visibility=View.VISIBLE
+        getActivity()?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         viewModel.getaccountinfo(phone)
         println(phone)
@@ -93,6 +95,7 @@ class MyAccountFragment() : Fragment() {
         viewModel.proccess_myaccount.observe(viewLifecycleOwner, Observer {
             if (it==true)
                 progress_bar_myaccount.visibility=View.GONE
+            getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         })
 
 
