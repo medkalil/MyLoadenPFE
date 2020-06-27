@@ -1,10 +1,14 @@
 package com.zedneypfe.loadenpfe.fragments.client
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.ProgressBar
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +18,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.zedneypfe.loadenpfe.R
-import com.zedneypfe.loadenpfe.databinding.FragmentDetailsdemandeBinding
 import com.zedneypfe.loadenpfe.fragments.VerifSignInFragment
 import com.zedneypfe.loadenpfe.fragments.provider.DetailsDemandeProviderViewModel
 import kotlinx.android.synthetic.main.fragment_detailsdemande.*
@@ -96,6 +99,8 @@ class DetailsDemandeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
         mMapView_tahmil_client = mapView_tahmil_forclient
         mMapView_tanzil_client = mapView_tanzil_forclient
 
@@ -108,6 +113,15 @@ class DetailsDemandeFragment : Fragment() {
         id_passed = arguments?.getString("id")
 
         viewModel = ViewModelProvider(this).get(DetailsDemandeViewModel::class.java)
+
+
+        //show progress bar + diasble the touch event
+        progress_bar_detail_client.visibility = View.VISIBLE
+        getActivity()?.getWindow()?.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+
 
         viewModel.getDetailsDemande(id_passed.toString())
 
@@ -171,6 +185,12 @@ class DetailsDemandeFragment : Fragment() {
 
         })
 
+        viewModel.proccess_detail_client.observe(viewLifecycleOwner, Observer {
+            if (it == true)
+                progress_bar_detail_client.visibility = View.GONE
+            getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        })
+
 
 
         show_offres.setOnClickListener {
@@ -189,7 +209,6 @@ class DetailsDemandeFragment : Fragment() {
     }//setFragment
 
 
-
     //MAP1 : tahmil
     fun onMapReadyCallback1(): OnMapReadyCallback? {
         return OnMapReadyCallback { googleMap ->
@@ -199,7 +218,8 @@ class DetailsDemandeFragment : Fragment() {
             viewModel.cordoner_tahmil_client.observe(viewLifecycleOwner, Observer {
 
                 //formating "36.84910;10.19690" and getting the 2 double
-                val location= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
+                val location =
+                    LatLng(it.split(";").get(0).toDouble(), it.split(";").get(1).toDouble())
                 googleMap.addMarker(MarkerOptions().position(location)).title = "من"
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
                 // Add a marker in Sydney and move the camera
@@ -219,7 +239,8 @@ class DetailsDemandeFragment : Fragment() {
             viewModel.cordoner_tanzil_client.observe(viewLifecycleOwner, Observer {
 
                 //formating "36.84910;10.19690" and getting the 2 double
-                val location= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
+                val location =
+                    LatLng(it.split(";").get(0).toDouble(), it.split(";").get(1).toDouble())
                 googleMap.addMarker(MarkerOptions().position(location)).title = "الى"
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
                 // Add a marker in Sydney and move the camera
@@ -248,6 +269,9 @@ class DetailsDemandeFragment : Fragment() {
         super.onDestroy()
         mMapView_tahmil_client.onDestroy()
         mMapView_tanzil_client.onDestroy()
+
+        getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
     }
 
     override fun onLowMemory() {
@@ -255,7 +279,6 @@ class DetailsDemandeFragment : Fragment() {
         mMapView_tahmil_client.onLowMemory()
         mMapView_tanzil_client.onLowMemory()
     }
-
 
 
 }

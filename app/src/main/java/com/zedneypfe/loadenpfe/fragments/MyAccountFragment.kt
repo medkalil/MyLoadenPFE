@@ -56,19 +56,10 @@ class MyAccountFragment() : Fragment() {
             SharedPrefManager.getInstance(requireContext().applicationContext).phone
 
 
-    /*   val view=layoutInflater.inflate(R.layout.progressbar_loading,null)
-        progressbar.setContentView(view)
-        progressbar.setCancelable(false)
-        progressbar.show()*/
-
-        //dialog = SpotsDialog.Builder().setCancelable(false).setContext(requireActivity()).build()
-
-
-       // dialog.show()
-
+        //show the progress bar
         progress_bar_myaccount.visibility=View.VISIBLE
         getActivity()?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         viewModel.getaccountinfo(phone)
         println(phone)
@@ -92,14 +83,21 @@ class MyAccountFragment() : Fragment() {
             accouount_email.setText(it)
         })
 
+        //hide the progress bar
         viewModel.proccess_myaccount.observe(viewLifecycleOwner, Observer {
             if (it==true)
                 progress_bar_myaccount.visibility=View.GONE
-            getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         })
 
 
     }//onViewCreated
+
+    override fun onDestroy() {
+        super.onDestroy()
+        getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
 
 
 }
