@@ -8,6 +8,18 @@
     android:orientation="vertical"
     tools:context=".fragments.MyAccountFragment">
 
+    <RelativeLayout
+        android:id="@+id/progress_bar_myaccount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000">
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        />
+    </RelativeLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

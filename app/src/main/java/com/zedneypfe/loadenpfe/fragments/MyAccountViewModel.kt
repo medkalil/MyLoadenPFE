@@ -3,7 +3,10 @@ package com.zedneypfe.loadenpfe.fragments
 import android.R
 import android.app.Application
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.AndroidViewModel
@@ -26,6 +29,10 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
     val phone_getted = MutableLiveData<String>()
     val email_getted = MutableLiveData<String>()
 
+    val proccess_myaccount = MutableLiveData<Boolean>()
+
+
+
 
 
     //Courotines job+scoope
@@ -47,7 +54,6 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
                 }
 
                 override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
-                  //  println(response.body()!!.result)
 
                     name.value=response.body()!!.result.NAME
                     last_name.value=response.body()!!.result.LAST_NAME
@@ -55,6 +61,7 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
                     phone_getted.value=response.body()!!.result.PHONE[0].VALUE
                     email_getted.value=response.body()!!.result.EMAIL[0].VALUE
 
+                    proccess_myaccount.value=true
                 }
             })//enqueue
 

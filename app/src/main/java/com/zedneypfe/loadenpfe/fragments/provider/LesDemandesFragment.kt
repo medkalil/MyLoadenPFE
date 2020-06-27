@@ -80,6 +80,7 @@ class LesDemandesFragment :Fragment() {
 
         }
 
+        progress_bar_demandes.visibility=View.VISIBLE
 
         viewModel.getDemandes(phone)
 
@@ -93,6 +94,13 @@ class LesDemandesFragment :Fragment() {
             demandeadapter = AdapterDemandes(it, { res: Result -> partItemClicked(res) })
             list_demandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
+
+
+            viewModel.process_mesdemandes.observe(viewLifecycleOwner, Observer {
+                if (it==true){
+                    progress_bar_demandes.visibility=View.GONE
+                }
+            })
 
             //println(demandeadapter.stat)
 

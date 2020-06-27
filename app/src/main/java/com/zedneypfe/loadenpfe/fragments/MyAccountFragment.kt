@@ -1,14 +1,13 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.app.AlertDialog
 import android.app.Application
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -16,13 +15,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_my_account.*
 
 class MyAccountFragment() : Fragment() {
 
 
-   // val progressbar=Dialog(requireContext().applicationContext,android.R.style.Theme_Translucent_NoTitleBar)
+    //val progressbar=Dialog(requireActivity(),android.R.style.Theme_Translucent_NoTitleBar)
+   //lateinit var dialog: AlertDialog
 
     private lateinit var viewModel: MyAccountViewModel
 
@@ -60,6 +61,13 @@ class MyAccountFragment() : Fragment() {
         progressbar.setCancelable(false)
         progressbar.show()*/
 
+        //dialog = SpotsDialog.Builder().setCancelable(false).setContext(requireActivity()).build()
+
+
+       // dialog.show()
+
+        progress_bar_myaccount.visibility=View.VISIBLE
+
         viewModel.getaccountinfo(phone)
         println(phone)
 
@@ -82,7 +90,11 @@ class MyAccountFragment() : Fragment() {
             accouount_email.setText(it)
         })
 
-       //progressbar.dismiss()
+        viewModel.proccess_myaccount.observe(viewLifecycleOwner, Observer {
+            if (it==true)
+                progress_bar_myaccount.visibility=View.GONE
+        })
+
 
     }//onViewCreated
 

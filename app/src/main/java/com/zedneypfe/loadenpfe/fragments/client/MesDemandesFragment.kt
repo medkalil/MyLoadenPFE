@@ -21,6 +21,7 @@ import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
+import kotlinx.android.synthetic.main.fragment_my_account.*
 import kotlinx.android.synthetic.main.one_demande_inlist.*
 
 
@@ -80,6 +81,8 @@ class MesDemandesFragment : Fragment() {
             setFragment(DetailsDemandeFragment.DetailsDemandeFragmentInstance(res.ID))
         }
 
+        progress_bar_demandes.visibility=View.VISIBLE
+
         viewModel.getDemandes(phone)
 
         viewModel.list_getted.observe(viewLifecycleOwner, Observer {
@@ -92,6 +95,12 @@ class MesDemandesFragment : Fragment() {
             demandeadapter = AdapterDemandes(it, { res: Result -> partItemClicked(res) })
             list_demandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
+
+            viewModel.process_mesdemandes.observe(viewLifecycleOwner, Observer {
+                if (it==true){
+                    progress_bar_demandes.visibility=View.GONE
+                }
+            })
 
            // statut_dem.setTextColor(resources.getColor())
             //println(demandeadapter.stat)
