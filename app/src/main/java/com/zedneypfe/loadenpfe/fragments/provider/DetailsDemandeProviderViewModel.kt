@@ -25,6 +25,8 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
 
     val cordoner_tanzil=MutableLiveData<String>()
 
+    val proccess_detail_provider= MutableLiveData<Boolean>()
+
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -58,6 +60,7 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
 
                     cordoner_tanzil.value=response.body()!!.result.UF_CRM_1589924283.split("|").get(1)
 
+                    proccess_detail_provider.value=true
 
 
                 }//onResponse

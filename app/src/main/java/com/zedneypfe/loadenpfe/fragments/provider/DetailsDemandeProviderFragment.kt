@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,6 +23,7 @@ import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
 import kotlinx.android.synthetic.main.dialog_send_offre.*
 import kotlinx.android.synthetic.main.dialog_send_offre.view.*
+import kotlinx.android.synthetic.main.fragment_detailsdemande.*
 
 
 class DetailsDemandeProviderFragment : Fragment() {
@@ -125,6 +127,14 @@ class DetailsDemandeProviderFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
 
+        //show progress bar + diasble the touch event
+        progress_bar_detail_provider.visibility = View.VISIBLE
+        getActivity()?.getWindow()?.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+
+
         viewModel.getDetailsDemande(id_passed.toString())
 
         viewModel.detail_getted.observe(viewLifecycleOwner, Observer {
@@ -193,6 +203,14 @@ class DetailsDemandeProviderFragment : Fragment() {
 
             }//when
 
+
+        })
+
+
+        viewModel.proccess_detail_provider.observe(viewLifecycleOwner, Observer {
+            if (it==true)
+                progress_bar_detail_provider.visibility = View.GONE
+            getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         })
 
@@ -317,24 +335,6 @@ class DetailsDemandeProviderFragment : Fragment() {
         }
     }
 
-   /* override fun onMapReady(googleMap: GoogleMap) {
-
-        viewModel = ViewModelProvider(this).get(DetailsDemandeProviderViewModel::class.java)
-
-        viewModel.cordoner_tahmil.observe(viewLifecycleOwner, Observer {
-
-            //formating "36.84910;10.19690" and getting the 2 double
-        val location= LatLng(it.split(";").get(0).toDouble(),it.split(";").get(1).toDouble())
-        googleMap.addMarker(MarkerOptions().position(location)).title = "من"
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-        // Add a marker in Sydney and move the camera
-        /*  val sydney = LatLng(-34.0, 151.0)
-         mMapView.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-         mMapView.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
-
-        })
-    }*/
-
 
 
     override fun onResume() {
@@ -353,6 +353,8 @@ class DetailsDemandeProviderFragment : Fragment() {
         super.onDestroy()
         mMapView_tahmil.onDestroy()
         mMapView_tanzil.onDestroy()
+
+        getActivity()?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 
     override fun onLowMemory() {
