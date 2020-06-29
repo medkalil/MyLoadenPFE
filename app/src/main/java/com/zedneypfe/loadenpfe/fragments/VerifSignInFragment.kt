@@ -176,7 +176,7 @@ class VerifSignInFragment : Fragment() {
     //requireFragmentManager -> for fragments
     private fun setFragment(fragment: Fragment) {
         val ft = requireFragmentManager().beginTransaction()
-        ft.replace(R.id.container_fragm, fragment).addToBackStack(null)
+        ft.replace(R.id.container_fragm, fragment)
         ft.commit()
     }
 
