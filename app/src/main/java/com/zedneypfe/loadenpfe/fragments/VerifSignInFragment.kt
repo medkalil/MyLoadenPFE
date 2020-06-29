@@ -64,6 +64,13 @@ class VerifSignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+       // (activity as MainActivity).supportActionBar?.title=""
+
+
+        code_verif.requestFocus()
+
+
         //methode with the interface in the mainactivity
         /*  phone_passed = arguments?.getString("phone").toString()
           code_passed = arguments?.getString("code")*/

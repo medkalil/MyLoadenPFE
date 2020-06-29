@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.Communicator
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.network.ApiService
@@ -57,7 +58,9 @@ class SignInFragment : Fragment() {
 
 
         sign_in_number.requestFocus()
-        getActivity()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+       // getActivity()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+
+        (activity as MainActivity).supportActionBar?.title=getString(R.string.label_sign_in)
 
 
         //Declaring the viewmodel
