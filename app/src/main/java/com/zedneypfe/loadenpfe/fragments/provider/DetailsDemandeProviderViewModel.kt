@@ -92,11 +92,11 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
                 ) {
                     if (response.body()!!.result != 0){
 
-                        Toast.makeText(getApplication(),"Quote Added Succesfully",Toast.LENGTH_LONG).show()
+                        Toast.makeText(getApplication(),"لقد تم ارسال عرضك",Toast.LENGTH_LONG).show()
 
                     }else{
 
-                        Toast.makeText(getApplication(),"you've added a quote to this deals already",Toast.LENGTH_LONG).show()
+                        Toast.makeText(getApplication(),"لقد قمت بالفعل بإضافة عرض لهذا الطلب",Toast.LENGTH_LONG).show()
 
                     }
 
