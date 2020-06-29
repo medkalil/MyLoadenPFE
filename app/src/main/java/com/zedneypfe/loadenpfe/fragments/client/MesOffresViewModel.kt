@@ -21,6 +21,8 @@ class MesOffresViewModel (application: Application) : AndroidViewModel(applicati
 
     val list_offres_getted = MutableLiveData<List<QUOTES>>()
 
+    val process_mesoffres=MutableLiveData<Boolean>()
+
     //Courotines job+scoope
     //create a courotine : job+scoope+dispatcher
     private var viewModelJob = Job()
@@ -50,6 +52,8 @@ class MesOffresViewModel (application: Application) : AndroidViewModel(applicati
                //list_getted.value = response.body()!!.result
 
                     list_offres_getted.value=response.body()!!.result.QUOTES
+
+                    process_mesoffres.value=true
 
                     println(list_offres_getted)
 

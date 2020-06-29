@@ -17,7 +17,6 @@ import com.zedneypfe.loadenpfe.adapters.AdapterOffre
 import com.zedneypfe.loadenpfe.data.Demande
 import com.zedneypfe.loadenpfe.data.Fournisseur
 import com.zedneypfe.loadenpfe.data.Offre
-import com.zedneypfe.loadenpfe.databinding.FragmentMesoffresBinding
 import kotlinx.android.synthetic.main.fragment_mesdemandes.*
 import kotlinx.android.synthetic.main.fragment_mesoffres.*
 import java.util.ArrayList
@@ -65,6 +64,10 @@ class MesOffresFragment : Fragment() {
         //passing the id to meke the call
         id_passed_from_detail = arguments?.getString("id")
 
+
+        progress_bar_mesoffres.visibility=View.VISIBLE
+
+
         viewModel.getOffres(id_passed_from_detail.toString())
 
 
@@ -77,7 +80,13 @@ class MesOffresFragment : Fragment() {
             list_offres.adapter = offreAdapter
             offreAdapter.notifyDataSetChanged()
 
-        })
+            viewModel.process_mesoffres.observe(viewLifecycleOwner, Observer {
+                if (it==true){
+                    progress_bar_mesoffres.visibility=View.GONE
+                }
+            })//process_mesoffres.observe
+
+        })//list_offres_getted.observe
 
 
        // initAdapter()
