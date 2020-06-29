@@ -134,7 +134,6 @@ class VerifSignInFragment : Fragment() {
                // intent.putExtra("user_type",user_type_passed)
                 requireActivity().startActivity(intent)
 
-
             } else {
                 code_verif?.error = getString(R.string.code_check)
             }
@@ -172,6 +171,8 @@ class VerifSignInFragment : Fragment() {
 
 
     }//onViewCreated
+
+
 
     //requireFragmentManager -> for fragments
     private fun setFragment(fragment: Fragment) {
