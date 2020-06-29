@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ProgressBar
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
+
 
         // user_type=intent.getStringExtra("user_type")
         user_type = SharedPrefManager.getInstance(this).user_type

@@ -3,6 +3,7 @@ package com.zedneypfe.loadenpfe.fragments.client
 import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,7 @@ class MesDemandesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
     }
 
     /* private fun initAdapter() {
@@ -69,6 +71,8 @@ class MesDemandesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as MainActivity).supportActionBar?.title=getString(R.string.labelmesdemande)
+
+
 
 
         viewModel = ViewModelProvider(this).get(MesDemandesViewModel::class.java)
