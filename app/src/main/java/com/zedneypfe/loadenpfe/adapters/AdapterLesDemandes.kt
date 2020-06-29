@@ -48,7 +48,7 @@ class AdapterLesDemandes(var mylist: List<Result>, val clickListener: (Result) -
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val demande = mylist.get(position)
+        val demande = mylist.sortedByDescending { it.ID }.get(position)
 
 
         //Formating the date

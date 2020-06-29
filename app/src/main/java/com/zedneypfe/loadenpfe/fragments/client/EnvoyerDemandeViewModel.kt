@@ -15,6 +15,9 @@ import kotlinx.coroutines.launch
 class EnvoyerDemandeViewModel(application: Application) : AndroidViewModel(application) {
 
 
+   // val proccess_envoyerdemande = MutableLiveData<Boolean>()
+
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -30,6 +33,8 @@ class EnvoyerDemandeViewModel(application: Application) : AndroidViewModel(appli
             webview.webViewClient = WebViewClient()
 
             webview.loadUrl(url)
+
+         //   proccess_envoyerdemande.value=true
         }//coroutineScope.launch
     }
 

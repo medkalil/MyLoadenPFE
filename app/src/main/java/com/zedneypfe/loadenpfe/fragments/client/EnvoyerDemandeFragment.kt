@@ -8,10 +8,12 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.fragments.VerifSignInViewModel
 import kotlinx.android.synthetic.main.fragment_envoyer_demande.*
+import kotlinx.android.synthetic.main.fragment_my_account.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -40,7 +42,14 @@ class EnvoyerDemandeFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(EnvoyerDemandeViewModel::class.java)
 
+
+       // progress_bar_envoyerdemande.visibility=View.VISIBLE
+
         viewModel.getEnvouyerDemande(webview)
+
+      /* viewModel.proccess_envoyerdemande.observe(viewLifecycleOwner, Observer {
+            if (it==true) progress_bar_envoyerdemande.visibility=View.GONE
+        })*/
 
 
         //i deplace it in the ViewModel to respect the mvvm

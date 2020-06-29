@@ -96,7 +96,7 @@ class LesDemandesFragment :Fragment() {
             val llm = LinearLayoutManager(requireContext())
             llm.orientation = LinearLayoutManager.VERTICAL
             list_lesdemandes.layoutManager = llm
-            demandeadapter = AdapterLesDemandes(it, { res: Result -> partItemClicked(res) })
+            demandeadapter = AdapterLesDemandes(it.sortedByDescending{ it.ID }, { res: Result -> partItemClicked(res) })
             list_lesdemandes.adapter = demandeadapter
             demandeadapter.notifyDataSetChanged()
 
