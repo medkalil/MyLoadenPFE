@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments.client
 
+import android.app.ActionBar
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.fragments.VerifSignInFragment
 import com.zedneypfe.loadenpfe.fragments.provider.DetailsDemandeProviderViewModel
@@ -100,6 +102,9 @@ class DetailsDemandeFragment : Fragment() {
 
 
 
+       // getActivity()?.supportActionBar?.title=""
+
+        (activity as MainActivity).supportActionBar?.title=getString(R.string.detail_demande_title)
 
         mMapView_tahmil_client = mapView_tahmil_forclient
         mMapView_tanzil_client = mapView_tanzil_forclient

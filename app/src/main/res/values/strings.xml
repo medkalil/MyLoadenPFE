@@ -69,4 +69,6 @@
     <string name="lieu_taslim">مكان التسليم</string>
 
     <string name="map_key" translatable="false">AIzaSyAf4IKU8plOoGGDntMVTrmr6I_mGp4iFJU</string>
+    <string name="detail_demande_title">تفاصيل الطلب</string>
+    <string name="list_desoffres_title">قائمة العروض</string>
 </resources>

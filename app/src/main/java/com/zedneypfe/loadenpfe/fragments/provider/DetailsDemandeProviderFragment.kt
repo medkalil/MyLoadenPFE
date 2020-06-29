@@ -18,6 +18,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.details_demande_forprovider.*
@@ -110,6 +111,8 @@ class DetailsDemandeProviderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as MainActivity).supportActionBar?.title=getString(R.string.detail_demande_title)
 
 
         mMapView_tahmil = mapView_tahmil_forprovider

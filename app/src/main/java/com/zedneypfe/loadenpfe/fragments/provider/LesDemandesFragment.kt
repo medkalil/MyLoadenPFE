@@ -13,6 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zedneypfe.loadenpfe.MainActivity
 import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import com.zedneypfe.loadenpfe.adapters.AdapterDemandes
@@ -66,6 +67,9 @@ class LesDemandesFragment :Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as MainActivity).supportActionBar?.title=getString(R.string.labellesdemandes)
+
 
         viewModel = ViewModelProvider(this).get(LesDemandesViewModel::class.java)
 
