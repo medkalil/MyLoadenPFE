@@ -19,19 +19,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/tel" />
+                    android:paddingBottom="5dp"
+                    android:src="@drawable/ic_baseline_phone_24" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
                     android:text="@string/labeltel"
                     android:textSize="24sp" />
 
