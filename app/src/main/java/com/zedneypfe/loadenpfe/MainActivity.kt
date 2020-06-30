@@ -1,14 +1,8 @@
 package com.zedneypfe.loadenpfe
 
-import android.app.FragmentManager
-import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.ProgressBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -16,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.navigation.NavigationView
-import com.zedneypfe.loadenpfe.Model.authModel
 import com.zedneypfe.loadenpfe.fragments.MyAccountFragment
 import com.zedneypfe.loadenpfe.fragments.NotificationFragment
 import com.zedneypfe.loadenpfe.fragments.SignInFragment
@@ -64,7 +57,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(actionToggle)
         actionToggle.syncState()
 
-
         // user_type=intent.getStringExtra("user_type")
         user_type = SharedPrefManager.getInstance(this).user_type
 
@@ -94,15 +86,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //setFragment(EnvoyerDemandeFragment())
     }
 
-
-    //Function for hide Drawer Menu Item
-    //here is the sign out
-    //and can manipule the title,color... of an item just m.findItem(R.id.item_signout).set...
-    /*  fun hideItem() {
-          val navigationView: NavigationView = findViewById(R.id.nav_view)
-          val m: Menu = navigationView.menu
-          m.findItem(R.id.item_signout).setVisible(false)
-      }*/
 
     fun changeMenuNotloggedIn() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
