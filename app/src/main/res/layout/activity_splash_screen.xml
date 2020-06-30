@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/colorloaden"
-    android:background="#0099cc"
+    android:backgroundTint="#d60411"
+    android:background="#d60411"
     tools:context=".utils.SplashScreenActivity">
 <ImageView
     android:layout_width="match_parent"
