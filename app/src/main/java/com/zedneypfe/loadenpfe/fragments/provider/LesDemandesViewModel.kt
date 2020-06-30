@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class LesDemandesViewModel (application: Application) : AndroidViewModel(application) {
 
-    val list_getted = MutableLiveData<List<Result>>()
+    val list_getted = MutableLiveData<List<Result>?>()
 
     val stat= MutableLiveData<String?>()
 

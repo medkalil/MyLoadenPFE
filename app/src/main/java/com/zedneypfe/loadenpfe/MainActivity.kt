@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe
 
+import android.app.FragmentManager
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
@@ -241,12 +242,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+
+    /*@Override
+public void onBackPressed() {
+    Fragment fragment = getSuportFragmentManager().findFragmentByTag(Constants.CLIENT_DETAILS_TAG);
+    if (fragment instanceof ClientDetailsFragment) {
+        getSupportFragmentManager().popBackStackImmediate();
+    }
+    else {
+        super.onBackPressed();
+    }
+}*/
+
+
+
     override fun onBackPressed() {
 
         if (drawer_layout.isDrawerOpen(GravityCompat.START))
             closeDrawer()
+
         else
             super.onBackPressed()
+
     }
 
     private fun closeDrawer() {

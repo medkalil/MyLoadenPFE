@@ -17,9 +17,9 @@ import retrofit2.Response
 
 class MesDemandesViewModel(application: Application) : AndroidViewModel(application) {
 
-    val list_getted = MutableLiveData<List<Result>>()
+    val list_getted = MutableLiveData<List<Result>?>()
 
-   val stat=MutableLiveData<String?>()
+  // val stat=MutableLiveData<String?>()
 
     val process_mesdemandes=MutableLiveData<Boolean>()
 
@@ -55,7 +55,7 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
                     println(response.body()!!)
                     list_getted.value = response.body()!!.result
 
-                    stat.value=response.body()!!.result[0].STAGE_NAME
+                   // stat.value=response.body()!!.result[0].STAGE_NAME
 
                     process_mesdemandes.value=true
 

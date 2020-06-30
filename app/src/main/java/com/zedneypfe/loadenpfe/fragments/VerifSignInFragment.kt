@@ -1,5 +1,6 @@
 package com.zedneypfe.loadenpfe.fragments
 
+import android.app.FragmentManager
 import android.content.AsyncQueryHandler
 import android.content.Context
 import android.content.Intent
@@ -63,6 +64,7 @@ class VerifSignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
 
        // (activity as MainActivity).supportActionBar?.title=""
@@ -134,6 +136,9 @@ class VerifSignInFragment : Fragment() {
                // intent.putExtra("user_type",user_type_passed)
                 requireActivity().startActivity(intent)
 
+
+                getActivity()?.onBackPressed()
+
             } else {
                 code_verif?.error = getString(R.string.code_check)
             }
@@ -171,6 +176,7 @@ class VerifSignInFragment : Fragment() {
 
 
     }//onViewCreated
+
 
 
 

@@ -14,7 +14,7 @@ import com.zedneypfe.loadenpfe.Model.mesDemandes.Result
 import com.zedneypfe.loadenpfe.R
 import kotlinx.android.synthetic.main.one_demande_inlist.view.*
 
-class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> Unit) :
+class AdapterDemandes(var mylist: List<Result>?, val clickListener: (Result) -> Unit) :
     RecyclerView.Adapter<AdapterDemandes.ViewHolder>() {
 
     var stat: String? = ""
@@ -30,7 +30,7 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
 
         val couleur_status=itemView.couleur_status
 
-        fun bind(res: Result, clickListener: (Result) -> Unit) {
+        fun bind(res: Result?, clickListener: (Result?) -> Unit) {
             itemView.setOnClickListener { clickListener(res) }
         }
 
@@ -43,30 +43,30 @@ class AdapterDemandes(var mylist: List<Result>, val clickListener: (Result) -> U
     }
 
     override fun getItemCount(): Int {
-        return mylist.size
+        return mylist?.size!!
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val demande = mylist.sortedByDescending { it.ID }.get(position)
+        val demande = mylist?.sortedByDescending { it.ID }?.get(position)
 
 
         //Formating the date
-        val dem = demande.BEGINDATE.subSequence(0, 10)
+        val dem = demande?.BEGINDATE?.subSequence(0, 10)
 
         //test Color
-        stat = demande.STAGE_NAME
+        stat = demande?.STAGE_NAME
         println(stat)
 
 
-        holder.statu_demande.text = demande.STAGE_NAME
-        holder.id_demande.text = demande.ID
+        holder.statu_demande.text = demande?.STAGE_NAME
+        holder.id_demande.text = demande?.ID
 
         //holder.date_demande.text = demande.BEGINDATE
         holder.date_demande.text = dem
 
-        holder.type_demande.text = demande.TYPE_NAME
+        holder.type_demande.text = demande?.TYPE_NAME
 
-        holder.bind(demande, clickListener)
+        holder.bind(demande, clickListener as (Result?) -> Unit)
 
         //set statut TextColor
         when (stat) {
