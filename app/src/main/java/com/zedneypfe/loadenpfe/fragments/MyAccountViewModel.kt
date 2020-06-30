@@ -50,6 +50,8 @@ class MyAccountViewModel(application: Application) : AndroidViewModel(applicatio
 
                 override fun onFailure(call: Call<Contact>, t: Throwable) {
                     println("failed to get the account info")
+                    Toast.makeText(getApplication(),"تحقق من شبكة الانترنت",Toast.LENGTH_LONG).show()
+
 
                 }
 

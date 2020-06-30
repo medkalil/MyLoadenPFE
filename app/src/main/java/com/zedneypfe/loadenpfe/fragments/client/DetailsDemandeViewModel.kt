@@ -1,6 +1,7 @@
 package com.zedneypfe.loadenpfe.fragments.client
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.zedneypfe.loadenpfe.Model.detailDemande.DetailDemande
@@ -43,6 +44,7 @@ class DetailsDemandeViewModel (application: Application) : AndroidViewModel(appl
                 override fun onFailure(call: Call<DetailDemande>, t: Throwable) {
 
                     println("no detail demande : in DetaildemandeViewModel ")
+                    Toast.makeText(getApplication(),"تحقق من شبكة الانترنت", Toast.LENGTH_LONG).show()
 
 
                 }//onFailure

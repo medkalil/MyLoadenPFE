@@ -82,6 +82,8 @@ class DetailsDemandeProviderViewModel(application: Application) : AndroidViewMod
                 override fun onFailure(call: Call<Quote>, t: Throwable) {
 
                     println("no detail demande : in DetaildemandeViewModel ")
+                    Toast.makeText(getApplication(),"تحقق من شبكة الانترنت",Toast.LENGTH_LONG).show()
+
 
 
                 }//onFailure

@@ -1,6 +1,7 @@
 package com.zedneypfe.loadenpfe.fragments.client
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.zedneypfe.loadenpfe.Model.getoffres.GetOffres
@@ -42,6 +43,8 @@ class MesOffresViewModel (application: Application) : AndroidViewModel(applicati
                 override fun onFailure(call: Call<GetOffres>, t: Throwable) {
 
                     println("check your internet connexion for mes Offres (msg from mesOffresViewModel)")
+                    Toast.makeText(getApplication(),"تحقق من شبكة الانترنت", Toast.LENGTH_LONG).show()
+
 
                 }//onFailure
 

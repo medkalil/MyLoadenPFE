@@ -1,6 +1,7 @@
 package com.zedneypfe.loadenpfe.fragments.client
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.zedneypfe.loadenpfe.Model.mesDemandes.MesDemande
@@ -43,6 +44,7 @@ class MesDemandesViewModel(application: Application) : AndroidViewModel(applicat
                 override fun onFailure(call: Call<MesDemande>, t: Throwable) {
 
                     println("check your internet connexion for mes demande (msg from MesDemandesViewModel)")
+                    Toast.makeText(getApplication(),"تحقق من شبكة الانترنت",Toast.LENGTH_LONG).show()
 
                 }//onFailure
 
