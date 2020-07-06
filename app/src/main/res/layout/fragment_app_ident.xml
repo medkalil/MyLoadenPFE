@@ -17,35 +17,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:textSize="30sp"
+            android:textColor="#000000"
+            android:layout_gravity="center"
             android:text="@string/label_mannahno" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/man_nahnou" />
+            android:textSize="24sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:text="نحن شركة لودن وسيط نقل بين العملاء و سائقي الشاحنات الصغيرة و المتوسطة و الكبيرة" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="@string/label_mannahno" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/man_nahnou" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="@string/label_mannahno" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/man_nahnou" />
-
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="495dp"
+                android:src="@drawable/loaden_background_qui_nous" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
